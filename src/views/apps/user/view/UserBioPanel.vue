@@ -1,16 +1,47 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
 
-interface Props {
-  userData: {
-    id: number
-    company: string
-    phone: string
-    email: string
-    adress: string
+const token = localStorage.getItem('token') // assuming the token is stored with the key 'token'
+const userData = ref({
+  id: 0,
+  company: '',
+  phone: '',
+  email: '',
+  address: ''
+})
+
+const fetchUserData = async () => {
+  if (token) {
+    try {
+      const response = await fetch('http://localhost:5070/api/Company/my-company', {
+        method: 'GET',
+        headers: {
+          'accept': '*/*',
+          'Authorization': `Bearer ${token}`
+        }
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        userData.value = {
+          id: data.id,
+          company: data.companyName,
+          phone: data.phoneNumber,
+          email: data.mail,
+          address: '' // Address is not available in the API response, you can set it accordingly
+        }
+      } else {
+        console.error('Failed to fetch user data')
+      }
+    } catch (error) {
+      console.error('Error:', error)
+    }
+  } else {
+    console.error('Token not found in localStorage')
   }
 }
 
-const props = defineProps<Props>()
+onMounted(fetchUserData)
 
 const standardPlan = {
   plan: 'Standard',
@@ -67,7 +98,7 @@ const resolveUserRoleVariant = (role: string) => {
               <VListItemTitle>
                 <h6 class="text-h6">
                   Компания:
-                  <span class="text-body-1">{{ props.userData.email }}</span>
+                  <span class="text-body-1">{{ userData.company }}</span>
                 </h6>
               </VListItemTitle>
             </VListItem>
@@ -76,7 +107,7 @@ const resolveUserRoleVariant = (role: string) => {
               <VListItemTitle>
                 <h6 class="text-h6">
                   Эл. почта:
-                  <span class="text-body-1">{{ props.userData.email }}</span>
+                  <span class="text-body-1">{{ userData.email }}</span>
                 </h6>
               </VListItemTitle>
             </VListItem>
@@ -84,10 +115,8 @@ const resolveUserRoleVariant = (role: string) => {
             <VListItem>
               <VListItemTitle>
                 <h6 class="text-h6">
-                  Телефон
-                  <span class="text-body-1">
-                    {{ props.userData.taxId }}
-                  </span>
+                  Телефон:
+                  <span class="text-body-1">{{ userData.phone }}</span>
                 </h6>
               </VListItemTitle>
             </VListItem>
@@ -96,7 +125,7 @@ const resolveUserRoleVariant = (role: string) => {
               <VListItemTitle>
                 <h6 class="text-h6">
                   Адрес:
-                  <span class="text-body-1">{{ props.userData.contact }}</span>
+                  <span class="text-body-1">{{ userData.address }}</span>
                 </h6>
               </VListItemTitle>
             </VListItem>
@@ -130,7 +159,7 @@ const resolveUserRoleVariant = (role: string) => {
   <!-- 👉 Edit user info dialog -->
   <UserInfoEditDialog
     v-model:isDialogVisible="isUserInfoEditDialogVisible"
-    :user-data="props.userData"
+    :user-data="userData"
   />
 
   <!-- 👉 Upgrade plan dialog -->
