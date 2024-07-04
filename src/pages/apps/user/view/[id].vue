@@ -3,7 +3,6 @@ import { useUserListStore } from '@/views/apps/user/useUserListStore'
 import UserBioPanel from '@/views/apps/user/view/UserBioPanel.vue'
 import UserTabAccount from '@/views/apps/user/view/UserTabAccount.vue'
 import UserTabBillingsPlans from '@/views/apps/user/view/UserTabBillingsPlans.vue'
-import UserTabConnections from '@/views/apps/user/view/UserTabConnections.vue'
 import UserTabNotifications from '@/views/apps/user/view/UserTabNotifications.vue'
 import UserTabSecurity from '@/views/apps/user/view/UserTabSecurity.vue'
 
@@ -78,10 +77,6 @@ userListStore.fetchUser(Number(route.params.id)).then(response => {
 
         <VWindowItem>
           <UserTabNotifications />
-        </VWindowItem>
-
-        <VWindowItem>
-          <UserTabConnections />
         </VWindowItem>
       </VWindow>
     </VCol>
