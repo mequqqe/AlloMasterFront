@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
-import { VDataTable } from 'vuetify/labs/VDataTable';
+import { onMounted, ref } from 'vue'
+import { VDataTable } from 'vuetify/labs/VDataTable'
 
 const headersBranches = [
   { title: 'Действующий', sortable: false, key: 'Действующий' },
@@ -26,25 +26,38 @@ const token = localStorage.getItem('token') // assuming the token is stored with
 const fetchBranches = async () => {
   if (token) {
     try {
-      const response = await fetch('http://localhost:5070/api/Branches', {
+      const response = await fetch('http://localhost:8000/api/branches', {
         method: 'GET',
         headers: {
-          'accept': '*/*',
-          'Authorization': `Bearer ${token}`
-        }
+          accept: '*/*',
+          Authorization: `Bearer ${token}`,
+        },
       })
 
       if (response.ok) {
         const data = await response.json()
-        console.log('Fetched branches:', data) // Логируем данные для проверки
-        branches.value = data
-      } else {
+
+        console.log('Fetched branches:', data)
+
+        // Преобразуем данные, чтобы они соответствовали ожидаемому формату
+        branches.value = data.map(branch => ({
+          branchName: branch.BranchName,
+          phoneNumber: branch.PhoneNumber,
+          company: branch.Company, // если нужно отображать
+          companyId: branch.CompanyID,
+
+          // добавьте другие необходимые поля
+        }))
+      }
+      else {
         console.error('Failed to fetch branches')
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Error:', error)
     }
-  } else {
+  }
+  else {
     console.error('Token not found in localStorage')
   }
 }
@@ -52,25 +65,37 @@ const fetchBranches = async () => {
 const fetchEmployees = async () => {
   if (token) {
     try {
-      const response = await fetch('http://localhost:5070/api/Employees', {
+      const response = await fetch('http://localhost:8000/api/employees', {
         method: 'GET',
         headers: {
-          'accept': '*/*',
-          'Authorization': `Bearer ${token}`
-        }
+          accept: '*/*',
+          Authorization: `Bearer ${token}`,
+        },
       })
 
       if (response.ok) {
         const data = await response.json()
-        console.log('Fetched employees:', data) // Логируем данные для проверки
-        employees.value = data
-      } else {
+
+        console.log('Fetched employees:', data)
+
+        employees.value = data.map(employee => ({
+          id: employee.ID,
+          name: employee.Name,
+          mail: employee.Mail,
+          phoneNumber: employee.PhoneNumber,
+          role: employee.Role ? employee.Role.RoleName : 'N/A', // Если роль пустая, используйте 'N/A' или другое значение
+          branchId: employee.BranchID,
+        }))
+      }
+      else {
         console.error('Failed to fetch employees')
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Error:', error)
     }
-  } else {
+  }
+  else {
     console.error('Token not found in localStorage')
   }
 }
@@ -115,4 +140,3 @@ onMounted(() => {
   text-transform: capitalize !important;
 }
 </style>
-

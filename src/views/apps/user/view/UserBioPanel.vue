@@ -1,42 +1,47 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue'
 
 const token = localStorage.getItem('token') // assuming the token is stored with the key 'token'
+
 const userData = ref({
   id: 0,
   company: '',
   phone: '',
   email: '',
-  address: ''
+  address: '',
 })
 
 const fetchUserData = async () => {
   if (token) {
     try {
-      const response = await fetch('http://localhost:5070/api/Company/my-company', {
+      const response = await fetch('http://localhost:8000/api/company/my-company', {
         method: 'GET',
         headers: {
-          'accept': '*/*',
-          'Authorization': `Bearer ${token}`
-        }
+          accept: '*/*',
+          Authorization: `Bearer ${token}`,
+        },
       })
 
       if (response.ok) {
         const data = await response.json()
+
         userData.value = {
-          id: data.id,
-          company: data.companyName,
-          phone: data.phoneNumber,
-          email: data.mail,
-          address: '' // Address is not available in the API response, you can set it accordingly
+          id: data.ID,
+          company: data.CompanyName,
+          phone: data.PhoneNumber,
+          email: data.Mail,
+          address: '', // Address is not available in the API response, you can set it accordingly
         }
-      } else {
+      }
+      else {
         console.error('Failed to fetch user data')
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Error:', error)
     }
-  } else {
+  }
+  else {
     console.error('Token not found in localStorage')
   }
 }

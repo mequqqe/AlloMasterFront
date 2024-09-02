@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { VForm } from 'vuetify/components/VForm'
+import axios from '@axios'
 import { useGenerateImageVariant } from '@core/composable/useGenerateImageVariant'
 import authV2LoginIllustrationBorderedDark from '@images/pages/auth-v2-login-illustration-bordered-dark.png'
 import authV2LoginIllustrationBorderedLight from '@images/pages/auth-v2-login-illustration-bordered-light.png'
@@ -9,10 +13,6 @@ import authV2MaskLight from '@images/pages/misc-mask-light.png'
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 import { themeConfig } from '@themeConfig'
 import { emailValidator, requiredValidator } from '@validators'
-import axios from 'axios'
-import { ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { VForm } from 'vuetify/components/VForm'
 
 const authThemeImg = useGenerateImageVariant(authV2LoginIllustrationLight, authV2LoginIllustrationDark, authV2LoginIllustrationBorderedLight, authV2LoginIllustrationBorderedDark, true)
 const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
@@ -32,14 +32,16 @@ const password = ref('admin')
 const rememberMe = ref(false)
 
 const login = () => {
-  axios.post('http://localhost:5070/api/Company/login', { email: email.value, password: password.value })
+  axios.post('http://localhost:8000/api/company/login', { email: email.value, password: password.value })
     .then(r => {
       const { token } = r.data
 
       localStorage.setItem('token', token)
+
       const userData = {
         role: 'admin', // Установите роль пользователя, если она есть в ответе
       }
+
       localStorage.setItem('userData', JSON.stringify(userData))
 
       // Redirect to dashboards-analytics
