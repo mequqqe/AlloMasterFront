@@ -1,31 +1,28 @@
 <script lang="ts" setup>
-import type { CustomInputContent, GridColumn } from '@core/types'
+import type { CustomInputContent, GridColumn } from "@core/types";
 
 interface Props {
-  selectedRadio: string
-  radioContent: CustomInputContent[]
-  gridColumn?: GridColumn
+  selectedRadio: string;
+  radioContent: CustomInputContent[];
+  gridColumn?: GridColumn;
 }
 
 interface Emit {
-  (e: 'update:selectedRadio', value: string): void
+  (e: "update:selectedRadio", value: string): void;
 }
 
-const props = defineProps<Props>()
-const emit = defineEmits<Emit>()
+const props = defineProps<Props>();
+const emit = defineEmits<Emit>();
 
-const selectedOption = ref(structuredClone(toRaw(props.selectedRadio)))
+const selectedOption = ref(structuredClone(toRaw(props.selectedRadio)));
 
 watch(selectedOption, () => {
-  emit('update:selectedRadio', selectedOption.value)
-})
+  emit("update:selectedRadio", selectedOption.value);
+});
 </script>
 
 <template>
-  <VRadioGroup
-    v-if="props.radioContent"
-    v-model="selectedOption"
-  >
+  <VRadioGroup v-if="props.radioContent" v-model="selectedOption">
     <VRow>
       <VCol
         v-for="item in props.radioContent"
@@ -46,10 +43,9 @@ watch(selectedOption, () => {
                   {{ item.title }}
                 </h6>
                 <VSpacer />
-                <span
-                  v-if="item.subtitle"
-                  class="text-disabled text-base"
-                >{{ item.subtitle }}</span>
+                <span v-if="item.subtitle" class="text-disabled text-base">{{
+                  item.subtitle
+                }}</span>
               </div>
               <p class="text-sm mb-0">
                 {{ item.desc }}

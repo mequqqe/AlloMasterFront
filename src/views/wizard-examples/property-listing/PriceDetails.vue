@@ -1,28 +1,25 @@
 <script setup lang="ts">
-import type { PriceDetails } from './types'
+import type { PriceDetails } from "./types";
 
 const props = defineProps<{
-  formData: PriceDetails
-}>()
+  formData: PriceDetails;
+}>();
 
 const emit = defineEmits<{
-  (e: 'update:formData', value: PriceDetails): void
-}>()
+  (e: "update:formData", value: PriceDetails): void;
+}>();
 
-const formData = ref<PriceDetails>(props.formData)
+const formData = ref<PriceDetails>(props.formData);
 
 watch(formData, () => {
-  emit('update:formData', formData.value)
-})
+  emit("update:formData", formData.value);
+});
 </script>
 
 <template>
   <VForm>
     <VRow>
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <!-- 👉 Expected Price  -->
         <AppTextField
           v-model="formData.expectedPrice"
@@ -32,10 +29,7 @@ watch(formData, () => {
           placeholder="25,000"
         />
       </VCol>
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <!-- 👉 Price Per SQFT  -->
         <AppTextField
           v-model="formData.pricePerSqft"
@@ -45,10 +39,7 @@ watch(formData, () => {
           placeholder="500"
         />
       </VCol>
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <!-- 👉 Maintenance Charge  -->
         <AppTextField
           v-model="formData.maintenanceCharge"
@@ -58,10 +49,7 @@ watch(formData, () => {
           placeholder="50"
         />
       </VCol>
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <!-- 👉 Maintenance Period  -->
         <AppSelect
           v-model="formData.maintenancePeriod"
@@ -69,10 +57,7 @@ watch(formData, () => {
           :items="['Monthly', 'Quarterly', 'Half Yearly', 'Yearly']"
         />
       </VCol>
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <!-- 👉 Booking/Token Amount  -->
         <AppTextField
           v-model="formData.bookingAmount"
@@ -82,10 +67,7 @@ watch(formData, () => {
           placeholder="250"
         />
       </VCol>
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <!-- 👉 Other Amount  -->
         <AppTextField
           v-model="formData.otherAmount"
@@ -95,37 +77,19 @@ watch(formData, () => {
           placeholder="500"
         />
       </VCol>
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <!-- 👉 Show Price As  -->
         <VRadioGroup v-model="formData.priceDisplayType">
           <template #label>
-            <div class="text-high-emphasis">
-              Show Price As
-            </div>
+            <div class="text-high-emphasis">Show Price As</div>
           </template>
-          <VRadio
-            label="Negotiable"
-            value="Negotiable"
-            class="ms-2"
-          />
-          <VRadio
-            label="Call For Price"
-            value="Call For Price"
-            class="ms-2"
-          />
+          <VRadio label="Negotiable" value="Negotiable" class="ms-2" />
+          <VRadio label="Call For Price" value="Call For Price" class="ms-2" />
         </VRadioGroup>
       </VCol>
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <!-- 👉 Price Includes  -->
-        <div class="text-high-emphasis mb-2 text-base">
-          Price Includes
-        </div>
+        <div class="text-high-emphasis mb-2 text-base">Price Includes</div>
         <VCheckbox
           v-model="formData.priceIncludes"
           label="Car Parking"

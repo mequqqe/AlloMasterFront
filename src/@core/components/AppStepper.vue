@@ -1,65 +1,68 @@
 <script setup lang="ts">
 interface Item {
-  title: string
-  icon?: string
-  size?: string
-  subtitle?: string
+  title: string;
+  icon?: string;
+  size?: string;
+  subtitle?: string;
 }
 
-type Direction = 'vertical' | 'horizontal'
+type Direction = "vertical" | "horizontal";
 
 interface Props {
-  items: Item[]
-  currentStep?: number
-  direction?: Direction
-  iconSize?: string | number
-  isActiveStepValid?: boolean
+  items: Item[];
+  currentStep?: number;
+  direction?: Direction;
+  iconSize?: string | number;
+  isActiveStepValid?: boolean;
 }
 
 interface Emit {
-  (e: 'update:currentStep', value: number): void
+  (e: "update:currentStep", value: number): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   currentStep: 0,
-  direction: 'horizontal',
+  direction: "horizontal",
   iconSize: 52,
   isActiveStepValid: undefined,
-})
+});
 
-const emit = defineEmits<Emit>()
+const emit = defineEmits<Emit>();
 
-const currentStep = ref(props.currentStep || 0)
+const currentStep = ref(props.currentStep || 0);
 
 // check if step is completed or active and return class name accordingly
-const activeOrCompletedStepsClasses = computed(() => (index: number) => (
-  index < currentStep.value
-    ? 'stepper-steps-completed'
-    : index === currentStep.value ? 'stepper-steps-active' : ''
-))
+const activeOrCompletedStepsClasses = computed(
+  () => (index: number) =>
+    index < currentStep.value
+      ? "stepper-steps-completed"
+      : index === currentStep.value
+        ? "stepper-steps-active"
+        : "",
+);
 
 // check if step is horizontal and not last step
-const isHorizontalAndNotLastStep = computed(() => (index: number) => (
-  props.direction === 'horizontal'
-  && props.items.length - 1 !== index
-))
+const isHorizontalAndNotLastStep = computed(
+  () => (index: number) =>
+    props.direction === "horizontal" && props.items.length - 1 !== index,
+);
 
 // check if validation is enabled
 const isValidationEnabled = computed(() => {
-  return props.isActiveStepValid !== undefined
-})
+  return props.isActiveStepValid !== undefined;
+});
 
 watchEffect(() => {
   // we need to check undefined because if we pass 0 as currentStep it will be falsy
   if (
-    props.currentStep !== undefined
-    && props.currentStep < props.items.length
-    && props.currentStep >= 0
+    props.currentStep !== undefined &&
+    props.currentStep < props.items.length &&
+    props.currentStep >= 0
   )
-    currentStep.value = props.currentStep
+    currentStep.value = props.currentStep;
 
-  emit('update:currentStep', currentStep.value)
-})
+  emit("update:currentStep", currentStep.value);
+});
 </script>
 
 <template>
@@ -77,34 +80,32 @@ watchEffect(() => {
       <div
         class="cursor-pointer mx-1"
         :class="[
-          (!props.isActiveStepValid && (isValidationEnabled)) && 'stepper-steps-invalid',
+          !props.isActiveStepValid &&
+            isValidationEnabled &&
+            'stepper-steps-invalid',
           activeOrCompletedStepsClasses(index),
         ]"
         @click="!isValidationEnabled && emit('update:currentStep', index)"
       >
         <!-- SECTION stepper step with icon -->
         <template v-if="item.icon">
-          <div class="stepper-icon-step text-high-emphasis d-flex align-center gap-2">
+          <div
+            class="stepper-icon-step text-high-emphasis d-flex align-center gap-2"
+          >
             <!-- 👉 icon and title -->
             <div
               class="d-flex align-center gap-4 step-wrapper"
               :class="[props.direction === 'horizontal' && 'flex-column']"
             >
               <div class="stepper-icon">
-                <VIcon
-                  :icon="item.icon"
-                  :size="item.size || props.iconSize"
-                />
+                <VIcon :icon="item.icon" :size="item.size || props.iconSize" />
               </div>
 
               <div>
                 <p class="stepper-title font-weight-medium mb-0">
                   {{ item.title }}
                 </p>
-                <span
-                  v-if="item.subtitle"
-                  class="stepper-subtitle"
-                >
+                <span v-if="item.subtitle" class="stepper-subtitle">
                   <span class="text-sm">{{ item.subtitle }}</span>
                 </span>
               </div>
@@ -127,12 +128,16 @@ watchEffect(() => {
             <div class="d-flex align-center gap-2">
               <div
                 class="d-flex align-center justify-center"
-                style="block-size: 24px; inline-size: 24px;"
+                style="block-size: 24px; inline-size: 24px"
               >
                 <!-- 👉 custom circle icon -->
                 <template v-if="index >= currentStep">
                   <div
-                    v-if="(!isValidationEnabled || props.isActiveStepValid || index !== currentStep)"
+                    v-if="
+                      !isValidationEnabled ||
+                      props.isActiveStepValid ||
+                      index !== currentStep
+                    "
                     class="stepper-step-indicator"
                   />
 
@@ -156,20 +161,17 @@ watchEffect(() => {
 
               <!-- 👉 Step Number -->
               <h4 class="text-h4 step-number">
-                {{ (index + 1).toString().padStart(2, '0') }}
+                {{ (index + 1).toString().padStart(2, "0") }}
               </h4>
             </div>
 
             <!-- 👉 title and subtitle -->
-            <div style="line-height: 0;">
+            <div style="line-height: 0">
               <h6 class="text-sm font-weight-medium step-title">
                 {{ item.title }}
               </h6>
 
-              <span
-                v-if="item.subtitle"
-                class="text-xs step-subtitle"
-              >
+              <span v-if="item.subtitle" class="text-xs step-subtitle">
                 {{ item.subtitle }}
               </span>
             </div>
@@ -201,7 +203,10 @@ watchEffect(() => {
         align-items: center;
         justify-content: center;
         border-radius: 0.3125rem;
-        background-color: rgba(var(--v-theme-on-surface), var(--v-selected-opacity));
+        background-color: rgba(
+          var(--v-theme-on-surface),
+          var(--v-selected-opacity)
+        );
         block-size: 2.5rem;
         color: rgba(var(--v-theme-on-surface), var(--v-high-emphasis-opacity));
         inline-size: 2.5rem;

@@ -1,12 +1,14 @@
 <script lang="ts" setup>
-const redColorValue = ref(161)
-const greenColorValue = ref(105)
-const blueColorValue = ref(255)
+const redColorValue = ref(161);
+const greenColorValue = ref(105);
+const blueColorValue = ref(255);
 </script>
 
 <template>
   <VResponsive
-    :style="{ background: `rgb(${redColorValue}, ${greenColorValue}, ${blueColorValue})` }"
+    :style="{
+      background: `rgb(${redColorValue}, ${greenColorValue}, ${blueColorValue})`,
+    }"
     height="150px"
   />
 
@@ -20,7 +22,7 @@ const blueColorValue = ref(255)
         prepend-icon="tabler-letter-r"
       >
         <template #append>
-          <div style="inline-size: 7rem;">
+          <div style="inline-size: 7rem">
             <AppTextField
               v-model="redColorValue"
               type="number"
@@ -41,12 +43,8 @@ const blueColorValue = ref(255)
         prepend-icon="tabler-letter-g"
       >
         <template #append>
-          <div style="inline-size: 7rem;">
-            <AppTextField
-              v-model="greenColorValue"
-              type="number"
-              :max="255"
-            />
+          <div style="inline-size: 7rem">
+            <AppTextField v-model="greenColorValue" type="number" :max="255" />
           </div>
         </template>
       </VSlider>
@@ -61,7 +59,7 @@ const blueColorValue = ref(255)
         prepend-icon="tabler-letter-b"
       >
         <template #append>
-          <div style="inline-size: 7rem;">
+          <div style="inline-size: 7rem">
             <AppTextField
               v-model="blueColorValue"
               type="number"

@@ -67,7 +67,7 @@ export const color = {
   </div>
 </template>
 `,
-}
+};
 
 export const indeterminate = {
   ts: `<template>
@@ -138,7 +138,7 @@ export const indeterminate = {
   </div>
 </template>
 `,
-}
+};
 
 export const rotate = {
   ts: `<script setup lang="ts">
@@ -262,7 +262,7 @@ onBeforeUnmount(() => {
   </div>
 </template>
 `,
-}
+};
 
 export const size = {
   ts: `<template>
@@ -323,4 +323,4 @@ export const size = {
   </div>
 </template>
 `,
-}
+};

@@ -151,7 +151,7 @@ const isErrorChipVisible = ref(true)
   </div>
 </template>
 `,
-}
+};
 
 export const color = {
   ts: `<template>
@@ -218,7 +218,7 @@ export const color = {
   </div>
 </template>
 `,
-}
+};
 
 export const elevated = {
   ts: `<template>
@@ -321,7 +321,7 @@ export const elevated = {
   </div>
 </template>
 `,
-}
+};
 
 export const expandable = {
   ts: `<script lang="ts" setup>
@@ -414,7 +414,7 @@ const isMenuVisible = ref(false)
   </VMenu>
 </template>
 `,
-}
+};
 
 export const inSelects = {
   ts: `<script lang="ts" setup>
@@ -466,7 +466,7 @@ const items = ref([
   />
 </template>
 `,
-}
+};
 
 export const label = {
   ts: `<template>
@@ -569,7 +569,7 @@ export const label = {
   </div>
 </template>
 `,
-}
+};
 
 export const outlined = {
   ts: `<template>
@@ -672,7 +672,7 @@ export const outlined = {
   </div>
 </template>
 `,
-}
+};
 
 export const sizes = {
   ts: `<template>
@@ -723,7 +723,7 @@ export const sizes = {
   </div>
 </template>
 `,
-}
+};
 
 export const withAvatar = {
   ts: `<script setup lang="ts">
@@ -812,7 +812,7 @@ import avatar4 from '@images/avatars/avatar-4.png'
   </div>
 </template>
 `,
-}
+};
 
 export const withIcon = {
   ts: `<template>
@@ -949,4 +949,4 @@ export const withIcon = {
   </div>
 </template>
 `,
-}
+};

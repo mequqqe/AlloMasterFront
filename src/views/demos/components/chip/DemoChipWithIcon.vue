@@ -1,65 +1,37 @@
 <template>
   <div class="demo-space-x">
     <VChip>
-      <VIcon
-        start
-        size="16"
-        icon="tabler-user"
-      />
+      <VIcon start size="16" icon="tabler-user" />
       Account
     </VChip>
 
     <VChip color="primary">
-      <VIcon
-        start
-        size="16"
-        icon="tabler-star"
-      />
+      <VIcon start size="16" icon="tabler-star" />
       Premium
     </VChip>
 
     <VChip color="secondary">
-      <VIcon
-        start
-        size="16"
-        icon="tabler-cake"
-      />
+      <VIcon start size="16" icon="tabler-cake" />
       1 Year
     </VChip>
 
     <VChip color="success">
-      <VIcon
-        start
-        size="16"
-        icon="tabler-bell"
-      />
+      <VIcon start size="16" icon="tabler-bell" />
       Notification
     </VChip>
 
     <VChip color="info">
-      <VIcon
-        start
-        size="16"
-        icon="tabler-messages"
-      />
+      <VIcon start size="16" icon="tabler-messages" />
       Message
     </VChip>
 
     <VChip color="warning">
-      <VIcon
-        start
-        size="16"
-        icon="tabler-alert-triangle"
-      />
+      <VIcon start size="16" icon="tabler-alert-triangle" />
       Warning
     </VChip>
 
     <VChip color="error">
-      <VIcon
-        start
-        size="16"
-        icon="tabler-alert-circle"
-      />
+      <VIcon start size="16" icon="tabler-alert-circle" />
       Error
     </VChip>
   </div>

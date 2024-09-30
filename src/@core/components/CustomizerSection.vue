@@ -1,12 +1,12 @@
 <script setup lang="ts">
 interface Props {
-  title: string
-  divider?: boolean
+  title: string;
+  divider?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   divider: true,
-})
+});
 </script>
 
 <template>

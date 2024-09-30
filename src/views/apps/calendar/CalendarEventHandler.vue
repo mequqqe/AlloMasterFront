@@ -1,115 +1,116 @@
 <script setup lang="ts">
-import type { Options } from 'flatpickr'
-import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
-import { VForm } from 'vuetify/components/VForm'
+import type { Options } from "flatpickr";
+import { PerfectScrollbar } from "vue3-perfect-scrollbar";
+import { VForm } from "vuetify/components/VForm";
 
-import type { Event, NewEvent } from './types'
-import { useCalendarStore } from './useCalendarStore'
-import avatar1 from '@images/avatars/avatar-1.png'
-import avatar2 from '@images/avatars/avatar-2.png'
-import avatar3 from '@images/avatars/avatar-3.png'
-import avatar5 from '@images/avatars/avatar-5.png'
-import avatar6 from '@images/avatars/avatar-6.png'
-import avatar7 from '@images/avatars/avatar-7.png'
+import type { Event, NewEvent } from "./types";
+import { useCalendarStore } from "./useCalendarStore";
+import avatar1 from "@images/avatars/avatar-1.png";
+import avatar2 from "@images/avatars/avatar-2.png";
+import avatar3 from "@images/avatars/avatar-3.png";
+import avatar5 from "@images/avatars/avatar-5.png";
+import avatar6 from "@images/avatars/avatar-6.png";
+import avatar7 from "@images/avatars/avatar-7.png";
 
-import { requiredValidator, urlValidator } from '@validators'
+import { requiredValidator, urlValidator } from "@validators";
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 
 const emit = defineEmits<{
-  (e: 'update:isDrawerOpen', val: boolean): void
-  (e: 'addEvent', val: NewEvent): void
-  (e: 'updateEvent', val: Event): void
-  (e: 'removeEvent', eventId: string): void
-}>()
+  (e: "update:isDrawerOpen", val: boolean): void;
+  (e: "addEvent", val: NewEvent): void;
+  (e: "updateEvent", val: Event): void;
+  (e: "removeEvent", eventId: string): void;
+}>();
 
 interface Props {
-  isDrawerOpen: boolean
-  event: (Event | NewEvent)
+  isDrawerOpen: boolean;
+  event: Event | NewEvent;
 }
 
 // 👉 store
-const store = useCalendarStore()
-const refForm = ref<VForm>()
+const store = useCalendarStore();
+const refForm = ref<VForm>();
 
 // 👉 Event
-const event = ref<Event | NewEvent>(JSON.parse(JSON.stringify(props.event)))
+const event = ref<Event | NewEvent>(JSON.parse(JSON.stringify(props.event)));
 
 const resetEvent = () => {
-  event.value = JSON.parse(JSON.stringify(props.event))
+  event.value = JSON.parse(JSON.stringify(props.event));
   nextTick(() => {
-    refForm.value?.resetValidation()
-  })
-}
+    refForm.value?.resetValidation();
+  });
+};
 
-watch(() => props.isDrawerOpen, resetEvent)
+watch(() => props.isDrawerOpen, resetEvent);
 
 const removeEvent = () => {
-  emit('removeEvent', event.value.id)
+  emit("removeEvent", event.value.id);
 
   // Close drawer
-  emit('update:isDrawerOpen', false)
-}
+  emit("update:isDrawerOpen", false);
+};
 
 const handleSubmit = () => {
-  refForm.value?.validate()
-    .then(({ valid }) => {
-      if (valid) {
-        // If id exist on id => Update event
-        if ('id' in event.value)
-          emit('updateEvent', event.value)
+  refForm.value?.validate().then(({ valid }) => {
+    if (valid) {
+      // If id exist on id => Update event
+      if ("id" in event.value) emit("updateEvent", event.value);
+      // Else => add new event
+      else emit("addEvent", event.value);
 
-        // Else => add new event
-        else emit('addEvent', event.value)
-
-        // Close drawer
-        emit('update:isDrawerOpen', false)
-      }
-    })
-}
+      // Close drawer
+      emit("update:isDrawerOpen", false);
+    }
+  });
+};
 
 const guestsOptions = [
-  { avatar: avatar1, name: 'Jane Foster' },
-  { avatar: avatar3, name: 'Donna Frank' },
-  { avatar: avatar5, name: 'Gabrielle Robertson' },
-  { avatar: avatar7, name: 'Lori Spears' },
-  { avatar: avatar6, name: 'Sandy Vega' },
-  { avatar: avatar2, name: 'Cheryl May' },
-]
+  { avatar: avatar1, name: "Jane Foster" },
+  { avatar: avatar3, name: "Donna Frank" },
+  { avatar: avatar5, name: "Gabrielle Robertson" },
+  { avatar: avatar7, name: "Lori Spears" },
+  { avatar: avatar6, name: "Sandy Vega" },
+  { avatar: avatar2, name: "Cheryl May" },
+];
 
 // 👉 Form
 
 const onCancel = () => {
-  emit('update:isDrawerOpen', false)
+  emit("update:isDrawerOpen", false);
 
   nextTick(() => {
-    refForm.value?.reset()
-    resetEvent()
-    refForm.value?.resetValidation()
-  })
-}
+    refForm.value?.reset();
+    resetEvent();
+    refForm.value?.resetValidation();
+  });
+};
 
 const startDateTimePickerConfig = computed(() => {
-  const config: Options = { enableTime: !event.value.allDay, dateFormat: `Y-m-d${event.value.allDay ? '' : ' H:i'}` }
+  const config: Options = {
+    enableTime: !event.value.allDay,
+    dateFormat: `Y-m-d${event.value.allDay ? "" : " H:i"}`,
+  };
 
-  if (event.value.end)
-    config.maxDate = event.value.end
+  if (event.value.end) config.maxDate = event.value.end;
 
-  return config
-})
+  return config;
+});
 
 const endDateTimePickerConfig = computed(() => {
-  const config: Options = { enableTime: !event.value.allDay, dateFormat: `Y-m-d${event.value.allDay ? '' : ' H:i'}` }
+  const config: Options = {
+    enableTime: !event.value.allDay,
+    dateFormat: `Y-m-d${event.value.allDay ? "" : " H:i"}`,
+  };
 
-  if (event.value.start)
-    config.minDate = event.value.start
+  if (event.value.start) config.minDate = event.value.start;
 
-  return config
-})
+  return config;
+});
 
 const dialogModelValueUpdate = (val: boolean) => {
-  emit('update:isDrawerOpen', val)
-}
+  emit("update:isDrawerOpen", val);
+};
 </script>
 
 <template>
@@ -127,14 +128,8 @@ const dialogModelValueUpdate = (val: boolean) => {
       @cancel="$emit('update:isDrawerOpen', false)"
     >
       <template #beforeClose>
-        <IconBtn
-          v-show="event.id"
-          @click="removeEvent"
-        >
-          <VIcon
-            size="18"
-            icon="tabler-trash"
-          />
+        <IconBtn v-show="event.id" @click="removeEvent">
+          <VIcon size="18" icon="tabler-trash" />
         </IconBtn>
       </template>
     </AppDrawerHeaderSection>
@@ -143,10 +138,7 @@ const dialogModelValueUpdate = (val: boolean) => {
       <VCard flat>
         <VCardText>
           <!-- SECTION Form -->
-          <VForm
-            ref="refForm"
-            @submit.prevent="handleSubmit"
-          >
+          <VForm ref="refForm" @submit.prevent="handleSubmit">
             <VRow>
               <!-- 👉 Title -->
               <VCol cols="12">
@@ -164,8 +156,8 @@ const dialogModelValueUpdate = (val: boolean) => {
                   label="Label"
                   :rules="[requiredValidator]"
                   :items="store.availableCalendars"
-                  :item-title="item => item.label"
-                  :item-value="item => item.label"
+                  :item-title="(item) => item.label"
+                  :item-value="(item) => item.label"
                 >
                   <template #selection="{ item }">
                     <div
@@ -209,10 +201,7 @@ const dialogModelValueUpdate = (val: boolean) => {
 
               <!-- 👉 All day -->
               <VCol cols="12">
-                <VSwitch
-                  v-model="event.allDay"
-                  label="All day"
-                />
+                <VSwitch v-model="event.allDay" label="All day" />
               </VCol>
 
               <!-- 👉 Event URL -->
@@ -231,8 +220,8 @@ const dialogModelValueUpdate = (val: boolean) => {
                   v-model="event.extendedProps.guests"
                   label="Guests"
                   :items="guestsOptions"
-                  :item-title="item => item.name"
-                  :item-value="item => item.name"
+                  :item-title="(item) => item.name"
+                  :item-value="(item) => item.name"
                   chips
                   multiple
                   eager
@@ -257,23 +246,14 @@ const dialogModelValueUpdate = (val: boolean) => {
 
               <!-- 👉 Form buttons -->
               <VCol cols="12">
-                <VBtn
-                  type="submit"
-                  class="me-3"
-                >
-                  Submit
-                </VBtn>
-                <VBtn
-                  variant="tonal"
-                  color="secondary"
-                  @click="onCancel"
-                >
+                <VBtn type="submit" class="me-3"> Submit </VBtn>
+                <VBtn variant="tonal" color="secondary" @click="onCancel">
                   Cancel
                 </VBtn>
               </VCol>
             </VRow>
           </VForm>
-        <!-- !SECTION -->
+          <!-- !SECTION -->
         </VCardText>
       </VCard>
     </PerfectScrollbar>

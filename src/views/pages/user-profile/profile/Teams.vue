@@ -1,17 +1,17 @@
 <script lang="ts" setup>
-import type { ProfileTeamsTech } from '@/@fake-db/types'
+import type { ProfileTeamsTech } from "@/@fake-db/types";
 
 interface Props {
-  teamsData: ProfileTeamsTech[]
+  teamsData: ProfileTeamsTech[];
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 
 const moreList = [
-  { title: 'Share connections', value: 'Share connections' },
-  { title: 'Suggest edits', value: 'Suggest edits' },
-  { title: 'Report Bug', value: 'Report Bug' },
-]
+  { title: "Share connections", value: "Share connections" },
+  { title: "Suggest edits", value: "Suggest edits" },
+  { title: "Report Bug", value: "Report Bug" },
+];
 </script>
 
 <template>
@@ -24,15 +24,9 @@ const moreList = [
 
     <VCardText>
       <VList class="card-list">
-        <VListItem
-          v-for="data in props.teamsData"
-          :key="data.title"
-        >
+        <VListItem v-for="data in props.teamsData" :key="data.title">
           <template #prepend>
-            <VAvatar
-              size="38"
-              :image="data.avatar"
-            />
+            <VAvatar size="38" :image="data.avatar" />
           </template>
 
           <VListItemTitle class="font-weight-medium">
@@ -54,12 +48,7 @@ const moreList = [
 
         <VListItem>
           <VListItemTitle>
-            <VBtn
-              block
-              variant="text"
-            >
-              View all teams
-            </VBtn>
+            <VBtn block variant="text"> View all teams </VBtn>
           </VListItemTitle>
         </VListItem>
       </VList>

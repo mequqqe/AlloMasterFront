@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const isDialogVisible = ref(false)
+const isDialogVisible = ref(false);
 </script>
 
 <template>
@@ -11,9 +11,7 @@ const isDialogVisible = ref(false)
   >
     <!-- Dialog Activator -->
     <template #activator="{ props }">
-      <VBtn v-bind="props">
-        Open Dialog
-      </VBtn>
+      <VBtn v-bind="props"> Open Dialog </VBtn>
     </template>
 
     <!-- Dialog Content -->
@@ -21,15 +19,8 @@ const isDialogVisible = ref(false)
       <!-- Toolbar -->
       <div>
         <VToolbar color="primary">
-          <VBtn
-            icon
-            variant="plain"
-            @click="isDialogVisible = false"
-          >
-            <VIcon
-              color="white"
-              icon="tabler-x"
-            />
+          <VBtn icon variant="plain" @click="isDialogVisible = false">
+            <VIcon color="white" icon="tabler-x" />
           </VBtn>
 
           <VToolbarTitle>Settings</VToolbarTitle>
@@ -37,12 +28,7 @@ const isDialogVisible = ref(false)
           <VSpacer />
 
           <VToolbarItems>
-            <VBtn
-              variant="text"
-              @click="isDialogVisible = false"
-            >
-              Save
-            </VBtn>
+            <VBtn variant="text" @click="isDialogVisible = false"> Save </VBtn>
           </VToolbarItems>
         </VToolbar>
       </div>
@@ -63,10 +49,7 @@ const isDialogVisible = ref(false)
       <VDivider />
 
       <!-- List -->
-      <VList
-        lines="two"
-        select-strategy="classic"
-      >
+      <VList lines="two" select-strategy="classic">
         <VListSubheader>General</VListSubheader>
 
         <VListItem
@@ -76,10 +59,7 @@ const isDialogVisible = ref(false)
         >
           <template #prepend="{ isActive }">
             <VListItemAction start>
-              <VCheckbox
-                :model-value="isActive"
-                color="primary"
-              />
+              <VCheckbox :model-value="isActive" color="primary" />
             </VListItemAction>
           </template>
         </VListItem>
@@ -91,10 +71,7 @@ const isDialogVisible = ref(false)
         >
           <template #prepend="{ isActive }">
             <VListItemAction start>
-              <VCheckbox
-                :model-value="isActive"
-                color="primary"
-              />
+              <VCheckbox :model-value="isActive" color="primary" />
             </VListItemAction>
           </template>
         </VListItem>
@@ -106,10 +83,7 @@ const isDialogVisible = ref(false)
         >
           <template #prepend="{ isActive }">
             <VListItemAction start>
-              <VCheckbox
-                :model-value="isActive"
-                color="primary"
-              />
+              <VCheckbox :model-value="isActive" color="primary" />
             </VListItemAction>
           </template>
         </VListItem>

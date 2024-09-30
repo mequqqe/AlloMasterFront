@@ -3,19 +3,11 @@
     <!-- open on hover -->
     <VBtn variant="outlined">
       <span>Open On Hover</span>
-      <VTooltip
-        activator="parent"
-        location="top"
-      >
-        Open On Hover
-      </VTooltip>
+      <VTooltip activator="parent" location="top"> Open On Hover </VTooltip>
     </VBtn>
 
     <!-- open on click -->
-    <VBtn
-      variant="outlined"
-      color="primary"
-    >
+    <VBtn variant="outlined" color="primary">
       <span>Open On click</span>
 
       <VTooltip
@@ -31,11 +23,7 @@
     <!-- open on focus -->
     <VBtn variant="outlined">
       <span>Open On Hover + Focus</span>
-      <VTooltip
-        open-on-focus
-        location="top"
-        activator="parent"
-      >
+      <VTooltip open-on-focus location="top" activator="parent">
         Open On Hover + Focus
       </VTooltip>
     </VBtn>

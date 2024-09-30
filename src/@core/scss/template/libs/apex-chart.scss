@@ -42,7 +42,10 @@
     }
 
     &::before {
-      border-block-end-color: rgba(var(--v-border-color), var(--v-border-opacity));
+      border-block-end-color: rgba(
+        var(--v-border-color),
+        var(--v-border-opacity)
+      );
     }
   }
 
@@ -55,7 +58,10 @@
     }
 
     &::before {
-      border-inline-start-color: rgba(var(--v-border-color), var(--v-border-opacity));
+      border-inline-start-color: rgba(
+        var(--v-border-color),
+        var(--v-border-opacity)
+      );
     }
   }
 

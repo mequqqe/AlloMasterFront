@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const alertShadow = ref(5)
+const alertShadow = ref(5);
 </script>
 
 <template>
@@ -12,10 +12,7 @@ const alertShadow = ref(5)
     thumb-label
   />
 
-  <VAlert
-    color="primary"
-    :elevation="alertShadow"
-  >
+  <VAlert color="primary" :elevation="alertShadow">
     I'm an alert with box shadow.
   </VAlert>
 </template>

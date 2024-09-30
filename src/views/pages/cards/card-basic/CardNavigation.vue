@@ -1,34 +1,24 @@
 <script lang="ts" setup>
-const navigationTab = ref('Item One')
-const navigationTab2 = ref('Item One')
-const tabItems = ['Item One', 'Item Two', 'Item Three']
-const tabContent = 'Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards...'
+const navigationTab = ref("Item One");
+const navigationTab2 = ref("Item One");
+const tabItems = ["Item One", "Item Two", "Item Three"];
+const tabContent =
+  "Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards...";
 </script>
 
 <template>
   <VRow>
-    <VCol
-      md="6"
-      cols="12"
-    >
+    <VCol md="6" cols="12">
       <VCard>
         <VTabs v-model="navigationTab">
-          <VTab
-            v-for="item in tabItems"
-            :key="item"
-            :value="item"
-          >
+          <VTab v-for="item in tabItems" :key="item" :value="item">
             {{ item }}
           </VTab>
         </VTabs>
 
         <!-- tabs content -->
         <VWindow v-model="navigationTab">
-          <VWindowItem
-            v-for="item in tabItems"
-            :key="item"
-            :value="item"
-          >
+          <VWindowItem v-for="item in tabItems" :key="item" :value="item">
             <VCardItem>
               <VCardTitle>Navigation Card</VCardTitle>
             </VCardItem>
@@ -45,20 +35,10 @@ const tabContent = 'Although cards can support multiple actions, UI controls, an
       </VCard>
     </VCol>
 
-    <VCol
-      md="6"
-      cols="12"
-    >
+    <VCol md="6" cols="12">
       <VCard>
-        <VTabs
-          v-model="navigationTab2"
-          align-tabs="center"
-        >
-          <VTab
-            v-for="item in tabItems"
-            :key="item"
-            :value="item"
-          >
+        <VTabs v-model="navigationTab2" align-tabs="center">
+          <VTab v-for="item in tabItems" :key="item" :value="item">
             {{ item }}
           </VTab>
         </VTabs>

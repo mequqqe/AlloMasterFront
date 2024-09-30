@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import type { CustomInputContent } from '@core/types'
+import type { CustomInputContent } from "@core/types";
 
 const checkboxContent: CustomInputContent[] = [
   {
-    title: 'Discount',
-    subtitle: '20%',
-    desc: 'Wow! Get 20% off on your next purchase!',
-    value: 'discount',
+    title: "Discount",
+    subtitle: "20%",
+    desc: "Wow! Get 20% off on your next purchase!",
+    value: "discount",
   },
   {
-    title: 'Updates',
-    subtitle: 'Free',
-    desc: 'Get Updates regarding related products.',
-    value: 'updates',
+    title: "Updates",
+    subtitle: "Free",
+    desc: "Get Updates regarding related products.",
+    value: "updates",
   },
-]
+];
 
-const selectedCheckbox = ref(['basic'])
+const selectedCheckbox = ref(["basic"]);
 </script>
 
 <template>

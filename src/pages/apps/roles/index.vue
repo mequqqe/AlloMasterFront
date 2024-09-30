@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import RoleCards from '@/views/apps/roles/RoleCards.vue'
-import UserList from '@/views/apps/roles/UserList.vue'
+import RoleCards from "@/views/apps/roles/RoleCards.vue";
+import UserList from "@/views/apps/roles/UserList.vue";
 </script>
 
 <template>
   <VRow>
     <VCol cols="12">
-      <h4 class="text-h4 mb-6">
-        Roles List
-      </h4>
+      <h4 class="text-h4 mb-6">Roles List</h4>
       <p class="mb-0">
-        A role provided access to predefined menus and features so that depending on assigned role an administrator can have access to what he need
+        A role provided access to predefined menus and features so that
+        depending on assigned role an administrator can have access to what he
+        need
       </p>
     </VCol>
 

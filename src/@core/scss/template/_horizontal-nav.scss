@@ -12,7 +12,10 @@
 
       .nav-group.active {
         > .popper-triggerer .nav-group-label {
-          color: rgba(var(--v-theme-on-background), var(--v-high-emphasis-opacity));
+          color: rgba(
+            var(--v-theme-on-background),
+            var(--v-high-emphasis-opacity)
+          );
           font-weight: 500;
         }
       }

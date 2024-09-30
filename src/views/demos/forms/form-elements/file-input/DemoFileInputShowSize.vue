@@ -1,6 +1,3 @@
 <template>
-  <VFileInput
-    show-size
-    label="File input"
-  />
+  <VFileInput show-size label="File input" />
 </template>

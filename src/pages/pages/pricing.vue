@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import laptopGirl from '@images/illustrations/laptop-girl.png'
+import laptopGirl from "@images/illustrations/laptop-girl.png";
 
 const features = [
   {
-    feature: '14-days free trial',
+    feature: "14-days free trial",
     basic: true,
     standard: true,
     enterprise: true,
@@ -14,7 +14,7 @@ const features = [
     },
   },
   {
-    feature: 'No user limit',
+    feature: "No user limit",
     basic: false,
     standard: false,
     enterprise: true,
@@ -25,7 +25,7 @@ const features = [
     },
   },
   {
-    feature: 'Product Support',
+    feature: "Product Support",
     basic: false,
     standard: true,
     enterprise: true,
@@ -36,7 +36,7 @@ const features = [
     },
   },
   {
-    feature: 'Email Support',
+    feature: "Email Support",
     basic: false,
     standard: false,
     enterprise: true,
@@ -47,7 +47,7 @@ const features = [
     },
   },
   {
-    feature: 'Integrations',
+    feature: "Integrations",
     basic: false,
     standard: true,
     enterprise: true,
@@ -58,7 +58,7 @@ const features = [
     },
   },
   {
-    feature: 'Removal of Front branding',
+    feature: "Removal of Front branding",
     basic: false,
     standard: false,
     enterprise: true,
@@ -69,7 +69,7 @@ const features = [
     },
   },
   {
-    feature: 'Active maintenance & support',
+    feature: "Active maintenance & support",
     basic: false,
     standard: false,
     enterprise: true,
@@ -80,7 +80,7 @@ const features = [
     },
   },
   {
-    feature: 'Data storage for 365 days',
+    feature: "Data storage for 365 days",
     basic: false,
     standard: false,
     enterprise: true,
@@ -90,26 +90,29 @@ const features = [
       enterprise: false,
     },
   },
-]
+];
 
 const faqs = [
   {
-    question: 'What counts towards the 100 responses limit?',
-    answer: 'Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus, varius pulvinar diam eros in elit. Pellentesque convallis laoreet laoreet.Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus, varius pulvinar diam eros in elit. Pellentesque convallis laoreet laoreet.',
+    question: "What counts towards the 100 responses limit?",
+    answer:
+      "Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus, varius pulvinar diam eros in elit. Pellentesque convallis laoreet laoreet.Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus, varius pulvinar diam eros in elit. Pellentesque convallis laoreet laoreet.",
   },
   {
-    question: 'How do you process payments?',
-    answer: 'We accept Visa®, MasterCard®, American Express®, and PayPal®. So you can be confident that your credit card information will be kept safe and secure.',
+    question: "How do you process payments?",
+    answer:
+      "We accept Visa®, MasterCard®, American Express®, and PayPal®. So you can be confident that your credit card information will be kept safe and secure.",
   },
   {
-    question: 'What payment methods do you accept?',
-    answer: '2Checkout accepts all types of credit and debit cards.',
+    question: "What payment methods do you accept?",
+    answer: "2Checkout accepts all types of credit and debit cards.",
   },
   {
-    question: 'Do you have a money-back guarantee?',
-    answer: 'Yes. You may request a refund within 30 days of your purchase without any additional explanations.',
+    question: "Do you have a money-back guarantee?",
+    answer:
+      "Yes. You may request a refund within 30 days of your purchase without any additional explanations.",
   },
-]
+];
 </script>
 
 <template>
@@ -117,13 +120,7 @@ const faqs = [
     <VCardText class="pt-12 mb-16 pb-16">
       <!-- 👉 App Pricing components -->
       <VRow>
-        <VCol
-          cols="12"
-          sm="8"
-          md="12"
-          lg="10"
-          class="mx-auto"
-        >
+        <VCol cols="12" sm="8" md="12" lg="10" class="mx-auto">
           <AppPricing md="4" />
         </VCol>
       </VRow>
@@ -144,79 +141,48 @@ const faqs = [
             You will get full access to all the features for 14 days.
           </p>
 
-          <VBtn class="mt-4">
-            Start-14-day FREE trial
-          </VBtn>
+          <VBtn class="mt-4"> Start-14-day FREE trial </VBtn>
         </div>
 
         <div class="free-trial-illustrator">
-          <VImg
-            :src="laptopGirl"
-            :width="230"
-          />
+          <VImg :src="laptopGirl" :width="230" />
         </div>
       </VCol>
     </VRow>
 
     <!-- 👉 Plans -->
     <VCardText class="text-center mt-16">
-      <h4 class="text-h2 mb-2">
-        Pick a plan that works best for you
-      </h4>
+      <h4 class="text-h2 mb-2">Pick a plan that works best for you</h4>
       <p>Stay cool, we have a 48-hour money back guarantee!</p>
     </VCardText>
 
     <!-- 👉 Features & Tables -->
     <VCardText class="mb-16 mt-2">
       <VRow>
-        <VCol
-          cols="12"
-          md="10"
-          class="mx-auto"
-        >
+        <VCol cols="12" md="10" class="mx-auto">
           <VTable class="text-no-wrap border rounded">
             <!-- 👉 Table head -->
             <thead>
               <tr>
-                <th
-                  scope="col"
-                  class="py-4"
-                >
-                  <h6 class="text-sm font-weight-medium mb-1">
-                    FEATURES
-                  </h6>
+                <th scope="col" class="py-4">
+                  <h6 class="text-sm font-weight-medium mb-1">FEATURES</h6>
                   <span class="font-weight-regular text-sm text-disabled">
                     Native Front Features
                   </span>
                 </th>
 
-                <th
-                  scope="col"
-                  class="text-center py-4"
-                >
-                  <h6 class="text-sm font-weight-medium mb-1">
-                    BASIC
-                  </h6>
+                <th scope="col" class="text-center py-4">
+                  <h6 class="text-sm font-weight-medium mb-1">BASIC</h6>
                   <span class="text-disabled font-weight-regular text-sm">
                     FREE
                   </span>
                 </th>
 
-                <th
-                  scope="col"
-                  class="text-center py-4"
-                >
+                <th scope="col" class="text-center py-4">
                   <h6 class="text-sm font-weight-medium mb-1">
                     STANDARD
-                    <VAvatar
-                      size="22"
-                      color="primary"
-                      class="mt-n2"
-                    >
-                      <VIcon
-                        size="16"
-                        icon="tabler-star"
-                      />
+                    <VAvatar size="22" color="primary" class="mt-n2">
+                      <VIcon size="16" icon="tabler-star" />
                     </VAvatar>
                   </h6>
 
@@ -225,13 +191,8 @@ const faqs = [
                   </span>
                 </th>
 
-                <th
-                  scope="col"
-                  class="text-center py-4"
-                >
-                  <h6 class="text-sm font-weight-medium mb-1">
-                    ENTERPRISE
-                  </h6>
+                <th scope="col" class="text-center py-4">
+                  <h6 class="text-sm font-weight-medium mb-1">ENTERPRISE</h6>
                   <span class="text-disabled font-weight-regular text-sm">
                     $16/MONTH
                   </span>
@@ -241,10 +202,7 @@ const faqs = [
 
             <!-- 👉 Table Body -->
             <tbody>
-              <tr
-                v-for="feature in features"
-                :key="feature.feature"
-              >
+              <tr v-for="feature in features" :key="feature.feature">
                 <td>{{ feature.feature }}</td>
                 <td class="text-center">
                   <VChip
@@ -321,24 +279,16 @@ const faqs = [
             <!-- 👉 Table footer -->
             <tfoot>
               <tr>
-                <td class="py-4">
-                  Data storage for 365 days
-                </td>
+                <td class="py-4">Data storage for 365 days</td>
 
                 <td class="text-center py-4">
-                  <VBtn variant="tonal">
-                    Choose Plan
-                  </VBtn>
+                  <VBtn variant="tonal"> Choose Plan </VBtn>
                 </td>
                 <td class="text-center py-4">
-                  <VBtn>
-                    Choose Plan
-                  </VBtn>
+                  <VBtn> Choose Plan </VBtn>
                 </td>
                 <td class="text-center py-4">
-                  <VBtn variant="tonal">
-                    Choose Plan
-                  </VBtn>
+                  <VBtn variant="tonal"> Choose Plan </VBtn>
                 </td>
               </tr>
             </tfoot>
@@ -351,12 +301,8 @@ const faqs = [
     <div>
       <VCardText class="bg-var-theme-background py-16">
         <div class="text-center">
-          <h4 class="text-h4 mb-2">
-            FAQ's
-          </h4>
-          <p>
-            Let us help answer the most common questions.
-          </p>
+          <h4 class="text-h4 mb-2">FAQ's</h4>
+          <p>Let us help answer the most common questions.</p>
         </div>
 
         <div class="py-sm-6 px-sm-16">

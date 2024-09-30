@@ -1,52 +1,54 @@
 <script setup lang="ts">
 interface Emit {
-  (e: 'update:isDialogVisible', value: boolean): void
+  (e: "update:isDialogVisible", value: boolean): void;
 }
 interface Props {
-  isDialogVisible: boolean
-  smsCode?: string
-  authAppCode?: string
+  isDialogVisible: boolean;
+  smsCode?: string;
+  authAppCode?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   isDialogVisible: false,
-  smsCode: '',
-  authAppCode: '',
-})
+  smsCode: "",
+  authAppCode: "",
+});
 
-const emit = defineEmits<Emit>()
+const emit = defineEmits<Emit>();
 
 const authMethods = [
   {
-    icon: 'tabler-settings',
-    title: 'Authenticator Apps',
-    subtitle: 'Get code from an app like Google Authenticator or Microsoft Authenticator.',
-    method: 'authApp',
+    icon: "tabler-settings",
+    title: "Authenticator Apps",
+    subtitle:
+      "Get code from an app like Google Authenticator or Microsoft Authenticator.",
+    method: "authApp",
   },
   {
-    icon: 'tabler-message',
-    title: 'SMS',
-    subtitle: 'We will send a code via SMS if you need to use your backup login method.',
-    method: 'sms',
+    icon: "tabler-message",
+    title: "SMS",
+    subtitle:
+      "We will send a code via SMS if you need to use your backup login method.",
+    method: "sms",
   },
-]
+];
 
-const selectedMethod = ref(['authApp'])
-const isAuthAppDialogVisible = ref(false)
-const isSmsDialogVisible = ref(false)
+const selectedMethod = ref(["authApp"]);
+const isAuthAppDialogVisible = ref(false);
+const isSmsDialogVisible = ref(false);
 
 const openSelectedMethodDialog = () => {
-  if (selectedMethod.value[0] === 'authApp') {
-    isAuthAppDialogVisible.value = true
-    isSmsDialogVisible.value = false
-    emit('update:isDialogVisible', false)
+  if (selectedMethod.value[0] === "authApp") {
+    isAuthAppDialogVisible.value = true;
+    isSmsDialogVisible.value = false;
+    emit("update:isDialogVisible", false);
   }
-  if (selectedMethod.value[0] === 'sms') {
-    isAuthAppDialogVisible.value = false
-    isSmsDialogVisible.value = true
-    emit('update:isDialogVisible', false)
+  if (selectedMethod.value[0] === "sms") {
+    isAuthAppDialogVisible.value = false;
+    isSmsDialogVisible.value = true;
+    emit("update:isDialogVisible", false);
   }
-}
+};
 </script>
 
 <template>
@@ -65,7 +67,8 @@ const openSelectedMethodDialog = () => {
         </VCardTitle>
         <VCardSubtitle>
           <span class="text-base">
-            You also need to select a method by which the proxy authenticates to the directory serve.
+            You also need to select a method by which the proxy authenticates to
+            the directory serve.
           </span>
         </VCardSubtitle>
       </VCardItem>
@@ -84,13 +87,13 @@ const openSelectedMethodDialog = () => {
             rounded
             :value="item.method"
             class="py-5 px-6 my-6"
-            :class="selectedMethod[0] === item.method && 'bg-light-primary text-primary'"
+            :class="
+              selectedMethod[0] === item.method &&
+              'bg-light-primary text-primary'
+            "
           >
             <template #prepend>
-              <VIcon
-                :icon="item.icon"
-                size="38"
-              />
+              <VIcon :icon="item.icon" size="38" />
             </template>
 
             <VListItemTitle class="mb-2">
@@ -105,9 +108,7 @@ const openSelectedMethodDialog = () => {
         </VList>
 
         <div class="d-flex gap-4 justify-center">
-          <VBtn @click="openSelectedMethodDialog">
-            submit
-          </VBtn>
+          <VBtn @click="openSelectedMethodDialog"> submit </VBtn>
           <VBtn
             color="secondary"
             variant="tonal"

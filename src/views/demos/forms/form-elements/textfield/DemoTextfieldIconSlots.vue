@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
-import { themeConfig } from '@themeConfig'
+import { VNodeRenderer } from "@layouts/components/VNodeRenderer";
+import { themeConfig } from "@themeConfig";
 
-const message = ref('Hey!')
-const loading = ref(false)
+const message = ref("Hey!");
+const loading = ref(false);
 
 const clickMe = () => {
-  loading.value = true
-  message.value = 'Wait for it...'
+  loading.value = true;
+  message.value = "Wait for it...";
 
   setTimeout(() => {
-    loading.value = false
-    message.value = 'You\'ve clicked me!'
-  }, 2000)
-}
+    loading.value = false;
+    message.value = "You've clicked me!";
+  }, 2000);
+};
 </script>
 
 <template>
@@ -28,10 +28,7 @@ const clickMe = () => {
     <template #prepend>
       <VTooltip location="bottom">
         <template #activator="{ props }">
-          <VIcon
-            v-bind="props"
-            icon="tabler-help"
-          />
+          <VIcon v-bind="props" icon="tabler-help" />
         </template>
         I'm a tooltip
       </VTooltip>
@@ -40,31 +37,17 @@ const clickMe = () => {
     <!-- AppendInner -->
     <template #append-inner>
       <VFadeTransition leave-absolute>
-        <VProgressCircular
-          v-if="loading"
-          color="info"
-          indeterminate
-        />
+        <VProgressCircular v-if="loading" color="info" indeterminate />
 
-        <VNodeRenderer
-          v-else
-          class="text-2xl"
-          :nodes="themeConfig.app.logo"
-        />
+        <VNodeRenderer v-else class="text-2xl" :nodes="themeConfig.app.logo" />
       </VFadeTransition>
     </template>
 
     <!-- Append -->
     <template #append>
-      <VBtn
-        :icon="$vuetify.display.smAndDown"
-        @click="clickMe"
-      >
+      <VBtn :icon="$vuetify.display.smAndDown" @click="clickMe">
         <VIcon icon="tabler-viewfinder" />
-        <span
-          v-if="$vuetify.display.mdAndUp"
-          class="ms-3"
-        >Click me</span>
+        <span v-if="$vuetify.display.mdAndUp" class="ms-3">Click me</span>
       </VBtn>
     </template>
   </AppTextField>

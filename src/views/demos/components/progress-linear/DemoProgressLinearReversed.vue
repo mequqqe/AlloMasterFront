@@ -1,7 +1,3 @@
 <template>
-  <VProgressLinear
-    color="primary"
-    indeterminate
-    reverse
-  />
+  <VProgressLinear color="primary" indeterminate reverse />
 </template>

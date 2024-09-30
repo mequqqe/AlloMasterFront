@@ -1,150 +1,149 @@
 <script setup lang="ts">
-import laptopGirl from '@images/illustrations/laptop-girl.png'
+import laptopGirl from "@images/illustrations/laptop-girl.png";
 
 const props = defineProps<{
-  isDialogVisible: boolean
-}>()
+  isDialogVisible: boolean;
+}>();
 
 const emit = defineEmits<{
-  (e: 'update:isDialogVisible', val: boolean): void
-  (e: 'updatedData', val: unknown): void
-}>()
+  (e: "update:isDialogVisible", val: boolean): void;
+  (e: "updatedData", val: unknown): void;
+}>();
 
-const currentStep = ref(0)
+const currentStep = ref(0);
 
 const createApp = [
   {
-    icon: 'tabler-clipboard',
-    title: 'Details',
-    subtitle: 'Enter Details',
+    icon: "tabler-clipboard",
+    title: "Details",
+    subtitle: "Enter Details",
   },
   {
-    icon: 'tabler-box',
-    title: 'Frameworks',
-    subtitle: 'Select Framework',
+    icon: "tabler-box",
+    title: "Frameworks",
+    subtitle: "Select Framework",
   },
   {
-    icon: 'tabler-database',
-    title: 'Database',
-    subtitle: 'Select Database',
+    icon: "tabler-database",
+    title: "Database",
+    subtitle: "Select Database",
   },
   {
-    icon: 'tabler-credit-card',
-    title: 'Billing',
-    subtitle: 'Payment Details',
+    icon: "tabler-credit-card",
+    title: "Billing",
+    subtitle: "Payment Details",
   },
   {
-    icon: 'tabler-check',
-    title: 'Submit',
-    subtitle: 'submit',
+    icon: "tabler-check",
+    title: "Submit",
+    subtitle: "submit",
   },
-]
+];
 
 const categories = [
   {
-    icon: 'tabler-briefcase',
-    color: 'info',
-    title: 'CRM Application',
-    subtitle: 'Scales with any business',
-    slug: 'crm-application',
+    icon: "tabler-briefcase",
+    color: "info",
+    title: "CRM Application",
+    subtitle: "Scales with any business",
+    slug: "crm-application",
   },
   {
-    icon: 'tabler-shopping-cart',
-    color: 'success',
-    title: 'Ecommerce Platforms',
-    subtitle: 'Grow Your Business With App',
-    slug: 'ecommerce-application',
+    icon: "tabler-shopping-cart",
+    color: "success",
+    title: "Ecommerce Platforms",
+    subtitle: "Grow Your Business With App",
+    slug: "ecommerce-application",
   },
   {
-    icon: 'tabler-device-laptop',
-    color: 'error',
-    title: 'Online Learning platform',
-    subtitle: 'Start learning today',
-    slug: 'online-learning-application',
+    icon: "tabler-device-laptop",
+    color: "error",
+    title: "Online Learning platform",
+    subtitle: "Start learning today",
+    slug: "online-learning-application",
   },
-]
+];
 
 const frameworks = [
   {
-    icon: 'tabler-brand-react-native',
-    color: 'info',
-    title: 'React Native',
-    subtitle: 'Create truly native apps',
-    slug: 'react-framework',
+    icon: "tabler-brand-react-native",
+    color: "info",
+    title: "React Native",
+    subtitle: "Create truly native apps",
+    slug: "react-framework",
   },
   {
-    icon: 'tabler-brand-angular',
-    color: 'error',
-    title: 'Angular',
-    subtitle: 'Most suited for your application',
-    slug: 'angular-framework',
+    icon: "tabler-brand-angular",
+    color: "error",
+    title: "Angular",
+    subtitle: "Most suited for your application",
+    slug: "angular-framework",
   },
   {
-    icon: 'tabler-brand-html5',
-    color: 'warning',
-    title: 'HTML',
-    subtitle: 'Progressive Framework',
-    slug: 'html-framework',
+    icon: "tabler-brand-html5",
+    color: "warning",
+    title: "HTML",
+    subtitle: "Progressive Framework",
+    slug: "html-framework",
   },
   {
-    icon: 'tabler-brand-python',
-    color: 'primary',
-    title: 'Python',
-    subtitle: 'js web frameworks',
-    slug: 'js-framework',
+    icon: "tabler-brand-python",
+    color: "primary",
+    title: "Python",
+    subtitle: "js web frameworks",
+    slug: "js-framework",
   },
-]
+];
 
 const databases = [
   {
-    icon: 'tabler-brand-firebase',
-    color: 'error',
-    title: 'Firebase',
-    subtitle: 'Cloud Firestore',
-    slug: 'firebase-database',
+    icon: "tabler-brand-firebase",
+    color: "error",
+    title: "Firebase",
+    subtitle: "Cloud Firestore",
+    slug: "firebase-database",
   },
   {
-    icon: 'tabler-brand-amazon',
-    color: 'warning',
-    title: 'AWS',
-    subtitle: 'Amazon Fast NoSQL Database',
-    slug: 'aws-database',
+    icon: "tabler-brand-amazon",
+    color: "warning",
+    title: "AWS",
+    subtitle: "Amazon Fast NoSQL Database",
+    slug: "aws-database",
   },
   {
-    icon: 'tabler-database',
-    color: 'info',
-    title: 'MySQL',
-    subtitle: 'Basic MySQL database',
-    slug: 'mysql-database',
+    icon: "tabler-database",
+    color: "info",
+    title: "MySQL",
+    subtitle: "Basic MySQL database",
+    slug: "mysql-database",
   },
-]
+];
 
 const createAppData = ref({
-  category: 'crm-application',
-  framework: 'vue-framework',
-  database: 'firebase-database',
+  category: "crm-application",
+  framework: "vue-framework",
+  database: "firebase-database",
   cardNumber: null,
-  cardName: '',
-  cardExpiry: '',
-  cardCvv: '',
+  cardName: "",
+  cardExpiry: "",
+  cardCvv: "",
   isSave: false,
-})
+});
 
 const dialogVisibleUpdate = (val: boolean) => {
-  emit('update:isDialogVisible', val)
-  currentStep.value = 0
-}
+  emit("update:isDialogVisible", val);
+  currentStep.value = 0;
+};
 
 watch(props, () => {
-  if (!props.isDialogVisible)
-    currentStep.value = 0
-})
+  if (!props.isDialogVisible) currentStep.value = 0;
+});
 
 const onSubmit = () => {
   // eslint-disable-next-line no-alert
-  alert('submitted...!!')
-  emit('updatedData', createAppData.value)
-}
+  alert("submitted...!!");
+  emit("updatedData", createAppData.value);
+};
 </script>
 
 <template>
@@ -160,20 +159,13 @@ const onSubmit = () => {
     />
     <VCard class="create-app-dialog">
       <VCardText class="pa-5 pa-sm-10">
-        <h5 class="text-h5 text-center mb-2">
-          Create App
-        </h5>
+        <h5 class="text-h5 text-center mb-2">Create App</h5>
         <p class="text-sm text-center mb-8">
           Provide data with this form to create your app.
         </p>
 
         <VRow>
-          <VCol
-            cols="12"
-            sm="5"
-            md="4"
-            lg="3"
-          >
+          <VCol cols="12" sm="5" md="4" lg="3">
             <AppStepper
               v-model:current-step="currentStep"
               direction="vertical"
@@ -183,12 +175,7 @@ const onSubmit = () => {
             />
           </VCol>
 
-          <VCol
-            cols="12"
-            sm="7"
-            md="8"
-            lg="9"
-          >
+          <VCol cols="12" sm="7" md="8" lg="9">
             <VWindow
               v-model="currentStep"
               class="disable-tab-transition stepper-content"
@@ -197,9 +184,7 @@ const onSubmit = () => {
               <VWindowItem>
                 <AppTextField label="Application Name" />
 
-                <h6 class="text-h6 my-4">
-                  Category
-                </h6>
+                <h6 class="text-h6 my-4">Category</h6>
                 <VRadioGroup v-model="createAppData.category">
                   <VList class="card-list">
                     <VListItem
@@ -234,9 +219,7 @@ const onSubmit = () => {
 
               <!-- 👉 Frameworks -->
               <VWindowItem>
-                <h6 class="text-h6 mb-4">
-                  Select Framework
-                </h6>
+                <h6 class="text-h6 mb-4">Select Framework</h6>
                 <VRadioGroup v-model="createAppData.framework">
                   <VList class="card-list">
                     <VListItem
@@ -272,9 +255,7 @@ const onSubmit = () => {
               <VWindowItem>
                 <AppTextField label="Database Name" />
 
-                <h6 class="text-h6 my-4">
-                  Select Database Engine
-                </h6>
+                <h6 class="text-h6 my-4">Select Database Engine</h6>
                 <VRadioGroup v-model="createAppData.database">
                   <VList class="card-list">
                     <VListItem
@@ -308,9 +289,7 @@ const onSubmit = () => {
 
               <!-- 👉 Billing form -->
               <VWindowItem>
-                <h6 class="text-h6 mb-4">
-                  Payment Details
-                </h6>
+                <h6 class="text-h6 mb-4">Payment Details</h6>
 
                 <VForm>
                   <VRow>
@@ -322,30 +301,21 @@ const onSubmit = () => {
                       />
                     </VCol>
 
-                    <VCol
-                      cols="12"
-                      md="6"
-                    >
+                    <VCol cols="12" md="6">
                       <AppTextField
                         v-model="createAppData.cardName"
                         label="Name on Card"
                       />
                     </VCol>
 
-                    <VCol
-                      cols="6"
-                      md="3"
-                    >
+                    <VCol cols="6" md="3">
                       <AppTextField
                         v-model="createAppData.cardExpiry"
                         label="Expiry"
                       />
                     </VCol>
 
-                    <VCol
-                      cols="6"
-                      md="3"
-                    >
+                    <VCol cols="6" md="3">
                       <AppTextField
                         v-model="createAppData.cardCvv"
                         label="CVV"
@@ -363,18 +333,10 @@ const onSubmit = () => {
               </VWindowItem>
 
               <VWindowItem class="text-center">
-                <h6 class="text-h6 mb-2">
-                  Submit 🥳
-                </h6>
-                <p class="text-sm mb-6">
-                  Submit to kickstart your project.
-                </p>
+                <h6 class="text-h6 mb-2">Submit 🥳</h6>
+                <p class="text-sm mb-6">Submit to kickstart your project.</p>
 
-                <VImg
-                  :src="laptopGirl"
-                  width="176"
-                  class="mx-auto"
-                />
+                <VImg :src="laptopGirl" width="176" class="mx-auto" />
               </VWindowItem>
             </VWindow>
 
@@ -385,11 +347,7 @@ const onSubmit = () => {
                 :disabled="currentStep === 0"
                 @click="currentStep--"
               >
-                <VIcon
-                  icon="tabler-arrow-left"
-                  start
-                  class="flip-in-rtl"
-                />
+                <VIcon icon="tabler-arrow-left" start class="flip-in-rtl" />
                 Previous
               </VBtn>
 
@@ -399,24 +357,13 @@ const onSubmit = () => {
                 @click="onSubmit"
               >
                 submit
-                <VIcon
-                  icon="tabler-check"
-                  end
-                  class="flip-in-rtl"
-                />
+                <VIcon icon="tabler-check" end class="flip-in-rtl" />
               </VBtn>
 
-              <VBtn
-                v-else
-                @click="currentStep++"
-              >
+              <VBtn v-else @click="currentStep++">
                 Next
 
-                <VIcon
-                  icon="tabler-arrow-right"
-                  end
-                  class="flip-in-rtl"
-                />
+                <VIcon icon="tabler-arrow-right" end class="flip-in-rtl" />
               </VBtn>
             </div>
           </VCol>

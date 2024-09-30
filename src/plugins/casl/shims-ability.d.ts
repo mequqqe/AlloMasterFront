@@ -1,8 +1,8 @@
-import type { AppAbility } from './AppAbility'
+import type { AppAbility } from "./AppAbility";
 
-declare module 'vue' {
+declare module "vue" {
   interface ComponentCustomProperties {
-    $ability: AppAbility
-    $can(this: this, ...args: Parameters<this['$ability']['can']>): boolean
+    $ability: AppAbility;
+    $can(this: this, ...args: Parameters<this["$ability"]["can"]>): boolean;
   }
 }

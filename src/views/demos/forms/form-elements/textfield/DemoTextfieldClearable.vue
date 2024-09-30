@@ -1,6 +1,3 @@
 <template>
-  <AppTextField
-    label="Regular"
-    clearable
-  />
+  <AppTextField label="Regular" clearable />
 </template>

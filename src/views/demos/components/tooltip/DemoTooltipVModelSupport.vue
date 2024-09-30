@@ -1,22 +1,14 @@
 <script lang="ts" setup>
-const isTooltipVisible = ref(false)
+const isTooltipVisible = ref(false);
 </script>
 
 <template>
   <div class="demo-space-x">
-    <VBtn @click="isTooltipVisible = !isTooltipVisible">
-      toggle tooltip
-    </VBtn>
+    <VBtn @click="isTooltipVisible = !isTooltipVisible"> toggle tooltip </VBtn>
 
-    <VTooltip
-      :model-value="isTooltipVisible"
-      location="top"
-    >
+    <VTooltip :model-value="isTooltipVisible" location="top">
       <template #activator="{ props }">
-        <VIcon
-          v-bind="props"
-          icon="tabler-brand-instagram"
-        />
+        <VIcon v-bind="props" icon="tabler-brand-instagram" />
       </template>
       <span>Programmatic tooltip</span>
     </VTooltip>

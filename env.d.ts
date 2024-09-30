@@ -1,10 +1,10 @@
-import 'vue-router'
+import "vue-router";
 
-declare module 'vue-router' {
+declare module "vue-router" {
   interface RouteMeta {
-    action?: string
-    subject?: string
-    layoutWrapperClasses?: string
-    navActiveLink?: RouteLocationRaw
+    action?: string;
+    subject?: string;
+    layoutWrapperClasses?: string;
+    navActiveLink?: RouteLocationRaw;
   }
 }

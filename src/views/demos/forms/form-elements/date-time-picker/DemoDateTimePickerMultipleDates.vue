@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const multipleDate = ref('')
+const multipleDate = ref("");
 </script>
 
 <template>

@@ -58,7 +58,7 @@ const items = [
   </VMenu>
 </template>
 `,
-}
+};
 
 export const basic = {
   ts: `<script lang="ts" setup>
@@ -132,7 +132,7 @@ const items = [
   </div>
 </template>
 `,
-}
+};
 
 export const customTransitions = {
   ts: `<script lang="ts" setup>
@@ -224,7 +224,7 @@ const items = [
   </div>
 </template>
 `,
-}
+};
 
 export const location = {
   ts: `<script lang="ts" setup>
@@ -336,7 +336,7 @@ const items = [
   </div>
 </template>
 `,
-}
+};
 
 export const openOnHover = {
   ts: `<script lang="ts" setup>
@@ -384,7 +384,7 @@ const items = [
   </VMenu>
 </template>
 `,
-}
+};
 
 export const popover = {
   ts: `<script lang="ts" setup>
@@ -473,4 +473,4 @@ const menu = ref(false)
   </VMenu>
 </template>
 `,
-}
+};

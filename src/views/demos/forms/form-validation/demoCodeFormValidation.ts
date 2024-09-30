@@ -101,7 +101,7 @@ const refForm = ref()
   </VForm>
 </template>
 `,
-}
+};
 
 export const validatingMultipleRules = {
   ts: `<script lang="ts" setup>
@@ -271,7 +271,7 @@ const confirmPassword = ref('')
   </VForm>
 </template>
 `,
-}
+};
 
 export const validationTypes = {
   ts: `<script lang="ts" setup>
@@ -668,4 +668,4 @@ const refForm = ref()
   </VForm>
 </template>
 `,
-}
+};

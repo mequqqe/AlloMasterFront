@@ -1,44 +1,44 @@
 <script setup lang="ts">
-import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
+import { PerfectScrollbar } from "vue3-perfect-scrollbar";
 
 interface SubmitData {
-  invoiceBalance: string
-  paymentAmount: string
-  paymentDate: string
-  paymentMethod: string
-  paymentNote: string
+  invoiceBalance: string;
+  paymentAmount: string;
+  paymentDate: string;
+  paymentMethod: string;
+  paymentNote: string;
 }
 interface Emit {
-  (e: 'update:isDrawerOpen', value: boolean): void
-  (e: 'submit', value: SubmitData): void
+  (e: "update:isDrawerOpen", value: boolean): void;
+  (e: "submit", value: SubmitData): void;
 }
 
 interface Props {
-  isDrawerOpen: boolean
+  isDrawerOpen: boolean;
 }
-const props = defineProps<Props>()
-const emit = defineEmits<Emit>()
+const props = defineProps<Props>();
+const emit = defineEmits<Emit>();
 
-const invoiceBalance = ref()
-const paymentAmount = ref()
-const paymentDate = ref('')
-const paymentMethod = ref()
-const paymentNote = ref('')
+const invoiceBalance = ref();
+const paymentAmount = ref();
+const paymentDate = ref("");
+const paymentMethod = ref();
+const paymentNote = ref("");
 
 const onSubmit = () => {
-  emit('update:isDrawerOpen', false)
-  emit('submit', {
+  emit("update:isDrawerOpen", false);
+  emit("submit", {
     invoiceBalance: invoiceBalance.value,
     paymentAmount: paymentAmount.value,
     paymentDate: paymentDate.value,
     paymentMethod: paymentMethod.value,
     paymentNote: paymentNote.value,
-  })
-}
+  });
+};
 
 const handleDrawerModelValueUpdate = (val: boolean) => {
-  emit('update:isDrawerOpen', val)
-}
+  emit("update:isDrawerOpen", val);
+};
 </script>
 
 <template>
@@ -78,17 +78,20 @@ const handleDrawerModelValueUpdate = (val: boolean) => {
               </VCol>
 
               <VCol cols="12">
-                <AppDateTimePicker
-                  v-model="paymentDate"
-                  label="Payment Date"
-                />
+                <AppDateTimePicker v-model="paymentDate" label="Payment Date" />
               </VCol>
 
               <VCol cols="12">
                 <AppSelect
                   v-model="paymentMethod"
                   label="Select Payment Method"
-                  :items="['Cash', 'Bank Transfer', 'Debit', 'Credit', 'Paypal']"
+                  :items="[
+                    'Cash',
+                    'Bank Transfer',
+                    'Debit',
+                    'Credit',
+                    'Paypal',
+                  ]"
                 />
               </VCol>
 
@@ -100,12 +103,7 @@ const handleDrawerModelValueUpdate = (val: boolean) => {
               </VCol>
 
               <VCol cols="12">
-                <VBtn
-                  type="submit"
-                  class="me-3"
-                >
-                  Send
-                </VBtn>
+                <VBtn type="submit" class="me-3"> Send </VBtn>
 
                 <VBtn
                   type="reset"

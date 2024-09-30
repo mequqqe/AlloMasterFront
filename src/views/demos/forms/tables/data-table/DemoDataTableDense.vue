@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { VDataTable } from 'vuetify/labs/VDataTable'
-import data from '@/views/demos/forms/tables/data-table/datatable'
+import { VDataTable } from "vuetify/labs/VDataTable";
+import data from "@/views/demos/forms/tables/data-table/datatable";
 
 const headers = [
-  { title: 'ID', sortable: false, key: 'id' },
-  { title: 'NAME', key: 'full_name' },
-  { title: 'EMAIL', key: 'email' },
-  { title: 'DATE', key: 'start_date' },
-  { title: 'EXPERIENCE', key: 'experience' },
-  { title: 'AGE', key: 'age' },
-]
+  { title: "ID", sortable: false, key: "id" },
+  { title: "NAME", key: "full_name" },
+  { title: "EMAIL", key: "email" },
+  { title: "DATE", key: "start_date" },
+  { title: "EXPERIENCE", key: "experience" },
+  { title: "AGE", key: "age" },
+];
 </script>
 
 <template>

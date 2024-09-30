@@ -653,7 +653,7 @@ const paymentMethods = [
 }
 </style>
 `,
-}
+};
 
 export const formHint = {
   ts: `<script lang="ts" setup>
@@ -829,7 +829,7 @@ const values = ref([])
   </VForm>
 </template>
 `,
-}
+};
 
 export const formValidation = {
   ts: `<script lang="ts" setup>
@@ -1012,7 +1012,7 @@ const form = ref()
   </VForm>
 </template>
 `,
-}
+};
 
 export const formWithTabs = {
   ts: `<script lang="ts" setup>
@@ -1523,7 +1523,7 @@ const isCPasswordVisible = ref(false)
   </VCard>
 </template>
 `,
-}
+};
 
 export const horizontalForm = {
   ts: `<script lang="ts" setup>
@@ -1844,7 +1844,7 @@ const checkbox = ref(false)
   </VForm>
 </template>
 `,
-}
+};
 
 export const horizontalFormWithIcons = {
   ts: `<script lang="ts" setup>
@@ -2173,7 +2173,7 @@ const checkbox = ref(false)
   </VForm>
 </template>
 `,
-}
+};
 
 export const multipleColumn = {
   ts: `<script lang="ts" setup>
@@ -2402,7 +2402,7 @@ const checkbox = ref(false)
   </VForm>
 </template>
 `,
-}
+};
 
 export const verticalForm = {
   ts: `<script lang="ts" setup>
@@ -2551,7 +2551,7 @@ const checkbox = ref(false)
   </VForm>
 </template>
 `,
-}
+};
 
 export const verticalFormWithIcons = {
   ts: `<script lang="ts" setup>
@@ -2708,4 +2708,4 @@ const checkbox = ref(false)
   </VForm>
 </template>
 `,
-}
+};

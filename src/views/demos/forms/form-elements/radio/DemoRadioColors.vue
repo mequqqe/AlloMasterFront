@@ -1,13 +1,17 @@
 <script lang="ts" setup>
-const selectedRadio = ref('primary')
-const colorsRadio = ['Primary', 'Secondary', 'Success', 'Info', 'Warning', 'Error']
+const selectedRadio = ref("primary");
+const colorsRadio = [
+  "Primary",
+  "Secondary",
+  "Success",
+  "Info",
+  "Warning",
+  "Error",
+];
 </script>
 
 <template>
-  <VRadioGroup
-    v-model="selectedRadio"
-    inline
-  >
+  <VRadioGroup v-model="selectedRadio" inline>
     <div>
       <VRadio
         v-for="radio in colorsRadio"

@@ -1,32 +1,32 @@
 <script setup lang="ts">
 interface Emit {
-  (e: 'update:isDialogVisible', value: boolean): void
-  (e: 'submit', value: string): void
+  (e: "update:isDialogVisible", value: boolean): void;
+  (e: "submit", value: string): void;
 }
 interface Props {
-  mobileNumber?: string
-  isDialogVisible: boolean
+  mobileNumber?: string;
+  isDialogVisible: boolean;
 }
-const props = defineProps<Props>()
-const emit = defineEmits<Emit>()
+const props = defineProps<Props>();
+const emit = defineEmits<Emit>();
 
-const phoneNumber = ref(structuredClone(toRaw(props.mobileNumber)))
+const phoneNumber = ref(structuredClone(toRaw(props.mobileNumber)));
 
 const formSubmit = () => {
   if (phoneNumber.value) {
-    emit('submit', phoneNumber.value)
-    emit('update:isDialogVisible', false)
+    emit("submit", phoneNumber.value);
+    emit("update:isDialogVisible", false);
   }
-}
+};
 
 const resetPhoneNumber = () => {
-  phoneNumber.value = structuredClone(toRaw(props.mobileNumber))
-  emit('update:isDialogVisible', false)
-}
+  phoneNumber.value = structuredClone(toRaw(props.mobileNumber));
+  emit("update:isDialogVisible", false);
+};
 
 const dialogModelValueUpdate = (val: boolean) => {
-  emit('update:isDialogVisible', val)
-}
+  emit("update:isDialogVisible", val);
+};
 </script>
 
 <template>
@@ -45,7 +45,8 @@ const dialogModelValueUpdate = (val: boolean) => {
         </VCardTitle>
         <VCardSubtitle>
           <span class="text-base">
-            Enter your mobile phone number with country code and  we will send you a verification code.
+            Enter your mobile phone number with country code and we will send
+            you a verification code.
           </span>
         </VCardSubtitle>
       </VCardItem>
@@ -62,23 +63,12 @@ const dialogModelValueUpdate = (val: boolean) => {
           />
 
           <div class="d-flex flex-wrap justify-end gap-4">
-            <VBtn
-              color="secondary"
-              variant="tonal"
-              @click="resetPhoneNumber"
-            >
+            <VBtn color="secondary" variant="tonal" @click="resetPhoneNumber">
               Cancel
             </VBtn>
-            <VBtn
-              type="submit"
-              @click="formSubmit"
-            >
+            <VBtn type="submit" @click="formSubmit">
               continue
-              <VIcon
-                end
-                icon="tabler-arrow-right"
-                class="flip-in-rtl"
-              />
+              <VIcon end icon="tabler-arrow-right" class="flip-in-rtl" />
             </VBtn>
           </div>
         </VForm>

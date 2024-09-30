@@ -109,7 +109,7 @@ export const actionAndItemGroup = {
   </VList>
 </template>
 `,
-}
+};
 
 export const basic = {
   ts: `<script setup lang="ts">
@@ -133,7 +133,7 @@ const items = [
   <VList :items="items" />
 </template>
 `,
-}
+};
 
 export const density = {
   ts: `<script lang="ts" setup>
@@ -200,7 +200,7 @@ const items = [
   />
 </template>
 `,
-}
+};
 
 export const nav = {
   ts: `<script lang="ts" setup>
@@ -303,7 +303,7 @@ const items = [
   </VList>
 </template>
 `,
-}
+};
 
 export const progressList = {
   ts: `<script setup lang="ts">
@@ -487,7 +487,7 @@ const resolveStatusColor = {
   </VList>
 </template>
 `,
-}
+};
 
 export const rounded = {
   ts: `<script lang="ts" setup>
@@ -572,7 +572,7 @@ const items = [
   <VList :items="items" />
 </template>
 `,
-}
+};
 
 export const shaped = {
   ts: `<script lang="ts" setup>
@@ -634,7 +634,7 @@ const items = [
   </VList>
 </template>
 `,
-}
+};
 
 export const subGroup = {
   ts: `<script lang="ts" setup>
@@ -798,7 +798,7 @@ const cruds = [
   </VList>
 </template>
 `,
-}
+};
 
 export const threeLine = {
   ts: `<script lang="ts" setup>
@@ -907,7 +907,7 @@ const items = [
   </VList>
 </template>
 `,
-}
+};
 
 export const twoLinesAndSubheader = {
   ts: `<script lang="ts" setup>
@@ -1114,7 +1114,7 @@ const folders = [
   </VList>
 </template>
 `,
-}
+};
 
 export const userList = {
   ts: `<script setup lang="ts">
@@ -1295,4 +1295,4 @@ const resolveStatusColor = {
   </VList>
 </template>
 `,
-}
+};

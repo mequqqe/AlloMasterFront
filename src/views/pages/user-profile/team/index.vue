@@ -1,66 +1,51 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-import type { TeamsTab } from '@/@fake-db/types'
-import axios from '@axios'
+import { useRoute } from "vue-router";
+import type { TeamsTab } from "@/@fake-db/types";
+import axios from "@axios";
 
-const router = useRoute()
-const teamData = ref<TeamsTab[]>([])
+const router = useRoute();
+const teamData = ref<TeamsTab[]>([]);
 
 const fetchTeamData = () => {
-  if (router.params.tab === 'teams') {
-    axios.get('/pages/profile', {
-      params: {
-        tab: router.params.tab,
-      },
-    }).then(response => {
-      teamData.value = response.data
-    })
+  if (router.params.tab === "teams") {
+    axios
+      .get("/pages/profile", {
+        params: {
+          tab: router.params.tab,
+        },
+      })
+      .then((response) => {
+        teamData.value = response.data;
+      });
   }
-}
+};
 
-watch(router, fetchTeamData, { immediate: true })
+watch(router, fetchTeamData, { immediate: true });
 
 const moreList = [
-  { title: 'Rename Project', value: 'Rename Project' },
-  { title: 'View Details', value: 'View Details' },
-  { title: 'Add to favorites', value: 'Add to favorites' },
-  { type: 'divider', class: 'my-2' },
-  { title: 'Leave Project', value: 'Leave Project', class: 'text-error' },
-]
+  { title: "Rename Project", value: "Rename Project" },
+  { title: "View Details", value: "View Details" },
+  { title: "Add to favorites", value: "Add to favorites" },
+  { type: "divider", class: "my-2" },
+  { title: "Leave Project", value: "Leave Project", class: "text-error" },
+];
 </script>
 
 <template>
   <VRow v-if="teamData">
-    <VCol
-      v-for="team in teamData"
-      :key="team.title"
-      cols="12"
-      md="6"
-      lg="4"
-    >
+    <VCol v-for="team in teamData" :key="team.title" cols="12" md="6" lg="4">
       <VCard :title="team.title">
         <template #prepend>
-          <VAvatar
-            size="38"
-            :image="team?.avatar"
-          />
+          <VAvatar size="38" :image="team?.avatar" />
         </template>
 
         <template #append>
           <div class="me-n3">
             <IconBtn>
-              <VIcon
-                size="20"
-                icon="tabler-star"
-                class="text-disabled"
-              />
+              <VIcon size="20" icon="tabler-star" class="text-disabled" />
             </IconBtn>
 
-            <MoreBtn
-              :menu-list="moreList"
-              item-props
-              density="comfortable"
-            />
+            <MoreBtn :menu-list="moreList" item-props density="comfortable" />
           </div>
         </template>
 
@@ -77,10 +62,7 @@ const moreList = [
             >
               <VImg :src="data.avatar" />
 
-              <VTooltip
-                activator="parent"
-                location="top"
-              >
+              <VTooltip activator="parent" location="top">
                 {{ data.name }}
               </VTooltip>
             </VAvatar>

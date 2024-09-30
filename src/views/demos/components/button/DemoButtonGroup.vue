@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const toggleExclusive = ref(1)
+const toggleExclusive = ref(1);
 </script>
 
 <template>

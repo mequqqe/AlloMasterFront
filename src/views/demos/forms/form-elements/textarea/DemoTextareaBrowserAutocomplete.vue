@@ -1,6 +1,3 @@
 <template>
-  <AppTextarea
-    autocomplete="email"
-    label="Email"
-  />
+  <AppTextarea autocomplete="email" label="Email" />
 </template>

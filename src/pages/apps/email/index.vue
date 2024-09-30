@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
-import type { Email, EmailFilter, EmailLabel } from '@/@fake-db/types'
-import ComposeDialog from '@/views/apps/email/ComposeDialog.vue'
-import EmailLeftSidebarContent from '@/views/apps/email/EmailLeftSidebarContent.vue'
-import EmailView from '@/views/apps/email/EmailView.vue'
-import type { MoveEmailToAction } from '@/views/apps/email/useEmail'
-import { useEmail } from '@/views/apps/email/useEmail'
-import { useEmailStore } from '@/views/apps/email/useEmailStore'
-import { useResponsiveLeftSidebar } from '@core/composable/useResponsiveSidebar'
-import { formatDateToMonthShort } from '@core/utils/formatters'
+import { PerfectScrollbar } from "vue3-perfect-scrollbar";
+import type { Email, EmailFilter, EmailLabel } from "@/@fake-db/types";
+import ComposeDialog from "@/views/apps/email/ComposeDialog.vue";
+import EmailLeftSidebarContent from "@/views/apps/email/EmailLeftSidebarContent.vue";
+import EmailView from "@/views/apps/email/EmailView.vue";
+import type { MoveEmailToAction } from "@/views/apps/email/useEmail";
+import { useEmail } from "@/views/apps/email/useEmail";
+import { useEmailStore } from "@/views/apps/email/useEmailStore";
+import { useResponsiveLeftSidebar } from "@core/composable/useResponsiveSidebar";
+import { formatDateToMonthShort } from "@core/utils/formatters";
 
-const { isLeftSidebarOpen } = useResponsiveLeftSidebar()
+const { isLeftSidebarOpen } = useResponsiveLeftSidebar();
 
 // Composables
-const route = useRoute()
-const store = useEmailStore()
+const route = useRoute();
+const store = useEmailStore();
 
 const {
   labels,
@@ -22,76 +22,78 @@ const {
   emailMoveToFolderActions,
   shallShowMoveToActionFor,
   moveSelectedEmailTo,
-} = useEmail()
+} = useEmail();
 
 // Compose dialog
-const isComposeDialogVisible = ref(false)
+const isComposeDialogVisible = ref(false);
 
 // Ref
-const q = ref('')
+const q = ref("");
 
 // ------------------------------------------------
 // Email Selection
 // ------------------------------------------------
-const selectedEmails = ref<Email['id'][]>([])
+const selectedEmails = ref<Email["id"][]>([]);
 
-const toggleSelectedEmail = (emailId: Email['id']) => {
-  const emailIndex = selectedEmails.value.indexOf(emailId)
-  if (emailIndex === -1)
-    selectedEmails.value.push(emailId)
-  else selectedEmails.value.splice(emailIndex, 1)
-}
+const toggleSelectedEmail = (emailId: Email["id"]) => {
+  const emailIndex = selectedEmails.value.indexOf(emailId);
+  if (emailIndex === -1) selectedEmails.value.push(emailId);
+  else selectedEmails.value.splice(emailIndex, 1);
+};
 
 const selectAllEmailCheckbox = computed(
-  () => store.emails.length && store.emails.length === selectedEmails.value.length,
-)
+  () =>
+    store.emails.length && store.emails.length === selectedEmails.value.length,
+);
 
 const isSelectAllEmailCheckboxIndeterminate = computed(
   () =>
-    Boolean(selectedEmails.value.length)
-    && store.emails.length !== selectedEmails.value.length,
-)
+    Boolean(selectedEmails.value.length) &&
+    store.emails.length !== selectedEmails.value.length,
+);
 
-const isAllMarkRead = computed (() => {
-  return selectedEmails.value.every(emailId => store.emails.find(email => email.id === emailId)?.isRead)
-})
+const isAllMarkRead = computed(() => {
+  return selectedEmails.value.every(
+    (emailId) => store.emails.find((email) => email.id === emailId)?.isRead,
+  );
+});
 
 const selectAllCheckboxUpdate = () => {
   selectedEmails.value = !selectAllEmailCheckbox.value
-    ? store.emails.map(email => email.id)
-    : []
-}
+    ? store.emails.map((email) => email.id)
+    : [];
+};
 
 // Email View
-const openedEmail = ref<Email | null>(null)
+const openedEmail = ref<Email | null>(null);
 
 const emailViewMeta = computed(() => {
   const returnValue = {
     hasNextEmail: false,
     hasPreviousEmail: false,
-  }
+  };
 
   if (openedEmail.value) {
     const openedEmailIndex = store.emails.findIndex(
-      e => e.id === (openedEmail.value as Email).id,
-    )
+      (e) => e.id === (openedEmail.value as Email).id,
+    );
 
-    returnValue.hasNextEmail = !!store.emails[openedEmailIndex + 1]
-    returnValue.hasPreviousEmail = !!store.emails[openedEmailIndex - 1]
+    returnValue.hasNextEmail = !!store.emails[openedEmailIndex + 1];
+    returnValue.hasPreviousEmail = !!store.emails[openedEmailIndex - 1];
   }
 
-  return returnValue
-})
+  return returnValue;
+});
 
 // Fetch emails
 const fetchEmails = async () => {
-  selectedEmails.value = []
+  selectedEmails.value = [];
   await store.fetchEmails({
     q: q.value,
     filter: route.params.filter as EmailFilter,
     label: route.params.label as EmailLabel,
-  })
-}
+  });
+};
 
 /*
   ℹ️ You can optimize it so it doesn't fetch emails on each action.
@@ -106,79 +108,73 @@ const fetchEmails = async () => {
   😊 For simplicity of the code and possible of modification, we kept it simple.
 */
 const handleActionClick = async (
-  action: 'trash' | 'unread' | 'read' | 'spam' | 'star' | 'unstar',
-  emailIds: Email['id'][] = selectedEmails.value,
+  action: "trash" | "unread" | "read" | "spam" | "star" | "unstar",
+  emailIds: Email["id"][] = selectedEmails.value,
 ) => {
-  if (!emailIds.length)
-    return
+  if (!emailIds.length) return;
 
-  if (action === 'trash')
-    store.updateEmails(emailIds, { isDeleted: true })
-  else if (action === 'spam')
-    store.updateEmails(emailIds, { folder: 'spam' })
-  else if (action === 'unread')
-    store.updateEmails(emailIds, { isRead: false })
-  else if (action === 'read')
-    store.updateEmails(emailIds, { isRead: true })
-  else if (action === 'star')
-    store.updateEmails(emailIds, { isStarred: true })
-  else if (action === 'unstar')
-    store.updateEmails(emailIds, { isStarred: false })
+  if (action === "trash") store.updateEmails(emailIds, { isDeleted: true });
+  else if (action === "spam") store.updateEmails(emailIds, { folder: "spam" });
+  else if (action === "unread") store.updateEmails(emailIds, { isRead: false });
+  else if (action === "read") store.updateEmails(emailIds, { isRead: true });
+  else if (action === "star") store.updateEmails(emailIds, { isStarred: true });
+  else if (action === "unstar")
+    store.updateEmails(emailIds, { isStarred: false });
 
-  await fetchEmails()
-}
+  await fetchEmails();
+};
 
 // fetch emails on search & route change
 watch([q, () => route.params.filter, () => route.params.label], fetchEmails, {
   immediate: true,
-})
+});
 
 // Reset opened email (close email view) when route is changed
 watch([() => route.params.filter, () => route.params.label], () => {
-  openedEmail.value = null
-})
+  openedEmail.value = null;
+});
 
 // Email actions
 const handleMoveMailsTo = (action: MoveEmailToAction) => {
-  moveSelectedEmailTo(action, selectedEmails.value)
-  fetchEmails()
-}
+  moveSelectedEmailTo(action, selectedEmails.value);
+  fetchEmails();
+};
 
-const updateLabel = (label: Email['labels'][number]) => {
-  store.updateEmailLabels(selectedEmails.value, label)
+const updateLabel = (label: Email["labels"][number]) => {
+  store.updateEmailLabels(selectedEmails.value, label);
 
-  fetchEmails()
-}
+  fetchEmails();
+};
 
 // Email view
-const changeOpenedEmail = (dir: 'previous' | 'next') => {
-  if (!openedEmail.value)
-    return
+const changeOpenedEmail = (dir: "previous" | "next") => {
+  if (!openedEmail.value) return;
 
   const openedEmailIndex = store.emails.findIndex(
-    e => e.id === (openedEmail.value as Email).id,
-  )
+    (e) => e.id === (openedEmail.value as Email).id,
+  );
 
-  const newEmailIndex = dir === 'previous' ? openedEmailIndex - 1 : openedEmailIndex + 1
+  const newEmailIndex =
+    dir === "previous" ? openedEmailIndex - 1 : openedEmailIndex + 1;
 
-  openedEmail.value = store.emails[newEmailIndex]
-}
+  openedEmail.value = store.emails[newEmailIndex];
+};
 
 const openEmail = (email: Email) => {
-  openedEmail.value = email
+  openedEmail.value = email;
 
-  handleActionClick('read', [email.id])
-}
+  handleActionClick("read", [email.id]);
+};
 
 const refreshOpenedEmail = async () => {
-  await fetchEmails()
+  await fetchEmails();
 
   if (openedEmail.value) {
     openedEmail.value = store.emails.find(
-      e => e.id === (openedEmail.value as Email).id,
-    ) as Email
+      (e) => e.id === (openedEmail.value as Email).id,
+    ) as Email;
   }
-}
+};
 </script>
 
 <template>
@@ -190,7 +186,11 @@ const refreshOpenedEmail = async () => {
       location="start"
       :temporary="$vuetify.display.mdAndDown"
     >
-      <EmailLeftSidebarContent @toggle-compose-dialog-visibility="isComposeDialogVisible = !isComposeDialogVisible" />
+      <EmailLeftSidebarContent
+        @toggle-compose-dialog-visibility="
+          isComposeDialogVisible = !isComposeDialogVisible
+        "
+      />
     </VNavigationDrawer>
     <EmailView
       :email="openedEmail"
@@ -204,15 +204,9 @@ const refreshOpenedEmail = async () => {
       @unstar="handleActionClick('unstar', openedEmail ? [openedEmail.id] : [])"
     />
     <VMain>
-      <VCard
-        flat
-        class="email-content-list h-100 d-flex flex-column"
-      >
+      <VCard flat class="email-content-list h-100 d-flex flex-column">
         <div class="d-flex align-center">
-          <IconBtn
-            class="d-lg-none ms-3"
-            @click="isLeftSidebarOpen = true"
-          >
+          <IconBtn class="d-lg-none ms-3" @click="isLeftSidebarOpen = true">
             <VIcon icon="tabler-menu-2" />
           </IconBtn>
           <!-- 👉 Search -->
@@ -254,8 +248,16 @@ const refreshOpenedEmail = async () => {
             </IconBtn>
 
             <!-- Mark unread/read -->
-            <IconBtn @click="isAllMarkRead ? handleActionClick('unread') : handleActionClick('read') ">
-              <VIcon :icon="isAllMarkRead ? 'tabler-mail' : 'tabler-mail-opened'" />
+            <IconBtn
+              @click="
+                isAllMarkRead
+                  ? handleActionClick('unread')
+                  : handleActionClick('read')
+              "
+            >
+              <VIcon
+                :icon="isAllMarkRead ? 'tabler-mail' : 'tabler-mail-opened'"
+              />
             </IconBtn>
 
             <!-- Move to folder -->
@@ -270,18 +272,16 @@ const refreshOpenedEmail = async () => {
                   >
                     <VListItem
                       :class="
-                        shallShowMoveToActionFor(moveTo.action) ? 'd-flex' : 'd-none'
+                        shallShowMoveToActionFor(moveTo.action)
+                          ? 'd-flex'
+                          : 'd-none'
                       "
                       href="#"
                       class="items-center"
                       @click="handleMoveMailsTo(moveTo.action)"
                     >
                       <template #prepend>
-                        <VIcon
-                          :icon="moveTo.icon"
-                          class="me-2"
-                          size="20"
-                        />
+                        <VIcon :icon="moveTo.icon" class="me-2" size="20" />
                       </template>
                       <VListItemTitle class="text-capitalize">
                         {{ moveTo.action }}
@@ -323,10 +323,7 @@ const refreshOpenedEmail = async () => {
           <IconBtn @click="fetchEmails">
             <VIcon icon="tabler-reload" />
           </IconBtn>
-          <MoreBtn
-            density="comfortable"
-            color="undefined"
-          />
+          <MoreBtn density="comfortable" color="undefined" />
         </div>
         <VDivider />
 
@@ -352,21 +349,19 @@ const refreshOpenedEmail = async () => {
             />
             <IconBtn
               :color="email.isStarred ? 'warning' : 'default'"
-              @click.stop=" handleActionClick(email.isStarred ? 'unstar' : 'star', [email.id])"
+              @click.stop="
+                handleActionClick(email.isStarred ? 'unstar' : 'star', [
+                  email.id,
+                ])
+              "
             >
               <VIcon
                 :icon="email.isStarred ? 'tabler-star-filled' : 'tabler-star'"
                 :class="email.isStarred ? '' : 'text-disabled'"
               />
             </IconBtn>
-            <VAvatar
-              class="mx-2"
-              size="32"
-            >
-              <VImg
-                :src="email.from.avatar"
-                :alt="email.from.name"
-              />
+            <VAvatar class="mx-2" size="32">
+              <VImg :src="email.from.avatar" :alt="email.from.name" />
             </VAvatar>
             <h6 class="mx-3 text-body-1 font-weight-medium text-high-emphasis">
               {{ email.from.name }}
@@ -394,37 +389,33 @@ const refreshOpenedEmail = async () => {
             <div class="email-actions d-none">
               <IconBtn @click.stop="handleActionClick('trash', [email.id])">
                 <VIcon icon="tabler-trash" />
-                <VTooltip
-                  activator="parent"
-                  location="top"
-                >
+                <VTooltip activator="parent" location="top">
                   Delete Mail
                 </VTooltip>
               </IconBtn>
-              <IconBtn @click.stop=" handleActionClick(email.isRead ? 'unread' : 'read', [email.id])">
-                <VIcon :icon="email.isRead ? 'tabler-mail' : 'tabler-mail-opened'" />
-                <VTooltip
-                  activator="parent"
-                  location="top"
-                >
-                  {{ email.isRead ? 'Unread Mail' : 'read Mail' }}
+              <IconBtn
+                @click.stop="
+                  handleActionClick(email.isRead ? 'unread' : 'read', [
+                    email.id,
+                  ])
+                "
+              >
+                <VIcon
+                  :icon="email.isRead ? 'tabler-mail' : 'tabler-mail-opened'"
+                />
+                <VTooltip activator="parent" location="top">
+                  {{ email.isRead ? "Unread Mail" : "read Mail" }}
                 </VTooltip>
               </IconBtn>
               <IconBtn @click.stop="handleActionClick('spam', [email.id])">
                 <VIcon icon="tabler-alert-octagon" />
-                <VTooltip
-                  activator="parent"
-                  location="top"
-                >
+                <VTooltip activator="parent" location="top">
                   Move to Spam
                 </VTooltip>
               </IconBtn>
             </div>
           </li>
-          <li
-            v-show="!store.emails.length"
-            class="py-4 px-5 text-center"
-          >
+          <li v-show="!store.emails.length" class="py-4 px-5 text-center">
             <span class="text-high-emphasis">No items found.</span>
           </li>
         </PerfectScrollbar>
@@ -485,7 +476,8 @@ meta:
     }
 
     & + .email-item {
-      border-block-start: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
+      border-block-start: 1px solid
+        rgba(var(--v-border-color), var(--v-border-opacity));
     }
   }
 

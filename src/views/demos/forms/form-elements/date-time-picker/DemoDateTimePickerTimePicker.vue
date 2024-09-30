@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const time = ref('')
+const time = ref("");
 </script>
 
 <template>

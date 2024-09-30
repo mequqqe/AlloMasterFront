@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { VDataTableServer } from 'vuetify/labs/VDataTable'
-import type { Invoice } from '@/@fake-db/types'
-import { paginationMeta } from '@/@fake-db/utils'
-import { useInvoiceStore } from '@/views/apps/invoice/useInvoiceStore'
-import type { Options } from '@core/types'
+import { VDataTableServer } from "vuetify/labs/VDataTable";
+import type { Invoice } from "@/@fake-db/types";
+import { paginationMeta } from "@/@fake-db/utils";
+import { useInvoiceStore } from "@/views/apps/invoice/useInvoiceStore";
+import type { Options } from "@core/types";
 
 // 👉 Store
-const invoiceListStore = useInvoiceStore()
+const invoiceListStore = useInvoiceStore();
 
-const searchQuery = ref('')
-const dateRange = ref('')
-const selectedStatus = ref()
-const totalPage = ref(1)
-const totalInvoices = ref(0)
-const invoices = ref<Invoice[]>([])
+const searchQuery = ref("");
+const dateRange = ref("");
+const selectedStatus = ref();
+const totalPage = ref(1);
+const totalInvoices = ref(0);
+const invoices = ref<Invoice[]>([]);
 
 const options = ref<Options>({
   page: 1,
@@ -21,93 +21,105 @@ const options = ref<Options>({
   sortBy: [],
   groupBy: [],
   search: undefined,
-})
+});
 
-const isLoading = ref(false)
+const isLoading = ref(false);
 
 // 👉 headers
 const headers = [
-  { title: '#ID', key: 'id' },
-  { title: 'Trending', key: 'trending', sortable: false },
-  { title: 'Total', key: 'total' },
-  { title: 'Date', key: 'date' },
-  { title: 'Actions', key: 'actions', sortable: false, width: '3rem' },
-]
+  { title: "#ID", key: "id" },
+  { title: "Trending", key: "trending", sortable: false },
+  { title: "Total", key: "total" },
+  { title: "Date", key: "date" },
+  { title: "Actions", key: "actions", sortable: false, width: "3rem" },
+];
 
 // 👉 Fetch Invoices
-const fetchInvoices = (query: string, currentStatus: string, firstDate: string, lastDate: string, option: object) => {
-  isLoading.value = true
-  invoiceListStore.fetchInvoices(
-    {
+const fetchInvoices = (
+  query: string,
+  currentStatus: string,
+  firstDate: string,
+  lastDate: string,
+  option: object,
+) => {
+  isLoading.value = true;
+  invoiceListStore
+    .fetchInvoices({
       q: query,
       status: currentStatus,
       startDate: firstDate,
       endDate: lastDate,
       options: option,
-    },
-  ).then(response => {
-    invoices.value = response.data.invoices
-    totalPage.value = response.data.totalPage
-    totalInvoices.value = response.data.totalInvoices
-    options.value.page = response.data.page
-  }).catch(error => {
-    console.log(error)
-  })
+    })
+    .then((response) => {
+      invoices.value = response.data.invoices;
+      totalPage.value = response.data.totalPage;
+      totalInvoices.value = response.data.totalInvoices;
+      options.value.page = response.data.page;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
-  isLoading.value = false
-}
+  isLoading.value = false;
+};
 
 // 👉 Invoice status variant resolver
 const resolveInvoiceStatusVariantAndIcon = (status: string) => {
-  if (status === 'Partial Payment')
-    return { variant: 'success', icon: 'tabler-circle-half-2' }
-  if (status === 'Paid')
-    return { variant: 'warning', icon: 'tabler-chart-pie' }
-  if (status === 'Downloaded')
-    return { variant: 'info', icon: 'tabler-arrow-down-circle' }
-  if (status === 'Draft')
-    return { variant: 'primary', icon: 'tabler-device-floppy' }
-  if (status === 'Sent')
-    return { variant: 'secondary', icon: 'tabler-circle-check' }
-  if (status === 'Past Due')
-    return { variant: 'error', icon: 'tabler-info-circle' }
+  if (status === "Partial Payment")
+    return { variant: "success", icon: "tabler-circle-half-2" };
+  if (status === "Paid")
+    return { variant: "warning", icon: "tabler-chart-pie" };
+  if (status === "Downloaded")
+    return { variant: "info", icon: "tabler-arrow-down-circle" };
+  if (status === "Draft")
+    return { variant: "primary", icon: "tabler-device-floppy" };
+  if (status === "Sent")
+    return { variant: "secondary", icon: "tabler-circle-check" };
+  if (status === "Past Due")
+    return { variant: "error", icon: "tabler-info-circle" };
 
-  return { variant: 'secondary', icon: 'tabler-x' }
-}
+  return { variant: "secondary", icon: "tabler-x" };
+};
 
 const computedMoreList = computed(() => {
-  return (paramId: number) => ([
-    { title: 'Download', value: 'download', prependIcon: 'tabler-download' },
+  return (paramId: number) => [
+    { title: "Download", value: "download", prependIcon: "tabler-download" },
     {
-      title: 'Edit',
-      value: 'edit',
-      prependIcon: 'tabler-pencil',
-      to: { name: 'apps-invoice-edit-id', params: { id: paramId } },
+      title: "Edit",
+      value: "edit",
+      prependIcon: "tabler-pencil",
+      to: { name: "apps-invoice-edit-id", params: { id: paramId } },
     },
-    { title: 'Duplicate', value: 'duplicate', prependIcon: 'tabler-layers-intersect' },
-  ])
-})
+    {
+      title: "Duplicate",
+      value: "duplicate",
+      prependIcon: "tabler-layers-intersect",
+    },
+  ];
+});
 
 // 👉 Delete Invoice
 const deleteInvoice = (id: number) => {
-  invoiceListStore.deleteInvoice(id)
+  invoiceListStore
+    .deleteInvoice(id)
     .then(() => {
       fetchInvoices(
         searchQuery.value,
         selectedStatus.value,
-        dateRange.value?.split('to')[0],
-        dateRange.value?.split('to')[1],
+        dateRange.value?.split("to")[0],
+        dateRange.value?.split("to")[1],
         options.value,
-      )
+      );
     })
-    .catch(error => {
-      console.log(error)
-    })
-}
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 // 👉 watch for data table options like itemsPerPage,page,searchQuery,sortBy etc...
 watchEffect(() => {
-  const [start, end] = dateRange.value ? dateRange.value.split('to') : ''
+  const [start, end] = dateRange.value ? dateRange.value.split("to") : "";
 
   fetchInvoices(
     searchQuery.value,
@@ -115,8 +127,8 @@ watchEffect(() => {
     start,
     end,
     options.value,
-  )
-})
+  );
+});
 </script>
 
 <template>
@@ -134,7 +146,7 @@ watchEffect(() => {
               { value: 100, title: '100' },
               { value: -1, title: 'All' },
             ]"
-            style="width: 6.25rem;"
+            style="width: 6.25rem"
             @update:model-value="options.itemsPerPage = parseInt($event, 10)"
           />
         </div>
@@ -143,10 +155,7 @@ watchEffect(() => {
 
         <div class="d-flex align-center flex-wrap gap-4">
           <!-- 👉 Export invoice -->
-          <VBtn
-            prepend-icon="tabler-plus"
-            :to="{ name: 'apps-invoice-add' }"
-          >
+          <VBtn prepend-icon="tabler-plus" :to="{ name: 'apps-invoice-add' }">
             Export
           </VBtn>
         </div>
@@ -167,15 +176,17 @@ watchEffect(() => {
       >
         <!-- Trending Header -->
         <template #column.trending>
-          <VIcon
-            size="22"
-            icon="tabler-trending-up"
-          />
+          <VIcon size="22" icon="tabler-trending-up" />
         </template>
 
         <!-- id -->
         <template #item.id="{ item }">
-          <RouterLink :to="{ name: 'apps-invoice-preview-id', params: { id: item.value } }">
+          <RouterLink
+            :to="{
+              name: 'apps-invoice-preview-id',
+              params: { id: item.value },
+            }"
+          >
             #{{ item.raw.id }}
           </RouterLink>
         </template>
@@ -187,31 +198,31 @@ watchEffect(() => {
               <VAvatar
                 :size="30"
                 v-bind="props"
-                :color="resolveInvoiceStatusVariantAndIcon(item.raw.invoiceStatus).variant"
+                :color="
+                  resolveInvoiceStatusVariantAndIcon(item.raw.invoiceStatus)
+                    .variant
+                "
                 variant="tonal"
               >
                 <VIcon
                   :size="20"
-                  :icon="resolveInvoiceStatusVariantAndIcon(item.raw.invoiceStatus).icon"
+                  :icon="
+                    resolveInvoiceStatusVariantAndIcon(item.raw.invoiceStatus)
+                      .icon
+                  "
                 />
               </VAvatar>
             </template>
             <p class="mb-0">
               {{ item.raw.invoiceStatus }}
             </p>
-            <p class="mb-0">
-              Balance: {{ item.raw.balance }}
-            </p>
-            <p class="mb-0">
-              Due date: {{ item.raw.dueDate }}
-            </p>
+            <p class="mb-0">Balance: {{ item.raw.balance }}</p>
+            <p class="mb-0">Due date: {{ item.raw.dueDate }}</p>
           </VTooltip>
         </template>
 
         <!-- Total -->
-        <template #item.total="{ item }">
-          ${{ item.raw.total }}
-        </template>
+        <template #item.total="{ item }"> ${{ item.raw.total }} </template>
 
         <!-- issued Date -->
         <template #item.date="{ item }">
@@ -224,7 +235,12 @@ watchEffect(() => {
             <VIcon icon="tabler-trash" />
           </IconBtn>
 
-          <IconBtn :to="{ name: 'apps-invoice-preview-id', params: { id: item.raw.id } }">
+          <IconBtn
+            :to="{
+              name: 'apps-invoice-preview-id',
+              params: { id: item.raw.id },
+            }"
+          >
             <VIcon icon="tabler-eye" />
           </IconBtn>
 
@@ -236,7 +252,9 @@ watchEffect(() => {
         </template>
         <template #bottom>
           <VDivider />
-          <div class="d-flex align-center justify-sm-space-between justify-center flex-wrap gap-3 pa-5 pt-3">
+          <div
+            class="d-flex align-center justify-sm-space-between justify-center flex-wrap gap-3 pa-5 pt-3"
+          >
             <p class="text-sm text-disabled mb-0">
               {{ paginationMeta(options, totalInvoices) }}
             </p>
@@ -244,7 +262,11 @@ watchEffect(() => {
             <VPagination
               v-model="options.page"
               :length="Math.ceil(totalInvoices / options.itemsPerPage)"
-              :total-visible="$vuetify.display.xs ? 1 : Math.ceil(totalInvoices / options.itemsPerPage)"
+              :total-visible="
+                $vuetify.display.xs
+                  ? 1
+                  : Math.ceil(totalInvoices / options.itemsPerPage)
+              "
             >
               <template #prev="slotProps">
                 <VBtn

@@ -1,34 +1,34 @@
 <script setup lang="ts">
-import VueApexCharts from 'vue3-apexcharts'
-import { useTheme } from 'vuetify'
-import { hexToRgb } from '@layouts/utils'
+import VueApexCharts from "vue3-apexcharts";
+import { useTheme } from "vuetify";
+import { hexToRgb } from "@layouts/utils";
 
-const vuetifyTheme = useTheme()
+const vuetifyTheme = useTheme();
 
 const series = [
   {
     data: [30, 40, 50, 60, 70, 80, 90],
   },
-]
+];
 
 const chartOptions = computed(() => {
-  const currentTheme = vuetifyTheme.current.value.colors
-  const variableTheme = vuetifyTheme.current.value.variables
+  const currentTheme = vuetifyTheme.current.value.colors;
+  const variableTheme = vuetifyTheme.current.value.variables;
 
   return {
     chart: {
       parentHeightOffset: 0,
-      type: 'bar',
+      type: "bar",
       toolbar: {
         show: false,
       },
     },
     plotOptions: {
       bar: {
-        barHeight: '100%',
-        columnWidth: '25px',
-        startingShape: 'rounded',
-        endingShape: 'rounded',
+        barHeight: "100%",
+        columnWidth: "25px",
+        startingShape: "rounded",
+        endingShape: "rounded",
         borderRadius: 6,
       },
     },
@@ -52,7 +52,7 @@ const chartOptions = computed(() => {
       show: false,
     },
     xaxis: {
-      categories: ['01', '02', '03', '04', '05', '06', '07'],
+      categories: ["01", "02", "03", "04", "05", "06", "07"],
       axisBorder: {
         show: false,
       },
@@ -61,9 +61,9 @@ const chartOptions = computed(() => {
       },
       labels: {
         style: {
-          colors: `rgba(${hexToRgb(currentTheme['on-surface'])},${variableTheme['disabled-opacity']})`,
-          fontSize: '13px',
-          fontFamily: 'Public sans',
+          colors: `rgba(${hexToRgb(currentTheme["on-surface"])},${variableTheme["disabled-opacity"]})`,
+          fontSize: "13px",
+          fontFamily: "Public sans",
         },
         show: true,
       },
@@ -89,7 +89,7 @@ const chartOptions = computed(() => {
         options: {
           plotOptions: {
             bar: {
-              columnWidth: '25%',
+              columnWidth: "25%",
               borderRadius: 9,
             },
           },
@@ -101,7 +101,7 @@ const chartOptions = computed(() => {
           plotOptions: {
             bar: {
               borderRadius: 8,
-              columnWidth: '25%',
+              columnWidth: "25%",
             },
           },
         },
@@ -111,7 +111,7 @@ const chartOptions = computed(() => {
         options: {
           plotOptions: {
             bar: {
-              columnWidth: '30%',
+              columnWidth: "30%",
             },
           },
         },
@@ -121,7 +121,7 @@ const chartOptions = computed(() => {
         options: {
           plotOptions: {
             bar: {
-              columnWidth: '35%',
+              columnWidth: "35%",
               borderRadius: 6,
             },
           },
@@ -132,7 +132,7 @@ const chartOptions = computed(() => {
         options: {
           plotOptions: {
             bar: {
-              columnWidth: '25%',
+              columnWidth: "25%",
               borderRadius: 10,
             },
           },
@@ -143,7 +143,7 @@ const chartOptions = computed(() => {
         options: {
           plotOptions: {
             bar: {
-              columnWidth: '24%',
+              columnWidth: "24%",
               borderRadius: 8,
             },
           },
@@ -160,8 +160,8 @@ const chartOptions = computed(() => {
         },
       },
     ],
-  }
-})
+  };
+});
 </script>
 
 <template>
@@ -169,25 +169,16 @@ const chartOptions = computed(() => {
     <VCardText>
       <div class="d-flex justify-space-between">
         <div>
-          <h5 class="text-h3">
-            2.84k
-          </h5>
+          <h5 class="text-h3">2.84k</h5>
           <span class="text-sm text-disabled">Avg Daily Traffic</span>
         </div>
 
-        <VChip
-          label
-          color="success"
-        >
+        <VChip label color="success">
           <span class="font-weight-medium">+92k</span>
         </VChip>
       </div>
 
-      <VueApexCharts
-        :options="chartOptions"
-        :series="series"
-        :height="145"
-      />
+      <VueApexCharts :options="chartOptions" :series="series" :height="145" />
     </VCardText>
   </VCard>
 </template>

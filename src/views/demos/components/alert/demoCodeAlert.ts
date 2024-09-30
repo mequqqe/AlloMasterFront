@@ -11,7 +11,7 @@ export const basic = {
   </VAlert>
 </template>
 `,
-}
+};
 
 export const border = {
   ts: `<template>
@@ -86,7 +86,7 @@ export const border = {
   </div>
 </template>
 `,
-}
+};
 
 export const closable = {
   ts: `<script lang="ts" setup>
@@ -139,7 +139,7 @@ const isAlertVisible = ref(true)
   </div>
 </template>
 `,
-}
+};
 
 export const coloredBorder = {
   ts: `<template>
@@ -228,7 +228,7 @@ export const coloredBorder = {
   </div>
 </template>
 `,
-}
+};
 
 export const colors = {
   ts: `<template>
@@ -287,7 +287,7 @@ export const colors = {
   </div>
 </template>
 `,
-}
+};
 
 export const density = {
   ts: `<template>
@@ -346,7 +346,7 @@ export const density = {
   </div>
 </template>
 `,
-}
+};
 
 export const elevation = {
   ts: `<script lang="ts" setup>
@@ -393,7 +393,7 @@ const alertShadow = ref(5)
   </VAlert>
 </template>
 `,
-}
+};
 
 export const icons = {
   ts: `<template>
@@ -446,7 +446,7 @@ export const icons = {
   </div>
 </template>
 `,
-}
+};
 
 export const outlined = {
   ts: `<template>
@@ -541,7 +541,7 @@ export const outlined = {
   </div>
 </template>
 `,
-}
+};
 
 export const prominent = {
   ts: `<template>
@@ -602,7 +602,7 @@ export const prominent = {
   </div>
 </template>
 `,
-}
+};
 
 export const tonal = {
   ts: `<template>
@@ -697,7 +697,7 @@ export const tonal = {
   </div>
 </template>
 `,
-}
+};
 
 export const type = {
   ts: `<template>
@@ -740,7 +740,7 @@ export const type = {
   </div>
 </template>
 `,
-}
+};
 
 export const vModelSupport = {
   ts: `<script lang="ts" setup>
@@ -799,4 +799,4 @@ const isAlertVisible = ref(true)
 }
 </style>
 `,
-}
+};

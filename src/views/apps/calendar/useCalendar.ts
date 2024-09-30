@@ -1,19 +1,24 @@
-import type { CalendarApi, CalendarOptions, EventApi, EventSourceFunc } from '@fullcalendar/core'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin from '@fullcalendar/interaction'
-import listPlugin from '@fullcalendar/list'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import type { Ref } from 'vue'
-import type { Event, NewEvent } from './types'
-import { useThemeConfig } from '@core/composable/useThemeConfig'
-import { useCalendarStore } from '@/views/apps/calendar/useCalendarStore'
+import type {
+  CalendarApi,
+  CalendarOptions,
+  EventApi,
+  EventSourceFunc,
+} from "@fullcalendar/core";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import listPlugin from "@fullcalendar/list";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import type { Ref } from "vue";
+import type { Event, NewEvent } from "./types";
+import { useThemeConfig } from "@core/composable/useThemeConfig";
+import { useCalendarStore } from "@/views/apps/calendar/useCalendarStore";
 
 export const blankEvent = {
-  title: '',
-  start: '',
-  end: '',
+  title: "",
+  start: "",
+  end: "",
   allDay: false,
-  url: '',
+  url: "",
   extendedProps: {
     /*
       ℹ️ We have to use undefined here because if we have blank string as value then select placeholder will be active (moved to top).
@@ -21,29 +26,33 @@ export const blankEvent = {
     */
     calendar: undefined,
     guests: [],
-    location: '',
-    description: '',
+    location: "",
+    description: "",
   },
-}
+};
 
-export const useCalendar = (event: Ref<Event | NewEvent>, isEventHandlerSidebarActive: Ref<boolean>, isLeftSidebarOpen: Ref<boolean>) => {
+export const useCalendar = (
+  event: Ref<Event | NewEvent>,
+  isEventHandlerSidebarActive: Ref<boolean>,
+  isLeftSidebarOpen: Ref<boolean>,
+) => {
   // 👉 themeConfig
-  const { isAppRtl } = useThemeConfig()
+  const { isAppRtl } = useThemeConfig();
 
   // 👉 Store
-  const store = useCalendarStore()
+  const store = useCalendarStore();
 
   // 👉 Calendar template ref
-  const refCalendar = ref()
+  const refCalendar = ref();
 
   // 👉 Calendar colors
   const calendarsColor = {
-    Business: 'primary',
-    Holiday: 'success',
-    Personal: 'error',
-    Family: 'warning',
-    ETC: 'info',
-  }
+    Business: "primary",
+    Holiday: "success",
+    Personal: "error",
+    Family: "warning",
+    ETC: "info",
+  };
 
   // ℹ️ Extract event data from event API
   const extractEventDataFromEventApi = (eventApi: EventApi) => {
@@ -56,7 +65,7 @@ export const useCalendar = (event: Ref<Event | NewEvent>, isEventHandlerSidebarA
       url,
       extendedProps: { calendar, guests, location, description },
       allDay,
-    }: Event = eventApi
+    }: Event = eventApi;
 
     return {
       id,
@@ -71,113 +80,126 @@ export const useCalendar = (event: Ref<Event | NewEvent>, isEventHandlerSidebarA
         description,
       },
       allDay,
-    }
-  }
+    };
+  };
 
   // 👉 Fetch events
   const fetchEvents: EventSourceFunc = (info, successCallback) => {
-  // If there's no info => Don't make useless API call
-    if (!info)
-      return
+    // If there's no info => Don't make useless API call
+    if (!info) return;
 
-    store.fetchEvents()
-      .then(r => {
-        successCallback(r.data.map((e: Event) => ({
-          ...e,
+    store
+      .fetchEvents()
+      .then((r) => {
+        successCallback(
+          r.data.map((e: Event) => ({
+            ...e,
 
-          // Convert string representation of date to Date object
-          start: new Date(e.start),
-          end: new Date(e.end),
-        })))
+            // Convert string representation of date to Date object
+            start: new Date(e.start),
+            end: new Date(e.end),
+          })),
+        );
       })
-      .catch(e => {
-        console.error('Error occurred while fetching calendar events', e)
-      })
-  }
+      .catch((e) => {
+        console.error("Error occurred while fetching calendar events", e);
+      });
+  };
 
   // 👉 Calendar API
-  const calendarApi = ref<null | CalendarApi>(null)
+  const calendarApi = ref<null | CalendarApi>(null);
 
   // 👉 Update event in calendar [UI]
-  const updateEventInCalendar = (updatedEventData: Event, propsToUpdate: (keyof Event)[], extendedPropsToUpdate: (keyof Event['extendedProps'])[]) => {
-    const existingEvent = calendarApi.value?.getEventById(updatedEventData.id)
+  const updateEventInCalendar = (
+    updatedEventData: Event,
+    propsToUpdate: (keyof Event)[],
+    extendedPropsToUpdate: (keyof Event["extendedProps"])[],
+  ) => {
+    const existingEvent = calendarApi.value?.getEventById(updatedEventData.id);
 
     if (!existingEvent) {
-      console.warn('Can\'t found event in calendar to update')
+      console.warn("Can't found event in calendar to update");
 
-      return
+      return;
     }
 
     // ---Set event properties except date related
     // Docs: https://fullcalendar.io/docs/Event-setProp
     // dateRelatedProps => ['start', 'end', 'allDay']
     for (let index = 0; index < propsToUpdate.length; index++) {
-      const propName = propsToUpdate[index]
+      const propName = propsToUpdate[index];
 
-      existingEvent.setProp(propName, updatedEventData[propName])
+      existingEvent.setProp(propName, updatedEventData[propName]);
     }
 
     // --- Set date related props
     // ? Docs: https://fullcalendar.io/docs/Event-setDates
-    existingEvent.setDates(updatedEventData.start, updatedEventData.end, { allDay: updatedEventData.allDay })
+    existingEvent.setDates(updatedEventData.start, updatedEventData.end, {
+      allDay: updatedEventData.allDay,
+    });
 
     // --- Set event's extendedProps
     // ? Docs: https://fullcalendar.io/docs/Event-setExtendedProp
     for (let index = 0; index < extendedPropsToUpdate.length; index++) {
-      const propName = extendedPropsToUpdate[index]
+      const propName = extendedPropsToUpdate[index];
 
-      existingEvent.setExtendedProp(propName, updatedEventData.extendedProps[propName])
+      existingEvent.setExtendedProp(
+        propName,
+        updatedEventData.extendedProps[propName],
+      );
     }
-  }
+  };
 
   // 👉 Remove event in calendar [UI]
   const removeEventInCalendar = (eventId: string) => {
-    const _event = calendarApi.value?.getEventById(eventId)
+    const _event = calendarApi.value?.getEventById(eventId);
 
-    if (_event)
-      _event.remove()
-  }
+    if (_event) _event.remove();
+  };
 
   // 👉 refetch events
   const refetchEvents = () => {
-    calendarApi.value?.refetchEvents()
-  }
+    calendarApi.value?.refetchEvents();
+  };
 
-  watch(() => store.selectedCalendars, refetchEvents)
+  watch(() => store.selectedCalendars, refetchEvents);
 
   // 👉 Add event
   const addEvent = (_event: NewEvent) => {
-    store.addEvent(_event)
-      .then(() => {
-        refetchEvents()
-      })
-  }
+    store.addEvent(_event).then(() => {
+      refetchEvents();
+    });
+  };
 
   // 👉 Update event
   const updateEvent = (_event: Event) => {
-    store.updateEvent(_event)
-      .then(r => {
-        const propsToUpdate = ['id', 'title', 'url'] as (keyof Event)[]
-        const extendedPropsToUpdate = ['calendar', 'guests', 'location', 'description'] as (keyof Event['extendedProps'])[]
+    store.updateEvent(_event).then((r) => {
+      const propsToUpdate = ["id", "title", "url"] as (keyof Event)[];
+      const extendedPropsToUpdate = [
+        "calendar",
+        "guests",
+        "location",
+        "description",
+      ] as (keyof Event["extendedProps"])[];
 
-        updateEventInCalendar(r.data.event, propsToUpdate, extendedPropsToUpdate)
-      })
-  }
+      updateEventInCalendar(r.data.event, propsToUpdate, extendedPropsToUpdate);
+    });
+  };
 
   // 👉 Remove event
   const removeEvent = (eventId: string) => {
     store.removeEvent(eventId).then(() => {
-      removeEventInCalendar(eventId)
-    })
-  }
+      removeEventInCalendar(eventId);
+    });
+  };
 
   // 👉 Calendar options
   const calendarOptions = {
     plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin, listPlugin],
-    initialView: 'dayGridMonth',
+    initialView: "dayGridMonth",
     headerToolbar: {
-      start: 'drawerToggler,prev,next title',
-      end: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth',
+      start: "drawerToggler,prev,next title",
+      end: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
     },
     events: fetchEvents,
 
@@ -215,27 +237,31 @@ export const useCalendar = (event: Ref<Event | NewEvent>, isEventHandlerSidebarA
     navLinks: true,
 
     eventClassNames({ event: calendarEvent }) {
-      const colorName = calendarsColor[calendarEvent._def.extendedProps.calendar as keyof typeof calendarsColor]
+      const colorName =
+        calendarsColor[
+          calendarEvent._def.extendedProps
+            .calendar as keyof typeof calendarsColor
+        ];
 
       return [
         // Background Color
         `bg-light-${colorName} text-${colorName}`,
-      ]
+      ];
     },
 
     eventClick({ event: clickedEvent }) {
       // * Only grab required field otherwise it goes in infinity loop
       // ! Always grab all fields rendered by form (even if it get `undefined`) otherwise due to Vue3/Composition API you might get: "object is not extensible"
-      event.value = extractEventDataFromEventApi(clickedEvent)
+      event.value = extractEventDataFromEventApi(clickedEvent);
 
-      isEventHandlerSidebarActive.value = true
+      isEventHandlerSidebarActive.value = true;
     },
 
     // customButtons
     dateClick(info) {
-      event.value = { ...event.value, start: info.date }
+      event.value = { ...event.value, start: info.date };
 
-      isEventHandlerSidebarActive.value = true
+      isEventHandlerSidebarActive.value = true;
     },
 
     /*
@@ -244,7 +270,7 @@ export const useCalendar = (event: Ref<Event | NewEvent>, isEventHandlerSidebarA
       We can use `eventDragStop` but it doesn't return updated event so we have to use `eventDrop` which returns updated event
     */
     eventDrop({ event: droppedEvent }) {
-      updateEvent(extractEventDataFromEventApi(droppedEvent))
+      updateEvent(extractEventDataFromEventApi(droppedEvent));
     },
 
     /*
@@ -253,32 +279,36 @@ export const useCalendar = (event: Ref<Event | NewEvent>, isEventHandlerSidebarA
     */
     eventResize({ event: resizedEvent }) {
       if (resizedEvent.start && resizedEvent.end)
-        updateEvent(extractEventDataFromEventApi(resizedEvent))
+        updateEvent(extractEventDataFromEventApi(resizedEvent));
     },
 
     customButtons: {
       drawerToggler: {
-        text: 'calendarDrawerToggler',
+        text: "calendarDrawerToggler",
         click() {
-          isLeftSidebarOpen.value = true
+          isLeftSidebarOpen.value = true;
         },
       },
     },
-  } as CalendarOptions
+  } as CalendarOptions;
 
   // 👉 onMounted
   onMounted(() => {
-    calendarApi.value = refCalendar.value.getApi()
-  })
+    calendarApi.value = refCalendar.value.getApi();
+  });
 
   // 👉 Jump to date on sidebar(inline) calendar change
   const jumpToDate = (currentDate: string) => {
-    calendarApi.value?.gotoDate(new Date(currentDate))
-  }
+    calendarApi.value?.gotoDate(new Date(currentDate));
+  };
 
-  watch(isAppRtl, val => {
-    calendarApi.value?.setOption('direction', val ? 'rtl' : 'ltr')
-  }, { immediate: true })
+  watch(
+    isAppRtl,
+    (val) => {
+      calendarApi.value?.setOption("direction", val ? "rtl" : "ltr");
+    },
+    { immediate: true },
+  );
 
   return {
     refCalendar,
@@ -289,5 +319,5 @@ export const useCalendar = (event: Ref<Event | NewEvent>, isEventHandlerSidebarA
     updateEvent,
     removeEvent,
     jumpToDate,
-  }
-}
+  };
+};

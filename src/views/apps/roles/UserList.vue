@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { VDataTableServer } from 'vuetify/labs/VDataTable'
-import type { UserProperties } from '@/@fake-db/types'
-import { paginationMeta } from '@/@fake-db/utils'
-import AddNewUserDrawer from '@/views/apps/user/list/AddNewUserDrawer.vue'
-import { useUserListStore } from '@/views/apps/user/useUserListStore'
-import type { Options } from '@core/types'
-import { avatarText } from '@core/utils/formatters'
+import { VDataTableServer } from "vuetify/labs/VDataTable";
+import type { UserProperties } from "@/@fake-db/types";
+import { paginationMeta } from "@/@fake-db/utils";
+import AddNewUserDrawer from "@/views/apps/user/list/AddNewUserDrawer.vue";
+import { useUserListStore } from "@/views/apps/user/useUserListStore";
+import type { Options } from "@core/types";
+import { avatarText } from "@core/utils/formatters";
 
 // 👉 Store
-const userListStore = useUserListStore()
-const searchQuery = ref('')
-const selectedRole = ref()
-const selectedPlan = ref()
-const selectedStatus = ref()
-const totalUsers = ref(0)
-const users = ref<UserProperties[]>([])
+const userListStore = useUserListStore();
+const searchQuery = ref("");
+const selectedRole = ref();
+const selectedPlan = ref();
+const selectedStatus = ref();
+const totalUsers = ref(0);
+const users = ref<UserProperties[]>([]);
 
 const options = ref<Options>({
   page: 1,
@@ -22,92 +22,92 @@ const options = ref<Options>({
   sortBy: [],
   groupBy: [],
   search: undefined,
-})
+});
 
 const headers = [
-  { title: 'User', key: 'user' },
-  { title: 'Role', key: 'role' },
-  { title: 'Plan', key: 'plan' },
-  { title: 'Billing', key: 'billing' },
-  { title: 'Status', key: 'status' },
-  { title: 'Actions', key: 'actions', sortable: false },
-]
+  { title: "User", key: "user" },
+  { title: "Role", key: "role" },
+  { title: "Plan", key: "plan" },
+  { title: "Billing", key: "billing" },
+  { title: "Status", key: "status" },
+  { title: "Actions", key: "actions", sortable: false },
+];
 
 // 👉 Fetching users
 
 const fetchUsers = () => {
-  userListStore.fetchUsers({
-    q: searchQuery.value,
-    status: selectedStatus.value,
-    plan: selectedPlan.value,
-    role: selectedRole.value,
-    options: options.value,
-  }).then(response => {
-    users.value = response.data.users
-    totalUsers.value = response.data.totalUsers
-    options.value.page = response.data.page
-  }).catch(error => {
-    console.error(error)
-  })
-}
+  userListStore
+    .fetchUsers({
+      q: searchQuery.value,
+      status: selectedStatus.value,
+      plan: selectedPlan.value,
+      role: selectedRole.value,
+      options: options.value,
+    })
+    .then((response) => {
+      users.value = response.data.users;
+      totalUsers.value = response.data.totalUsers;
+      options.value.page = response.data.page;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
 
-watchEffect(fetchUsers)
+watchEffect(fetchUsers);
 
 // 👉 search filters
 const roles = [
-  { title: 'Admin', value: 'admin' },
-  { title: 'Author', value: 'author' },
-  { title: 'Editor', value: 'editor' },
-  { title: 'Maintainer', value: 'maintainer' },
-  { title: 'Subscriber', value: 'subscriber' },
-]
+  { title: "Admin", value: "admin" },
+  { title: "Author", value: "author" },
+  { title: "Editor", value: "editor" },
+  { title: "Maintainer", value: "maintainer" },
+  { title: "Subscriber", value: "subscriber" },
+];
 
 const resolveUserRoleVariant = (role: string) => {
-  const roleLowerCase = role.toLowerCase()
+  const roleLowerCase = role.toLowerCase();
 
-  if (roleLowerCase === 'subscriber')
-    return { color: 'primary', icon: 'tabler-user' }
-  if (roleLowerCase === 'author')
-    return { color: 'warning', icon: 'tabler-settings' }
-  if (roleLowerCase === 'maintainer')
-    return { color: 'success', icon: 'tabler-chart-donut' }
-  if (roleLowerCase === 'editor')
-    return { color: 'info', icon: 'tabler-pencil' }
-  if (roleLowerCase === 'admin')
-    return { color: 'error', icon: 'tabler-device-laptop' }
+  if (roleLowerCase === "subscriber")
+    return { color: "primary", icon: "tabler-user" };
+  if (roleLowerCase === "author")
+    return { color: "warning", icon: "tabler-settings" };
+  if (roleLowerCase === "maintainer")
+    return { color: "success", icon: "tabler-chart-donut" };
+  if (roleLowerCase === "editor")
+    return { color: "info", icon: "tabler-pencil" };
+  if (roleLowerCase === "admin")
+    return { color: "error", icon: "tabler-device-laptop" };
 
-  return { color: 'primary', icon: 'tabler-user' }
-}
+  return { color: "primary", icon: "tabler-user" };
+};
 
 const resolveUserStatusVariant = (stat: string) => {
-  const statLowerCase = stat.toLowerCase()
-  if (statLowerCase === 'pending')
-    return 'warning'
-  if (statLowerCase === 'active')
-    return 'success'
-  if (statLowerCase === 'inactive')
-    return 'secondary'
+  const statLowerCase = stat.toLowerCase();
+  if (statLowerCase === "pending") return "warning";
+  if (statLowerCase === "active") return "success";
+  if (statLowerCase === "inactive") return "secondary";
 
-  return 'primary'
-}
+  return "primary";
+};
 
-const isAddNewUserDrawerVisible = ref(false)
+const isAddNewUserDrawerVisible = ref(false);
 
 // 👉 Add new user
 const addNewUser = (userData: UserProperties) => {
-  userListStore.addUser(userData)
+  userListStore.addUser(userData);
 
   // refetch User
-  fetchUsers()
-}
+  fetchUsers();
+};
 
 // 👉 Delete user
 const deleteUser = (id: number) => {
-  userListStore.deleteUser(id)
+  userListStore.deleteUser(id);
 
   // refetch User
-  fetchUsers()
-}
+  fetchUsers();
+};
 </script>
 
 <template>
@@ -123,7 +123,7 @@ const deleteUser = (id: number) => {
             { value: 100, title: '100' },
             { value: -1, title: 'All' },
           ]"
-          style="width: 5rem;"
+          style="width: 5rem"
           @update:model-value="options.itemsPerPage = parseInt($event, 10)"
         />
 
@@ -135,7 +135,7 @@ const deleteUser = (id: number) => {
             v-model="searchQuery"
             placeholder="Search User"
             density="compact"
-            style="width: 12.5rem;"
+            style="width: 12.5rem"
           />
 
           <!-- 👉 Add user button -->
@@ -146,7 +146,7 @@ const deleteUser = (id: number) => {
             density="compact"
             clearable
             clear-icon="tabler-x"
-            style="width: 10rem;"
+            style="width: 10rem"
           />
         </div>
       </VCardText>
@@ -169,19 +169,23 @@ const deleteUser = (id: number) => {
             <VAvatar
               size="38"
               :variant="!item.raw.avatar ? 'tonal' : undefined"
-              :color="!item.raw.avatar ? resolveUserRoleVariant(item.raw.role).color : undefined"
+              :color="
+                !item.raw.avatar
+                  ? resolveUserRoleVariant(item.raw.role).color
+                  : undefined
+              "
               class="me-3"
             >
-              <VImg
-                v-if="item.raw.avatar"
-                :src="item.raw.avatar"
-              />
+              <VImg v-if="item.raw.avatar" :src="item.raw.avatar" />
               <span v-else>{{ avatarText(item.raw.fullName) }}</span>
             </VAvatar>
             <div class="d-flex flex-column">
               <h6 class="text-body-1 font-weight-medium">
                 <RouterLink
-                  :to="{ name: 'apps-user-view-id', params: { id: item.raw.id } }"
+                  :to="{
+                    name: 'apps-user-view-id',
+                    params: { id: item.raw.id },
+                  }"
                   class="user-list-name"
                 >
                   {{ item.raw.fullName }}
@@ -211,7 +215,9 @@ const deleteUser = (id: number) => {
 
         <!-- Plan -->
         <template #item.plan="{ item }">
-          <span class="text-capitalize font-weight-medium">{{ item.raw.currentPlan }}</span>
+          <span class="text-capitalize font-weight-medium">{{
+            item.raw.currentPlan
+          }}</span>
         </template>
 
         <!-- Status -->
@@ -229,7 +235,9 @@ const deleteUser = (id: number) => {
         <template #bottom>
           <VDivider />
 
-          <div class="d-flex align-center justify-sm-space-between justify-center flex-wrap gap-3 pa-5 pt-3">
+          <div
+            class="d-flex align-center justify-sm-space-between justify-center flex-wrap gap-3 pa-5 pt-3"
+          >
             <p class="text-sm text-disabled mb-0">
               {{ paginationMeta(options, totalUsers) }}
             </p>
@@ -237,7 +245,11 @@ const deleteUser = (id: number) => {
             <VPagination
               v-model="options.page"
               :length="Math.ceil(totalUsers / options.itemsPerPage)"
-              :total-visible="$vuetify.display.xs ? 1 : Math.ceil(totalUsers / options.itemsPerPage)"
+              :total-visible="
+                $vuetify.display.xs
+                  ? 1
+                  : Math.ceil(totalUsers / options.itemsPerPage)
+              "
             >
               <template #prev="slotProps">
                 <VBtn
@@ -279,14 +291,16 @@ const deleteUser = (id: number) => {
             density="comfortable"
             variant="text"
           >
-            <VIcon
-              size="24"
-              icon="tabler-dots-vertical"
-            />
+            <VIcon size="24" icon="tabler-dots-vertical" />
 
             <VMenu activator="parent">
               <VList>
-                <VListItem :to="{ name: 'apps-user-view-id', params: { id: item.raw.id } }">
+                <VListItem
+                  :to="{
+                    name: 'apps-user-view-id',
+                    params: { id: item.raw.id },
+                  }"
+                >
                   <VListItemTitle>View</VListItemTitle>
                 </VListItem>
                 <VListItem link>

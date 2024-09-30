@@ -18,7 +18,7 @@ const sliderValues = ref([
   <VRangeSlider v-model="sliderValues" />
 </template>
 `,
-}
+};
 
 export const color = {
   ts: `<script lang="ts" setup>
@@ -48,7 +48,7 @@ const sliderValues = ref([
   />
 </template>
 `,
-}
+};
 
 export const disabled = {
   ts: `<script lang="ts" setup>
@@ -78,7 +78,7 @@ const slidersValues = ref([
   />
 </template>
 `,
-}
+};
 
 export const step = {
   ts: `<script lang="ts" setup>
@@ -106,7 +106,7 @@ const sliderValues = ref([
   />
 </template>
 `,
-}
+};
 
 export const thumbLabel = {
   ts: `<script lang="ts" setup>
@@ -170,7 +170,7 @@ const sliderValues = ref([
   </VRangeSlider>
 </template>
 `,
-}
+};
 
 export const vertical = {
   ts: `<script lang="ts" setup>
@@ -198,4 +198,4 @@ const sliderValues = ref([
   />
 </template>
 `,
-}
+};

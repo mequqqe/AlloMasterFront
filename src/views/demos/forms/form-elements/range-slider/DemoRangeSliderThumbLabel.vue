@@ -1,7 +1,12 @@
 <script lang="ts" setup>
-const seasons = ['Winter', 'Spring', 'Summer', 'Fall']
-const icons = ['tabler-snowflake', 'tabler-leaf', 'tabler-flame', 'tabler-droplet']
-const sliderValues = ref([1, 2])
+const seasons = ["Winter", "Spring", "Summer", "Fall"];
+const icons = [
+  "tabler-snowflake",
+  "tabler-leaf",
+  "tabler-flame",
+  "tabler-droplet",
+];
+const sliderValues = ref([1, 2]);
 </script>
 
 <template>

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { VDataTable } from 'vuetify/labs/VDataTable'
-import type { ProjectsAnalytics } from '@/@fake-db/types'
-import { paginationMeta } from '@/@fake-db/utils'
-import { useProjectStore } from '@/views/dashboards/analytics/useProjectStore'
-import type { Options } from '@core/types'
-import { avatarText } from '@core/utils/formatters'
+import { VDataTable } from "vuetify/labs/VDataTable";
+import type { ProjectsAnalytics } from "@/@fake-db/types";
+import { paginationMeta } from "@/@fake-db/utils";
+import { useProjectStore } from "@/views/dashboards/analytics/useProjectStore";
+import type { Options } from "@core/types";
+import { avatarText } from "@core/utils/formatters";
 
 // 👉 Store
-const projectStore = useProjectStore()
+const projectStore = useProjectStore();
 
-const searchQuery = ref('')
+const searchQuery = ref("");
 
 const options = ref<Options>({
   page: 1,
@@ -17,40 +17,42 @@ const options = ref<Options>({
   sortBy: [],
   groupBy: [],
   search: undefined,
-})
+});
 
-const projects = ref<ProjectsAnalytics[]>([])
+const projects = ref<ProjectsAnalytics[]>([]);
 
 // 👉 headers
 const headers = [
-  { title: 'Name', key: 'name' },
-  { title: 'Leader', key: 'leader' },
-  { title: 'Team', key: 'team' },
-  { title: 'Status', key: 'status' },
-  { title: 'Actions', key: 'actions', sortable: false },
-]
+  { title: "Name", key: "name" },
+  { title: "Leader", key: "leader" },
+  { title: "Team", key: "team" },
+  { title: "Status", key: "status" },
+  { title: "Actions", key: "actions", sortable: false },
+];
 
 // 👉 Fetch Projects
 onMounted(() => {
-  projectStore.fetchProjects().then(response => {
-    projects.value = response.data
-  }).catch(error => {
-    console.log(error)
-  })
-})
+  projectStore
+    .fetchProjects()
+    .then((response) => {
+      projects.value = response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 </script>
 
 <template>
   <VCard v-if="projects">
-    <VCardItem class="project-header d-flex flex-wrap justify-space-between py-4 gap-4">
+    <VCardItem
+      class="project-header d-flex flex-wrap justify-space-between py-4 gap-4"
+    >
       <VCardTitle>Projects</VCardTitle>
 
       <template #append>
-        <div style="inline-size: 272px;">
-          <AppTextField
-            v-model="searchQuery"
-            placeholder="Search"
-          />
+        <div style="inline-size: 272px">
+          <AppTextField v-model="searchQuery" placeholder="Search" />
         </div>
       </template>
     </VCardItem>
@@ -76,14 +78,10 @@ onMounted(() => {
             :color="!item.raw.logo.length ? 'primary' : undefined"
             size="38"
           >
-            <VImg
-              v-if="item.raw.logo.length"
-              :src="item.raw.logo"
-            />
-            <span
-              v-else
-              class="font-weight-medium"
-            >{{ avatarText(item.raw.name) }}</span>
+            <VImg v-if="item.raw.logo.length" :src="item.raw.logo" />
+            <span v-else class="font-weight-medium">{{
+              avatarText(item.raw.name)
+            }}</span>
           </VAvatar>
 
           <div>
@@ -109,10 +107,7 @@ onMounted(() => {
 
       <!-- 👉 Status -->
       <template #item.status="{ item }">
-        <div
-          class="d-flex align-center gap-3"
-          style="min-inline-size: 150px;"
-        >
+        <div class="d-flex align-center gap-3" style="min-inline-size: 150px">
           <div class="flex-grow-1">
             <VProgressLinear
               :model-value="item.raw.status"
@@ -130,14 +125,19 @@ onMounted(() => {
       <template #item.actions>
         <MoreBtn
           color="default"
-          :menu-list="[{ title: 'Details', value: 'Details' }, { title: 'Archive', value: 'Archive' }]"
+          :menu-list="[
+            { title: 'Details', value: 'Details' },
+            { title: 'Archive', value: 'Archive' },
+          ]"
         />
       </template>
 
       <template #bottom>
         <VDivider />
 
-        <div class="d-flex align-center justify-center justify-sm-space-between flex-wrap gap-3 pa-5 pt-3">
+        <div
+          class="d-flex align-center justify-center justify-sm-space-between flex-wrap gap-3 pa-5 pt-3"
+        >
           <p class="text-sm text-disabled mb-0">
             {{ paginationMeta(options, projects.length) }}
           </p>

@@ -1,80 +1,70 @@
 <script lang="ts" setup>
-import InvoiceEditable from '@/views/apps/invoice/InvoiceEditable.vue'
+import InvoiceEditable from "@/views/apps/invoice/InvoiceEditable.vue";
 
 // Type: Invoice data
-import type { InvoiceData } from '@/views/apps/invoice/types'
+import type { InvoiceData } from "@/views/apps/invoice/types";
 
 // 👉 Default Blank Data
 const invoiceData = ref<InvoiceData>({
   invoice: {
     id: 5037,
-    issuedDate: '',
-    service: '',
+    issuedDate: "",
+    service: "",
     total: 0,
-    avatar: '',
-    invoiceStatus: '',
-    dueDate: '',
+    avatar: "",
+    invoiceStatus: "",
+    dueDate: "",
     balance: 0,
     client: {
-      address: '',
-      company: '',
-      companyEmail: '',
-      contact: '',
-      country: '',
-      name: '',
+      address: "",
+      company: "",
+      companyEmail: "",
+      contact: "",
+      country: "",
+      name: "",
     },
   },
   paymentDetails: {
-    totalDue: '$12,110.55',
-    bankName: 'American Bank',
-    country: 'United States',
-    iban: 'ETD95476213874685',
-    swiftCode: 'BR91905',
+    totalDue: "$12,110.55",
+    bankName: "American Bank",
+    country: "United States",
+    iban: "ETD95476213874685",
+    swiftCode: "BR91905",
   },
   purchasedProducts: [
     {
-      title: '',
+      title: "",
       cost: 0,
       qty: 0,
-      description: '',
+      description: "",
     },
   ],
-  note: '',
-  paymentMethod: '',
-  salesperson: '',
-  thanksNote: '',
-})
+  note: "",
+  paymentMethod: "",
+  salesperson: "",
+  thanksNote: "",
+});
 
-const paymentTerms = ref(true)
-const clientNotes = ref(false)
-const paymentStub = ref(false)
-const selectedPaymentMethod = ref('Bank Account')
-const paymentMethods = ['Bank Account', 'PayPal', 'UPI Transfer']
+const paymentTerms = ref(true);
+const clientNotes = ref(false);
+const paymentStub = ref(false);
+const selectedPaymentMethod = ref("Bank Account");
+const paymentMethods = ["Bank Account", "PayPal", "UPI Transfer"];
 </script>
 
 <template>
   <VRow>
     <!-- 👉 InvoiceEditable -->
-    <VCol
-      cols="12"
-      md="9"
-    >
+    <VCol cols="12" md="9">
       <InvoiceEditable :data="invoiceData" />
     </VCol>
 
     <!-- 👉 Right Column: Invoice Action -->
-    <VCol
-      cols="12"
-      md="3"
-    >
+    <VCol cols="12" md="3">
       <VCard class="mb-8">
         <VCardText>
           <!-- 👉 Send Invoice -->
-          <VBtn
-            block
-            prepend-icon="tabler-send"
-            class="mb-2"
-          >
+          <VBtn block prepend-icon="tabler-send" class="mb-2">
             Send Invoice
           </VBtn>
 
@@ -90,13 +80,7 @@ const paymentMethods = ['Bank Account', 'PayPal', 'UPI Transfer']
           </VBtn>
 
           <!-- 👉 Save -->
-          <VBtn
-            block
-            color="default"
-            variant="tonal"
-          >
-            Save
-          </VBtn>
+          <VBtn block color="default" variant="tonal"> Save </VBtn>
         </VCardText>
       </VCard>
 
@@ -110,40 +94,25 @@ const paymentMethods = ['Bank Account', 'PayPal', 'UPI Transfer']
 
       <!-- 👉 Payment Terms -->
       <div class="d-flex align-center justify-space-between mb-2">
-        <VLabel for="payment-terms">
-          Payment Terms
-        </VLabel>
+        <VLabel for="payment-terms"> Payment Terms </VLabel>
         <div>
-          <VSwitch
-            id="payment-terms"
-            v-model="paymentTerms"
-          />
+          <VSwitch id="payment-terms" v-model="paymentTerms" />
         </div>
       </div>
 
       <!-- 👉  Client Notes -->
       <div class="d-flex align-center justify-space-between mb-2">
-        <VLabel for="client-notes">
-          Client Notes
-        </VLabel>
+        <VLabel for="client-notes"> Client Notes </VLabel>
         <div>
-          <VSwitch
-            id="client-notes"
-            v-model="clientNotes"
-          />
+          <VSwitch id="client-notes" v-model="clientNotes" />
         </div>
       </div>
 
       <!-- 👉  Payment Stub -->
       <div class="d-flex align-center justify-space-between">
-        <VLabel for="payment-stub">
-          Payment Stub
-        </VLabel>
+        <VLabel for="payment-stub"> Payment Stub </VLabel>
         <div>
-          <VSwitch
-            id="payment-stub"
-            v-model="paymentStub"
-          />
+          <VSwitch id="payment-stub" v-model="paymentStub" />
         </div>
       </div>
     </VCol>

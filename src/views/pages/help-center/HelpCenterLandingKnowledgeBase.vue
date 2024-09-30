@@ -1,26 +1,22 @@
 <script setup lang="ts">
-import type {
-  HelpCenterCategoriesType,
-} from '@/@fake-db/types'
+import type { HelpCenterCategoriesType } from "@/@fake-db/types";
 
 interface Props {
-  categories: HelpCenterCategoriesType[]
+  categories: HelpCenterCategoriesType[];
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 
 const totalArticles = (category: HelpCenterCategoriesType) => {
-  return category.subCategories.map(subCategory => subCategory.articles.length).reduce((partialSum, a) => partialSum + a, 0)
-}
+  return category.subCategories
+    .map((subCategory) => subCategory.articles.length)
+    .reduce((partialSum, a) => partialSum + a, 0);
+};
 </script>
 
 <template>
   <VRow>
-    <VCol
-      cols="12"
-      lg="10"
-      class="mx-auto mb-8"
-    >
+    <VCol cols="12" lg="10" class="mx-auto mb-8">
       <VRow>
         <VCol
           v-for="article in props.categories"
@@ -54,7 +50,10 @@ const totalArticles = (category: HelpCenterCategoriesType) => {
                   <RouterLink
                     :to="{
                       name: 'pages-help-center-category-subcategory',
-                      params: { category: article.slug, subcategory: item.slug },
+                      params: {
+                        category: article.slug,
+                        subcategory: item.slug,
+                      },
                     }"
                   >
                     {{ item.title }}
@@ -66,7 +65,10 @@ const totalArticles = (category: HelpCenterCategoriesType) => {
                 <RouterLink
                   :to="{
                     name: 'pages-help-center-category-subcategory',
-                    params: { category: article.slug, subcategory: article.subCategories[0].slug },
+                    params: {
+                      category: article.slug,
+                      subcategory: article.subCategories[0].slug,
+                    },
                   }"
                   class="text-base font-weight-medium"
                 >

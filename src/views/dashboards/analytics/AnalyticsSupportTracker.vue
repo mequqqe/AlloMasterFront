@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import VueApexCharts from 'vue3-apexcharts'
-import { useTheme } from 'vuetify'
-import { hexToRgb } from '@layouts/utils'
+import VueApexCharts from "vue3-apexcharts";
+import { useTheme } from "vuetify";
+import { hexToRgb } from "@layouts/utils";
 
-const vuetifyTheme = useTheme()
+const vuetifyTheme = useTheme();
 
-const series = [85]
+const series = [85];
 
 const chartOptions = computed(() => {
-  const currentTheme = vuetifyTheme.current.value.colors
-  const variableTheme = vuetifyTheme.current.value.variables
+  const currentTheme = vuetifyTheme.current.value.colors;
+  const variableTheme = vuetifyTheme.current.value.variables;
 
   return {
-    labels: ['Completed Task'],
+    labels: ["Completed Task"],
     chart: {
-      type: 'radialBar',
+      type: "radialBar",
     },
     plotOptions: {
       radialBar: {
@@ -22,35 +22,35 @@ const chartOptions = computed(() => {
         startAngle: -140,
         endAngle: 130,
         hollow: {
-          size: '65%',
+          size: "65%",
         },
         track: {
           background: currentTheme.surface,
-          strokeWidth: '100%',
+          strokeWidth: "100%",
         },
         dataLabels: {
           name: {
             offsetY: -20,
-            color: `rgba(${hexToRgb(currentTheme['on-background'])},${variableTheme['disabled-opacity']})`,
-            fontSize: '13px',
-            fontWeight: '400',
-            fontFamily: 'Public Sans',
+            color: `rgba(${hexToRgb(currentTheme["on-background"])},${variableTheme["disabled-opacity"]})`,
+            fontSize: "13px",
+            fontWeight: "400",
+            fontFamily: "Public Sans",
           },
           value: {
             offsetY: 10,
-            color: `rgba(${hexToRgb(currentTheme['on-background'])},${variableTheme['high-emphasis-opacity']})`,
-            fontSize: '38px',
-            fontWeight: '400',
-            fontFamily: 'Public Sans',
+            color: `rgba(${hexToRgb(currentTheme["on-background"])},${variableTheme["high-emphasis-opacity"]})`,
+            fontSize: "38px",
+            fontWeight: "400",
+            fontFamily: "Public Sans",
           },
         },
       },
     },
     colors: [currentTheme.primary],
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
-        shade: 'dark',
+        shade: "dark",
         shadeIntensity: 0.5,
         gradientToColors: [currentTheme.primary],
         inverseColors: true,
@@ -71,12 +71,12 @@ const chartOptions = computed(() => {
     states: {
       hover: {
         filter: {
-          type: 'none',
+          type: "none",
         },
       },
       active: {
         filter: {
-          type: 'none',
+          type: "none",
         },
       },
     },
@@ -90,65 +90,55 @@ const chartOptions = computed(() => {
         },
       },
     ],
-  }
-})
+  };
+});
 
 const supportTicket = [
   {
-    avatarColor: 'primary',
-    avatarIcon: 'tabler-ticket',
-    title: 'New Tickets',
-    subtitle: '142',
+    avatarColor: "primary",
+    avatarIcon: "tabler-ticket",
+    title: "New Tickets",
+    subtitle: "142",
   },
   {
-    avatarColor: 'info',
-    avatarIcon: 'tabler-circle-check',
-    title: 'Open Tickets',
-    subtitle: '28',
+    avatarColor: "info",
+    avatarIcon: "tabler-circle-check",
+    title: "Open Tickets",
+    subtitle: "28",
   },
 
   {
-    avatarColor: 'warning',
-    avatarIcon: 'tabler-clock',
-    title: 'Response Time',
-    subtitle: '1 Day',
+    avatarColor: "warning",
+    avatarIcon: "tabler-clock",
+    title: "Response Time",
+    subtitle: "1 Day",
   },
-]
+];
 </script>
 
 <template>
-  <VCard
-    title="Support Tracker"
-    subtitle="Last 7 Days"
-  >
+  <VCard title="Support Tracker" subtitle="Last 7 Days">
     <template #append>
       <div class="mt-n4 me-n2">
-        <MoreBtn :menu-list="[{ title: 'View More', value: 'View More' }, { title: 'Delete', value: 'Delete' }]" />
+        <MoreBtn
+          :menu-list="[
+            { title: 'View More', value: 'View More' },
+            { title: 'Delete', value: 'Delete' },
+          ]"
+        />
       </div>
     </template>
 
     <VCardText>
       <VRow>
-        <VCol
-          cols="12"
-          md="5"
-          sm="6"
-          class="mt-auto"
-        >
+        <VCol cols="12" md="5" sm="6" class="mt-auto">
           <div class="mb-6">
-            <h4 class="text-h1">
-              164
-            </h4>
-            <p>
-              Total Tickets
-            </p>
+            <h4 class="text-h1">164</h4>
+            <p>Total Tickets</p>
           </div>
 
           <VList class="card-list">
-            <VListItem
-              v-for="ticket in supportTicket"
-              :key="ticket.title"
-            >
+            <VListItem v-for="ticket in supportTicket" :key="ticket.title">
               <VListItemTitle class="font-weight-medium">
                 {{ ticket.title }}
               </VListItemTitle>
@@ -168,11 +158,7 @@ const supportTicket = [
             </VListItem>
           </VList>
         </VCol>
-        <VCol
-          cols="12"
-          md="7"
-          sm="6"
-        >
+        <VCol cols="12" md="7" sm="6">
           <VueApexCharts
             :options="chartOptions"
             :series="series"

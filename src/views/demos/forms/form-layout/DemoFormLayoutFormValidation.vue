@@ -1,21 +1,18 @@
 <script lang="ts" setup>
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import type { VForm } from 'vuetify/components/VForm'
-import { emailValidator, requiredValidator } from '@validators'
+import type { VForm } from "vuetify/components/VForm";
+import { emailValidator, requiredValidator } from "@validators";
 
-const name = ref('')
-const email = ref('')
-const items = ['Item 1', 'Item 2', 'Item 3', 'Item 4'] as const
-const select = ref<typeof items[number]>()
-const checkbox = ref(false)
-const form = ref<VForm>()
+const name = ref("");
+const email = ref("");
+const items = ["Item 1", "Item 2", "Item 3", "Item 4"] as const;
+const select = ref<(typeof items)[number]>();
+const checkbox = ref(false);
+const form = ref<VForm>();
 </script>
 
 <template>
-  <VForm
-    ref="form"
-    lazy-validation
-  >
+  <VForm ref="form" lazy-validation>
     <VRow>
       <VCol cols="12">
         <AppTextField
@@ -55,28 +52,12 @@ const form = ref<VForm>()
         />
       </VCol>
 
-      <VCol
-        cols="12"
-        class="d-flex flex-wrap gap-4"
-      >
-        <VBtn
-          color="success"
-          @click="form?.validate()"
-        >
-          Validate
-        </VBtn>
+      <VCol cols="12" class="d-flex flex-wrap gap-4">
+        <VBtn color="success" @click="form?.validate()"> Validate </VBtn>
 
-        <VBtn
-          color="error"
-          @click="form?.reset()"
-        >
-          Reset Form
-        </VBtn>
+        <VBtn color="error" @click="form?.reset()"> Reset Form </VBtn>
 
-        <VBtn
-          color="warning"
-          @click="form?.resetValidation()"
-        >
+        <VBtn color="warning" @click="form?.resetValidation()">
           Reset Validation
         </VBtn>
       </VCol>

@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import AuthProvider from '@/views/pages/authentication/AuthProvider.vue'
-import authV1BottomShape from '@images/svg/auth-v1-bottom-shape.svg?raw'
-import authV1TopShape from '@images/svg/auth-v1-top-shape.svg?raw'
-import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
-import { themeConfig } from '@themeConfig'
+import AuthProvider from "@/views/pages/authentication/AuthProvider.vue";
+import authV1BottomShape from "@images/svg/auth-v1-bottom-shape.svg?raw";
+import authV1TopShape from "@images/svg/auth-v1-top-shape.svg?raw";
+import { VNodeRenderer } from "@layouts/components/VNodeRenderer";
+import { themeConfig } from "@themeConfig";
 
 const form = ref({
-  username: '',
-  email: '',
-  password: '',
+  username: "",
+  email: "",
+  password: "",
   privacyPolicies: false,
-})
+});
 
-const isPasswordVisible = ref(false)
+const isPasswordVisible = ref(false);
 </script>
 
 <template>
@@ -31,10 +31,7 @@ const isPasswordVisible = ref(false)
       />
 
       <!-- 👉 Auth card -->
-      <VCard
-        class="auth-card pa-4"
-        max-width="448"
-      >
+      <VCard class="auth-card pa-4" max-width="448">
         <VCardItem class="justify-center">
           <template #prepend>
             <div class="d-flex">
@@ -48,12 +45,8 @@ const isPasswordVisible = ref(false)
         </VCardItem>
 
         <VCardText class="pt-2">
-          <h5 class="text-h5 mb-1">
-            Adventure starts here 🚀
-          </h5>
-          <p class="mb-0">
-            Make your app management easy and fun!
-          </p>
+          <h5 class="text-h5 mb-1">Adventure starts here 🚀</h5>
+          <p class="mb-0">Make your app management easy and fun!</p>
         </VCardText>
 
         <VCardText>
@@ -69,11 +62,7 @@ const isPasswordVisible = ref(false)
               </VCol>
               <!-- email -->
               <VCol cols="12">
-                <AppTextField
-                  v-model="form.email"
-                  label="Email"
-                  type="email"
-                />
+                <AppTextField v-model="form.email" label="Email" type="email" />
               </VCol>
 
               <!-- password -->
@@ -82,7 +71,9 @@ const isPasswordVisible = ref(false)
                   v-model="form.password"
                   label="Password"
                   :type="isPasswordVisible ? 'text' : 'password'"
-                  :append-inner-icon="isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"
+                  :append-inner-icon="
+                    isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'
+                  "
                   @click:append-inner="isPasswordVisible = !isPasswordVisible"
                 />
 
@@ -92,31 +83,19 @@ const isPasswordVisible = ref(false)
                     v-model="form.privacyPolicies"
                     inline
                   />
-                  <VLabel
-                    for="privacy-policy"
-                    style="opacity: 1;"
-                  >
+                  <VLabel for="privacy-policy" style="opacity: 1">
                     <span class="me-1">I agree to</span>
-                    <a
-                      href="javascript:void(0)"
-                      class="text-primary"
-                    >privacy policy & terms</a>
+                    <a href="javascript:void(0)" class="text-primary"
+                      >privacy policy & terms</a
+                    >
                   </VLabel>
                 </div>
 
-                <VBtn
-                  block
-                  type="submit"
-                >
-                  Sign up
-                </VBtn>
+                <VBtn block type="submit"> Sign up </VBtn>
               </VCol>
 
               <!-- login instead -->
-              <VCol
-                cols="12"
-                class="text-center text-base"
-              >
+              <VCol cols="12" class="text-center text-base">
                 <span>Already have an account?</span>
                 <RouterLink
                   class="text-primary ms-2"
@@ -126,20 +105,14 @@ const isPasswordVisible = ref(false)
                 </RouterLink>
               </VCol>
 
-              <VCol
-                cols="12"
-                class="d-flex align-center"
-              >
+              <VCol cols="12" class="d-flex align-center">
                 <VDivider />
                 <span class="mx-4">or</span>
                 <VDivider />
               </VCol>
 
               <!-- auth providers -->
-              <VCol
-                cols="12"
-                class="text-center"
-              >
+              <VCol cols="12" class="text-center">
                 <AuthProvider />
               </VCol>
             </VRow>

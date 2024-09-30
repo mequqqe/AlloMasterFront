@@ -1,34 +1,34 @@
 <script setup lang="ts">
-import VueApexCharts from 'vue3-apexcharts'
-import { useTheme } from 'vuetify'
-import { hexToRgb } from '@layouts/utils'
+import VueApexCharts from "vue3-apexcharts";
+import { useTheme } from "vuetify";
+import { hexToRgb } from "@layouts/utils";
 
-const vuetifyTheme = useTheme()
+const vuetifyTheme = useTheme();
 
 const series = [
   {
     data: [40, 65, 50, 45, 90, 55, 70],
   },
-]
+];
 
 const chartOptions = computed(() => {
-  const currentTheme = vuetifyTheme.current.value.colors
-  const variableTheme = vuetifyTheme.current.value.variables
+  const currentTheme = vuetifyTheme.current.value.colors;
+  const variableTheme = vuetifyTheme.current.value.variables;
 
   return {
     chart: {
       parentHeightOffset: 0,
-      type: 'bar',
+      type: "bar",
       toolbar: {
         show: false,
       },
     },
     plotOptions: {
       bar: {
-        barHeight: '60%',
-        columnWidth: '38%',
-        startingShape: 'rounded',
-        endingShape: 'rounded',
+        barHeight: "60%",
+        columnWidth: "38%",
+        startingShape: "rounded",
+        endingShape: "rounded",
         borderRadius: 4,
         distributed: true,
       },
@@ -43,13 +43,13 @@ const chartOptions = computed(() => {
       },
     },
     colors: [
-      `rgba(${hexToRgb(currentTheme.primary)},${variableTheme['dragged-opacity']})`,
-      `rgba(${hexToRgb(currentTheme.primary)},${variableTheme['dragged-opacity']})`,
-      `rgba(${hexToRgb(currentTheme.primary)},${variableTheme['dragged-opacity']})`,
-      `rgba(${hexToRgb(currentTheme.primary)},${variableTheme['dragged-opacity']})`,
+      `rgba(${hexToRgb(currentTheme.primary)},${variableTheme["dragged-opacity"]})`,
+      `rgba(${hexToRgb(currentTheme.primary)},${variableTheme["dragged-opacity"]})`,
+      `rgba(${hexToRgb(currentTheme.primary)},${variableTheme["dragged-opacity"]})`,
+      `rgba(${hexToRgb(currentTheme.primary)},${variableTheme["dragged-opacity"]})`,
       `rgba(${hexToRgb(currentTheme.primary)}, 1)`,
-      `rgba(${hexToRgb(currentTheme.primary)},${variableTheme['dragged-opacity']})`,
-      `rgba(${hexToRgb(currentTheme.primary)},${variableTheme['dragged-opacity']})`,
+      `rgba(${hexToRgb(currentTheme.primary)},${variableTheme["dragged-opacity"]})`,
+      `rgba(${hexToRgb(currentTheme.primary)},${variableTheme["dragged-opacity"]})`,
     ],
     dataLabels: {
       enabled: false,
@@ -58,7 +58,7 @@ const chartOptions = computed(() => {
       show: false,
     },
     xaxis: {
-      categories: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+      categories: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
       axisBorder: {
         show: false,
       },
@@ -67,9 +67,9 @@ const chartOptions = computed(() => {
       },
       labels: {
         style: {
-          colors: `rgba(${hexToRgb(currentTheme['on-surface'])},${variableTheme['disabled-opacity']})`,
-          fontSize: '13px',
-          fontFamily: 'Public Sans',
+          colors: `rgba(${hexToRgb(currentTheme["on-surface"])},${variableTheme["disabled-opacity"]})`,
+          fontSize: "13px",
+          fontFamily: "Public Sans",
         },
       },
     },
@@ -91,37 +91,37 @@ const chartOptions = computed(() => {
         },
       },
     ],
-  }
-})
+  };
+});
 
 const earningsReports = [
   {
-    color: 'primary',
-    icon: 'tabler-currency-dollar',
-    title: 'Earnings',
-    amount: '$545.69',
-    progress: '55',
+    color: "primary",
+    icon: "tabler-currency-dollar",
+    title: "Earnings",
+    amount: "$545.69",
+    progress: "55",
   },
   {
-    color: 'info',
-    icon: 'tabler-chart-pie-2',
-    title: 'Profit',
-    amount: '$256.34',
-    progress: '25',
+    color: "info",
+    icon: "tabler-chart-pie-2",
+    title: "Profit",
+    amount: "$256.34",
+    progress: "25",
   },
   {
-    color: 'error',
-    icon: 'tabler-brand-paypal',
-    title: 'Expense',
-    amount: '$74.19',
-    progress: '65',
+    color: "error",
+    icon: "tabler-brand-paypal",
+    title: "Expense",
+    amount: "$74.19",
+    progress: "65",
   },
-]
+];
 
 const moreList = [
-  { title: 'View More', value: 'View More' },
-  { title: 'Delete', value: 'Delete' },
-]
+  { title: "View More", value: "View More" },
+  { title: "Delete", value: "Delete" },
+];
 </script>
 
 <template>
@@ -139,31 +139,18 @@ const moreList = [
 
     <VCardText class="mt-n6">
       <VRow>
-        <VCol
-          cols="12"
-          sm="4"
-          class="d-flex flex-column align-self-end"
-        >
+        <VCol cols="12" sm="4" class="d-flex flex-column align-self-end">
           <div class="d-flex align-center gap-2 mb-2 pb-1 flex-wrap">
-            <h4 class="text-h1">
-              $468
-            </h4>
-            <VChip
-              label
-              color="success"
-            >
-              +4.2%
-            </VChip>
+            <h4 class="text-h1">$468</h4>
+            <VChip label color="success"> +4.2% </VChip>
           </div>
 
-          <span class="text-sm text-disabled">You informed of this week compared to last week</span>
+          <span class="text-sm text-disabled"
+            >You informed of this week compared to last week</span
+          >
         </VCol>
 
-        <VCol
-          cols="12"
-          sm="8"
-          class="pt-0"
-        >
+        <VCol cols="12" sm="8" class="pt-0">
           <VueApexCharts
             :options="chartOptions"
             :series="series"
@@ -188,10 +175,7 @@ const moreList = [
                 variant="tonal"
                 class="me-2"
               >
-                <VIcon
-                  size="18"
-                  :icon="report.icon"
-                />
+                <VIcon size="18" :icon="report.icon" />
               </VAvatar>
 
               <h6 class="text-base font-weight-medium">

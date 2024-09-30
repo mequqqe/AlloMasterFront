@@ -1,44 +1,39 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-import axios from '@axios'
+import { useRoute } from "vue-router";
+import axios from "@axios";
 
-import type { HelpCenterCategoriesType } from '@/@fake-db/types'
+import type { HelpCenterCategoriesType } from "@/@fake-db/types";
 
-const route = useRoute()
+const route = useRoute();
 
-const apiData = ref<HelpCenterCategoriesType>()
-const activeTab = ref('')
+const apiData = ref<HelpCenterCategoriesType>();
+const activeTab = ref("");
 
 const fetchHelpCenterCategoriesData = () => {
-  return axios.get('/pages/help-center/subcategory', {
-    params: {
-      category: route.params.category,
-      subcategory: route.params.subcategory,
-    },
-  }).then(res => {
-    apiData.value = res.data.data
-    activeTab.value = res.data.activeTab
-  })
-}
+  return axios
+    .get("/pages/help-center/subcategory", {
+      params: {
+        category: route.params.category,
+        subcategory: route.params.subcategory,
+      },
+    })
+    .then((res) => {
+      apiData.value = res.data.data;
+      activeTab.value = res.data.activeTab;
+    });
+};
 
-watch(activeTab, fetchHelpCenterCategoriesData, { immediate: true })
+watch(activeTab, fetchHelpCenterCategoriesData, { immediate: true });
 </script>
 
 <template>
   <VRow v-if="apiData">
-    <VCol
-      cols="12"
-      md="4"
-    >
+    <VCol cols="12" md="4">
       <h6 class="text-base mb-3">
         {{ apiData.title }}
       </h6>
 
-      <VTabs
-        v-model="activeTab"
-        direction="vertical"
-        class="v-tabs-pill"
-      >
+      <VTabs v-model="activeTab" direction="vertical" class="v-tabs-pill">
         <VTab
           v-for="item in apiData.subCategories"
           :key="item.slug"
@@ -53,14 +48,8 @@ watch(activeTab, fetchHelpCenterCategoriesData, { immediate: true })
       </VTabs>
     </VCol>
 
-    <VCol
-      cols="12"
-      md="8"
-    >
-      <VWindow
-        v-model="activeTab"
-        class="disable-tab-transition"
-      >
+    <VCol cols="12" md="8">
+      <VWindow v-model="activeTab" class="disable-tab-transition">
         <VWindowItem
           v-for="subCategory in apiData.subCategories"
           :key="subCategory.slug"
@@ -68,16 +57,8 @@ watch(activeTab, fetchHelpCenterCategoriesData, { immediate: true })
         >
           <VCard :title="subCategory.title">
             <template #prepend>
-              <VAvatar
-                color="primary"
-                variant="tonal"
-                rounded
-                size="42"
-              >
-                <VIcon
-                  :icon="subCategory.icon"
-                  size="26"
-                />
+              <VAvatar color="primary" variant="tonal" rounded size="42">
+                <VIcon :icon="subCategory.icon" size="26" />
               </VAvatar>
             </template>
 
@@ -96,11 +77,7 @@ watch(activeTab, fetchHelpCenterCategoriesData, { immediate: true })
                   }"
                 >
                   <template #prepend>
-                    <VIcon
-                      icon="tabler-chevron-right"
-                      size="18"
-                      class="me-2"
-                    />
+                    <VIcon icon="tabler-chevron-right" size="18" class="me-2" />
                   </template>
                   <VListItemTitle class="text-primary">
                     {{ item.title }}
@@ -108,14 +85,8 @@ watch(activeTab, fetchHelpCenterCategoriesData, { immediate: true })
                 </VListItem>
               </VList>
 
-              <VBtn
-                variant="tonal"
-                :to="{ name: 'pages-help-center' }"
-              >
-                <VIcon
-                  icon="tabler-chevron-left"
-                  class="flip-in-rtl"
-                />
+              <VBtn variant="tonal" :to="{ name: 'pages-help-center' }">
+                <VIcon icon="tabler-chevron-left" class="flip-in-rtl" />
                 <span>Back to help center</span>
               </VBtn>
             </VCardText>

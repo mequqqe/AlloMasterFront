@@ -77,7 +77,7 @@ watch(modelValue, () => {
   </div>
 </template>
 `,
-}
+};
 
 export const color = {
   ts: `<template>
@@ -124,7 +124,7 @@ export const color = {
   </div>
 </template>
 `,
-}
+};
 
 export const indeterminate = {
   ts: `<template>
@@ -141,7 +141,7 @@ export const indeterminate = {
   />
 </template>
 `,
-}
+};
 
 export const reversed = {
   ts: `<template>
@@ -160,7 +160,7 @@ export const reversed = {
   />
 </template>
 `,
-}
+};
 
 export const rounded = {
   ts: `<template>
@@ -213,7 +213,7 @@ export const rounded = {
   </div>
 </template>
 `,
-}
+};
 
 export const slots = {
   ts: `<script setup lang="ts">
@@ -284,7 +284,7 @@ const power = ref(78)
   </div>
 </template>
 `,
-}
+};
 
 export const striped = {
   ts: `<template>
@@ -331,4 +331,4 @@ export const striped = {
   </div>
 </template>
 `,
-}
+};

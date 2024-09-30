@@ -114,13 +114,29 @@ $alert-prepend-icon-font-size: 1.125rem !important;
 // 👉 Button
 // Above map but opacity values as key and variant as value
 $btn-active-overlay-opacity: (
-  0.08: (outlined, flat, text, plain),
-  0.24: (tonal),
+  0.08: (
+    outlined,
+    flat,
+    text,
+    plain,
+  ),
+  0.24: (
+    tonal,
+  ),
 );
 $btn-hover-overlay-opacity: (
-  0.1: (elevated),
-  0.08: (outlined, flat, text, plain),
-  0.24: (tonal),
+  0.1: (
+    elevated,
+  ),
+  0.08: (
+    outlined,
+    flat,
+    text,
+    plain,
+  ),
+  0.24: (
+    tonal,
+  ),
 );
 
 .v-btn {
@@ -156,7 +172,10 @@ $btn-hover-overlay-opacity: (
 
     // append each variant to selectors list
     @each $variant in $variants {
-      $selectors: list.append($selectors, "&.v-btn--variant-#{$variant}:active > .v-btn__overlay,");
+      $selectors: list.append(
+        $selectors,
+        "&.v-btn--variant-#{$variant}:active > .v-btn__overlay,"
+      );
     }
 
     #{$selectors} {
@@ -173,7 +192,10 @@ $btn-hover-overlay-opacity: (
 
     // append each variant to selectors list
     @each $variant in $variants {
-      $selectors: list.append($selectors, "&.v-btn--variant-#{$variant}:hover > .v-btn__overlay,");
+      $selectors: list.append(
+        $selectors,
+        "&.v-btn--variant-#{$variant}:hover > .v-btn__overlay,"
+      );
     }
 
     #{$selectors} {
@@ -492,7 +514,9 @@ $btn-hover-overlay-opacity: (
         }
       }
 
-      .v-list-item--density-default:not(.v-list-item--nav).v-list-item--one-line {
+      .v-list-item--density-default:not(
+          .v-list-item--nav
+        ).v-list-item--one-line {
         padding-block: 0.5rem;
       }
     }
@@ -652,11 +676,17 @@ $btn-hover-overlay-opacity: (
   &.v-input--disabled {
     &:not(.v-input--dirty) {
       .v-selection-control__input .v-switch__thumb {
-        background: rgba(var(--v-theme-on-surface), var(--v-switch-disabled-thumb-opacity));
+        background: rgba(
+          var(--v-theme-on-surface),
+          var(--v-switch-disabled-thumb-opacity)
+        );
       }
 
       .v-switch__track {
-        background-color: rgba(var(--v-theme-on-surface), var(--v-switch-disabled-track-opacity));
+        background-color: rgba(
+          var(--v-theme-on-surface),
+          var(--v-switch-disabled-track-opacity)
+        );
       }
     }
 
@@ -709,10 +739,16 @@ $btn-hover-overlay-opacity: (
   --v-table-row-height: 56px;
   --v-table-header-height: 48px !important;
 
-  color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity)) !important;
+  color: rgba(
+    var(--v-theme-on-surface),
+    var(--v-medium-emphasis-opacity)
+  ) !important;
 
   th {
-    color: rgba(var(--v-theme-on-surface), var(--v-high-emphasis-opacity)) !important;
+    color: rgba(
+      var(--v-theme-on-surface),
+      var(--v-high-emphasis-opacity)
+    ) !important;
     font-size: 0.8125rem;
     font-weight: 500;
     letter-spacing: 0.0625rem;
@@ -733,12 +769,14 @@ $btn-hover-overlay-opacity: (
 
     &:not(.v-tabs-pill) {
       block-size: 100%;
-      border-inline-end: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
+      border-inline-end: 1px solid
+        rgba(var(--v-border-color), var(--v-border-opacity));
     }
   }
 
   &.v-tabs--horizontal:not(.v-tabs-pill) {
-    border-block-end: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
+    border-block-end: 1px solid
+      rgba(var(--v-border-color), var(--v-border-opacity));
 
     .v-tab__slider {
       block-size: 3px;
@@ -800,7 +838,6 @@ $btn-hover-overlay-opacity: (
       box-shadow: 0 0 0 0.1875rem rgb(var(--v-theme-on-surface-variant));
 
       @each $color-name in variables.$theme-colors-name {
-
         &.bg-#{$color-name} {
           box-shadow: 0 0 0 0.1875rem rgba(var(--v-theme-#{$color-name}), 0.12);
         }
@@ -824,7 +861,12 @@ $btn-hover-overlay-opacity: (
   }
 
   // we have to override the default bg-color of the timeline dot in the card
-  .v-card:not(.v-card--variant-text, .v-card--variant-plain, .v-card--variant-outlined) & {
+  .v-card:not(
+      .v-card--variant-text,
+      .v-card--variant-plain,
+      .v-card--variant-outlined
+    )
+    & {
     &.v-timeline-icon-only {
       .v-timeline-divider__dot {
         .v-timeline-divider__inner-dot {

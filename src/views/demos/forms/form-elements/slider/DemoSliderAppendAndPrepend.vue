@@ -1,44 +1,35 @@
 <script lang="ts" setup>
-const bpm = ref(40)
-const min = 40
-const max = 218
-const isPlaying = ref(false)
+const bpm = ref(40);
+const min = 40;
+const max = 218;
+const isPlaying = ref(false);
 
 const color = computed(() => {
-  if (bpm.value < 100)
-    return 'primary'
-  if (bpm.value < 125)
-    return 'success'
-  if (bpm.value < 140)
-    return 'info'
-  if (bpm.value < 175)
-    return 'warning'
+  if (bpm.value < 100) return "primary";
+  if (bpm.value < 125) return "success";
+  if (bpm.value < 140) return "info";
+  if (bpm.value < 175) return "warning";
 
-  return 'error'
-})
+  return "error";
+});
 
 const animationDuration = computed(() => {
-  return `${60 / bpm.value}s`
-})
+  return `${60 / bpm.value}s`;
+});
 
 const decrement = () => {
-  if (bpm.value > min)
-    bpm.value -= 1
-}
+  if (bpm.value > min) bpm.value -= 1;
+};
 
 const increment = () => {
-  if (bpm.value < max)
-    bpm.value += 1
-}
+  if (bpm.value < max) bpm.value += 1;
+};
 </script>
 
 <template>
   <div class="d-flex justify-space-between ma-4">
     <div>
-      <span
-        class="text-6xl font-weight-light"
-        v-text="bpm"
-      />
+      <span class="text-6xl font-weight-light" v-text="bpm" />
       <span class="subheading font-weight-light me-1">BPM</span>
 
       <VFadeTransition>
@@ -55,12 +46,7 @@ const increment = () => {
     </div>
 
     <div>
-      <VBtn
-        :color="color"
-        icon
-        elevation="0"
-        @click="isPlaying = !isPlaying"
-      >
+      <VBtn :color="color" icon elevation="0" @click="isPlaying = !isPlaying">
         <VIcon
           size="large"
           :icon="isPlaying ? 'tabler-pause' : 'tabler-play'"
@@ -100,19 +86,19 @@ const increment = () => {
 </template>
 
 <style lang="scss" scoped>
-  @keyframes metronome-example {
-    from {
-      transform: scale(0.5);
-    }
-
-    to {
-      transform: scale(1);
-    }
+@keyframes metronome-example {
+  from {
+    transform: scale(0.5);
   }
 
-  .v-avatar--metronome {
-    animation-direction: alternate;
-    animation-iteration-count: infinite;
-    animation-name: metronome-example;
+  to {
+    transform: scale(1);
   }
+}
+
+.v-avatar--metronome {
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-name: metronome-example;
+}
 </style>

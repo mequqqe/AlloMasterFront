@@ -1,36 +1,22 @@
 <script setup lang="ts">
-import avatar4 from '@images/avatars/avatar-4.png'
+import avatar4 from "@images/avatars/avatar-4.png";
 </script>
 
 <template>
   <div class="demo-space-x">
     <VBtn>
       Button
-      <VTooltip
-        location="top"
-        activator="parent"
-      >
-        Tooltip
-      </VTooltip>
+      <VTooltip location="top" activator="parent"> Tooltip </VTooltip>
     </VBtn>
 
     <VAvatar color="info">
       <VImg :src="avatar4" />
-      <VTooltip
-        location="top"
-        activator="parent"
-      >
-        Tooltip on Avatar
-      </VTooltip>
+      <VTooltip location="top" activator="parent"> Tooltip on Avatar </VTooltip>
     </VAvatar>
 
     <VTooltip location="top">
       <template #activator="{ props }">
-        <VIcon
-          v-bind="props"
-          size="30"
-          icon="tabler-user"
-        />
+        <VIcon v-bind="props" size="30" icon="tabler-user" />
       </template>
       <span>Tooltip on Icon</span>
     </VTooltip>

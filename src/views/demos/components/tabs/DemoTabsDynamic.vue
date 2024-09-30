@@ -1,22 +1,16 @@
 <script lang="ts" setup>
-const totalTabs = ref(3)
-const currentTab = ref(0)
+const totalTabs = ref(3);
+const currentTab = ref(0);
 
-watch(totalTabs, newValue => {
-  currentTab.value = newValue - 1
-})
+watch(totalTabs, (newValue) => {
+  currentTab.value = newValue - 1;
+});
 </script>
 
 <template>
   <VCard>
     <VTabs v-model="currentTab">
-      <VTab
-        v-for="n in totalTabs"
-        :key="n"
-        :value="n"
-      >
-        Tab {{ n }}
-      </VTab>
+      <VTab v-for="n in totalTabs" :key="n" :value="n"> Tab {{ n }} </VTab>
     </VTabs>
 
     <!-- buttons -->
@@ -30,9 +24,7 @@ watch(totalTabs, newValue => {
         Remove Tab
       </VBtn>
 
-      <VBtn @click="totalTabs++">
-        Add Tab
-      </VBtn>
+      <VBtn @click="totalTabs++"> Add Tab </VBtn>
     </VCardText>
   </VCard>
 </template>

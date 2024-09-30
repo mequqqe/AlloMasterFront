@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-const username = ref('')
-const email = ref('')
-const password = ref<string>()
-const checkbox = ref(false)
-const items = ['foo', 'bar', 'fizz', 'buzz'] as const
-const values = ref<typeof items[number][]>([])
+const username = ref("");
+const email = ref("");
+const password = ref<string>();
+const checkbox = ref(false);
+const items = ["foo", "bar", "fizz", "buzz"] as const;
+const values = ref<(typeof items)[number][]>([]);
 </script>
 
 <template>
@@ -54,28 +54,14 @@ const values = ref<typeof items[number][]>([])
 
       <VCol cols="12">
         <!-- 👉 Checkbox -->
-        <VCheckbox
-          v-model="checkbox"
-          label="Remember me"
-        />
+        <VCheckbox v-model="checkbox" label="Remember me" />
       </VCol>
 
-      <VCol
-        cols="12"
-        class="d-flex gap-4"
-      >
+      <VCol cols="12" class="d-flex gap-4">
         <!-- 👉 submit and reset button -->
-        <VBtn type="submit">
-          Submit
-        </VBtn>
+        <VBtn type="submit"> Submit </VBtn>
 
-        <VBtn
-          color="secondary"
-          type="reset"
-          variant="tonal"
-        >
-          Reset
-        </VBtn>
+        <VBtn color="secondary" type="reset" variant="tonal"> Reset </VBtn>
       </VCol>
     </VRow>
   </VForm>

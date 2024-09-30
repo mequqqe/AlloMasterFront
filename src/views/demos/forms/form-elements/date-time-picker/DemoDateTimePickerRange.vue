@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const dateRange = ref('')
+const dateRange = ref("");
 </script>
 
 <template>

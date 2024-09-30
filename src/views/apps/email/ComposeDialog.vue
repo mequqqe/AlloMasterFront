@@ -1,16 +1,16 @@
 <script lang="ts" setup>
 defineEmits<{
-  (e: 'close'): void
-}>()
+  (e: "close"): void;
+}>();
 
-const to = ref('')
-const subject = ref('')
-const message = ref('')
-const isMenuOpen = ref(false)
+const to = ref("");
+const subject = ref("");
+const message = ref("");
+const isMenuOpen = ref(false);
 
 const resetValues = () => {
-  to.value = subject.value = message.value = ''
-}
+  to.value = subject.value = message.value = "";
+};
 </script>
 
 <template>
@@ -28,21 +28,18 @@ const resetValues = () => {
         <VIcon
           size="20"
           icon="tabler-x"
-          @click="$emit('close'); resetValues()"
+          @click="
+            $emit('close');
+            resetValues();
+          "
         />
       </div>
     </VCardItem>
 
     <div class="pe-5">
-      <AppTextField
-        v-model="to"
-        density="compact"
-        class="elevation-0"
-      >
+      <AppTextField v-model="to" density="compact" class="elevation-0">
         <template #prepend-inner>
-          <div class="text-sm text-disabled">
-            To:
-          </div>
+          <div class="text-sm text-disabled">To:</div>
         </template>
         <template #append>
           <span class="cursor-pointer text-primary">Cc | Bcc</span>
@@ -52,62 +49,33 @@ const resetValues = () => {
 
     <VDivider />
 
-    <AppTextField
-      v-model="subject"
-      density="compact"
-    >
+    <AppTextField v-model="subject" density="compact">
       <template #prepend-inner>
-        <div class="text-sm text-disabled">
-          Subject:
-        </div>
+        <div class="text-sm text-disabled">Subject:</div>
       </template>
     </AppTextField>
 
     <VDivider />
 
-    <VTextarea
-      v-model="message"
-      placeholder="Message"
-    />
+    <VTextarea v-model="message" placeholder="Message" />
 
     <VDivider />
 
     <div class="d-flex align-center px-5 py-4">
-      <VBtnGroup
-        color="primary"
-        divided
-        density="comfortable"
-      >
+      <VBtnGroup color="primary" divided density="comfortable">
         <VBtn>Send</VBtn>
-        <VBtn
-          icon
-          @click="() => isMenuOpen = !isMenuOpen"
-        >
-          <VIcon
-            icon="tabler-send "
-            size="18"
-          />
+        <VBtn icon @click="() => (isMenuOpen = !isMenuOpen)">
+          <VIcon icon="tabler-send " size="18" />
           <VMenu activator="parent">
             <VList :items="['Schedule Mail', 'Save Draft']" />
           </VMenu>
         </VBtn>
       </VBtnGroup>
-      <VIcon
-        icon="tabler-link"
-        class="ms-4 cursor-pointer"
-      />
+      <VIcon icon="tabler-link" class="ms-4 cursor-pointer" />
 
       <VSpacer />
-      <VBtn
-        icon
-        variant="text"
-        color="default"
-        density="comfortable"
-      >
-        <VIcon
-          icon="tabler-dots-vertical"
-          size="20"
-        />
+      <VBtn icon variant="text" color="default" density="comfortable">
+        <VIcon icon="tabler-dots-vertical" size="20" />
       </VBtn>
 
       <VBtn
@@ -115,12 +83,12 @@ const resetValues = () => {
         variant="text"
         color="default"
         density="comfortable"
-        @click="$emit('close'); resetValues()"
+        @click="
+          $emit('close');
+          resetValues();
+        "
       >
-        <VIcon
-          icon="tabler-trash"
-          size="20"
-        />
+        <VIcon icon="tabler-trash" size="20" />
       </VBtn>
     </div>
   </VCard>

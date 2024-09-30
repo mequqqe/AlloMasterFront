@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import VueApexCharts from 'vue3-apexcharts'
-import { useTheme } from 'vuetify'
+import VueApexCharts from "vue3-apexcharts";
+import { useTheme } from "vuetify";
 
-const vuetifyTheme = useTheme()
+const vuetifyTheme = useTheme();
 
 const series = [
   {
-    name: '2020',
+    name: "2020",
     data: [60, 50, 20, 45, 50, 30, 70],
   },
-]
+];
 
 const chartOptions = computed(() => {
-  const currentTheme = vuetifyTheme.current.value.colors
-  const backgroundColor = currentTheme.background
+  const currentTheme = vuetifyTheme.current.value.colors;
+  const backgroundColor = currentTheme.background;
 
   return {
     chart: {
       height: 90,
       parentHeightOffset: 0,
-      type: 'bar',
+      type: "bar",
       toolbar: {
         show: false,
       },
@@ -29,13 +29,21 @@ const chartOptions = computed(() => {
     },
     plotOptions: {
       bar: {
-        barHeight: '100%',
-        columnWidth: '30px',
-        startingShape: 'rounded',
-        endingShape: 'rounded',
+        barHeight: "100%",
+        columnWidth: "30px",
+        startingShape: "rounded",
+        endingShape: "rounded",
         borderRadius: 4,
         colors: {
-          backgroundBarColors: [backgroundColor, backgroundColor, backgroundColor, backgroundColor, backgroundColor, backgroundColor, backgroundColor],
+          backgroundBarColors: [
+            backgroundColor,
+            backgroundColor,
+            backgroundColor,
+            backgroundColor,
+            backgroundColor,
+            backgroundColor,
+            backgroundColor,
+          ],
           backgroundBarRadius: 4,
         },
       },
@@ -57,7 +65,7 @@ const chartOptions = computed(() => {
       show: false,
     },
     xaxis: {
-      categories: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+      categories: ["M", "T", "W", "T", "F", "S", "S"],
       axisBorder: {
         show: false,
       },
@@ -79,7 +87,7 @@ const chartOptions = computed(() => {
         options: {
           plotOptions: {
             bar: {
-              columnWidth: '40%',
+              columnWidth: "40%",
               borderRadius: 4,
             },
           },
@@ -90,7 +98,7 @@ const chartOptions = computed(() => {
         options: {
           plotOptions: {
             bar: {
-              columnWidth: '48%',
+              columnWidth: "48%",
             },
           },
         },
@@ -101,7 +109,7 @@ const chartOptions = computed(() => {
           plotOptions: {
             bar: {
               borderRadius: 6,
-              columnWidth: '30%',
+              columnWidth: "30%",
               colors: {
                 backgroundBarRadius: 6,
               },
@@ -114,7 +122,7 @@ const chartOptions = computed(() => {
         options: {
           plotOptions: {
             bar: {
-              columnWidth: '35%',
+              columnWidth: "35%",
               borderRadius: 6,
             },
           },
@@ -125,7 +133,7 @@ const chartOptions = computed(() => {
         options: {
           plotOptions: {
             bar: {
-              columnWidth: '40%',
+              columnWidth: "40%",
             },
           },
         },
@@ -135,7 +143,7 @@ const chartOptions = computed(() => {
         options: {
           plotOptions: {
             bar: {
-              columnWidth: '25%',
+              columnWidth: "25%",
             },
           },
         },
@@ -183,34 +191,23 @@ const chartOptions = computed(() => {
         },
       },
     ],
-
-  }
-})
+  };
+});
 </script>
 
 <template>
   <VCard>
     <VCardText>
       <div class="pb-4">
-        <h5 class="text-h5">
-          Order
-        </h5>
+        <h5 class="text-h5">Order</h5>
         <span class="text-sm text-disabled">Last week</span>
       </div>
 
-      <VueApexCharts
-        :options="chartOptions"
-        :series="series"
-        :height="90"
-      />
+      <VueApexCharts :options="chartOptions" :series="series" :height="90" />
 
       <div class="d-flex align-center justify-space-between">
-        <h4 class="text-h4 text-center">
-          124k
-        </h4>
-        <span class="text-sm text-success">
-          +12.6%
-        </span>
+        <h4 class="text-h4 text-center">124k</h4>
+        <span class="text-sm text-success"> +12.6% </span>
       </div>
     </VCardText>
   </VCard>

@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-const items = ['Gaming', 'Programming', 'Vue', 'Vuetify']
-const selectedList = ref(['Vuetify'])
-const search = ref(null)
+const items = ["Gaming", "Programming", "Vue", "Vuetify"];
+const selectedList = ref(["Vuetify"]);
+const search = ref(null);
 
-watch(selectedList, value => {
-  if (value.length > 5)
-    nextTick(() => selectedList.value.pop())
-})
+watch(selectedList, (value) => {
+  if (value.length > 5) nextTick(() => selectedList.value.pop());
+});
 </script>
 
 <template>
@@ -24,7 +23,8 @@ watch(selectedList, value => {
     <template #no-data>
       <VListItem>
         <VListItemTitle>
-          No results matching "<strong>{{ search }}</strong>". Press <kbd>enter</kbd> to create a new one
+          No results matching "<strong>{{ search }}</strong
+          >". Press <kbd>enter</kbd> to create a new one
         </VListItemTitle>
       </VListItem>
     </template>

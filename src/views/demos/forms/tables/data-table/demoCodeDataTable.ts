@@ -62,7 +62,7 @@ const headers = [
   />
 </template>
 `,
-}
+};
 
 export const cellSlot = {
   ts: `<script setup lang="ts">
@@ -236,7 +236,7 @@ const resolveStatusVariant = status => {
   </VDataTable>
 </template>
 `,
-}
+};
 
 export const dense = {
   ts: `<script setup lang="ts">
@@ -304,7 +304,7 @@ const headers = [
   />
 </template>
 `,
-}
+};
 
 export const expandableRows = {
   ts: `<script setup lang="ts">
@@ -514,7 +514,7 @@ const resolveStatusVariant = status => {
   </VDataTable>
 </template>
 `,
-}
+};
 
 export const externalPagination = {
   ts: `<script setup lang="ts">
@@ -779,7 +779,7 @@ onMounted(() => {
   </VDataTable>
 </template>
 `,
-}
+};
 
 export const fixedHeader = {
   ts: `<script setup lang="ts">
@@ -959,7 +959,7 @@ const resolveStatusVariant = status => {
   </VDataTable>
 </template>
 `,
-}
+};
 
 export const groupingRows = {
   ts: `<script setup lang="ts">
@@ -1742,7 +1742,7 @@ const resolveStatusVariant = status => {
   </VDataTable>
 </template>
 `,
-}
+};
 
 export const kitchenSink = {
   ts: `<script setup lang="ts">
@@ -2250,7 +2250,7 @@ onMounted(() => {
   </div>
 </template>
 `,
-}
+};
 
 export const rowEditingViaDialog = {
   ts: `<script setup lang="ts">
@@ -2928,7 +2928,7 @@ onMounted(() => {
   </VDialog>
 </template>
 `,
-}
+};
 
 export const rowSelection = {
   ts: `<script setup lang="ts">
@@ -3106,4 +3106,4 @@ const resolveStatusVariant = status => {
   </VDataTable>
 </template>
 `,
-}
+};

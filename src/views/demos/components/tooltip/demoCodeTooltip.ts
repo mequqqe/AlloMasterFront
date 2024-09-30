@@ -25,7 +25,7 @@ export const delayOnHover = {
   </VBtn>
 </template>
 `,
-}
+};
 
 export const events = {
   ts: `<template>
@@ -116,7 +116,7 @@ export const events = {
   </div>
 </template>
 `,
-}
+};
 
 export const location = {
   ts: `<template>
@@ -207,7 +207,7 @@ export const location = {
   </div>
 </template>
 `,
-}
+};
 
 export const tooltipOnVariousElements = {
   ts: `<script setup lang="ts">
@@ -288,7 +288,7 @@ import avatar4 from '@images/avatars/avatar-4.png'
   </div>
 </template>
 `,
-}
+};
 
 export const transition = {
   ts: `<template>
@@ -371,7 +371,7 @@ export const transition = {
   </div>
 </template>
 `,
-}
+};
 
 export const vModelSupport = {
   ts: `<script lang="ts" setup>
@@ -424,4 +424,4 @@ const isTooltipVisible = ref(false)
   </div>
 </template>
 `,
-}
+};

@@ -1,29 +1,29 @@
 <script lang="ts" setup>
-import { HorizontalNav } from '@layouts/components'
-import type { HorizontalNavItems } from '@layouts/types'
+import { HorizontalNav } from "@layouts/components";
+import type { HorizontalNavItems } from "@layouts/types";
 
 // ℹ️ Using import from `@layouts` causing build to hangup
 // import { useLayouts } from '@layouts'
-import { useLayouts } from '@layouts/composable/useLayouts'
+import { useLayouts } from "@layouts/composable/useLayouts";
 
 defineProps<{
-  navItems: HorizontalNavItems
-}>()
+  navItems: HorizontalNavItems;
+}>();
 
-const { y: windowScrollY } = useWindowScroll()
-const { width: windowWidth } = useWindowSize()
+const { y: windowScrollY } = useWindowScroll();
+const { width: windowWidth } = useWindowSize();
 
-const router = useRouter()
-const shallShowPageLoading = ref(false)
+const router = useRouter();
+const shallShowPageLoading = ref(false);
 
 router.beforeEach(() => {
-  shallShowPageLoading.value = true
-})
+  shallShowPageLoading.value = true;
+});
 router.afterEach(() => {
-  shallShowPageLoading.value = false
-})
+  shallShowPageLoading.value = false;
+});
 
-const { _layoutClasses: layoutClasses, isNavbarBlurEnabled } = useLayouts()
+const { _layoutClasses: layoutClasses, isNavbarBlurEnabled } = useLayouts();
 </script>
 
 <template>

@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { VDataTableServer } from 'vuetify/labs/VDataTable'
-import type { Permission } from '@/@fake-db/types'
-import { paginationMeta } from '@/@fake-db/utils'
-import axios from '@axios'
-import type { Options } from '@core/types'
+import { VDataTableServer } from "vuetify/labs/VDataTable";
+import type { Permission } from "@/@fake-db/types";
+import { paginationMeta } from "@/@fake-db/utils";
+import axios from "@axios";
+import type { Options } from "@core/types";
 
 // 👉 headers
 const headers = [
-  { title: 'Name', key: 'name' },
-  { title: 'Assigned To', key: 'assignedTo', sortable: false },
-  { title: 'Created Date', key: 'createdDate', sortable: false },
-  { title: 'Actions', key: 'actions', sortable: false },
-]
+  { title: "Name", key: "name" },
+  { title: "Assigned To", key: "assignedTo", sortable: false },
+  { title: "Created Date", key: "createdDate", sortable: false },
+  { title: "Actions", key: "actions", sortable: false },
+];
 
-const permissions = ref<Permission[]>([])
-const search = ref('')
-const totalPermissions = ref(0)
+const permissions = ref<Permission[]>([]);
+const search = ref("");
+const totalPermissions = ref(0);
 
 const options = ref<Options>({
   page: 1,
@@ -23,61 +23,65 @@ const options = ref<Options>({
   sortBy: [],
   groupBy: [],
   search: undefined,
-})
+});
 
-const isPermissionDialogVisible = ref(false)
-const isAddPermissionDialogVisible = ref(false)
-const permissionName = ref('')
-const totalPages = ref(1)
+const isPermissionDialogVisible = ref(false);
+const isAddPermissionDialogVisible = ref(false);
+const permissionName = ref("");
+const totalPages = ref(1);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const colors: any = {
-  'support': { color: 'info', text: 'Support' },
-  'users': { color: 'success', text: 'Users' },
-  'manager': { color: 'warning', text: 'Manager' },
-  'administrator': { color: 'primary', text: 'Administrator' },
-  'restricted-user': { color: 'error', text: 'Restricted User' },
-}
+  support: { color: "info", text: "Support" },
+  users: { color: "success", text: "Users" },
+  manager: { color: "warning", text: "Manager" },
+  administrator: { color: "primary", text: "Administrator" },
+  "restricted-user": { color: "error", text: "Restricted User" },
+};
 
 const fetchPermissions = () => {
-  axios.get('/apps/permissions/data', {
-    params: {
-      q: search.value,
-      options: options.value,
-    },
-  }).then(response => {
-    permissions.value = response.data.permissions
-    totalPermissions.value = response.data.totalPermissions
-    totalPages.value = response.data.totalPages
-  }).catch(error => {
-    console.log(error)
-  })
-}
+  axios
+    .get("/apps/permissions/data", {
+      params: {
+        q: search.value,
+        options: options.value,
+      },
+    })
+    .then((response) => {
+      permissions.value = response.data.permissions;
+      totalPermissions.value = response.data.totalPermissions;
+      totalPages.value = response.data.totalPages;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
-onMounted(fetchPermissions)
+onMounted(fetchPermissions);
 
-watchEffect(fetchPermissions)
+watchEffect(fetchPermissions);
 
 const editPermission = (name: string) => {
-  isPermissionDialogVisible.value = true
-  permissionName.value = name
-}
+  isPermissionDialogVisible.value = true;
+  permissionName.value = name;
+};
 </script>
 
 <template>
   <VRow>
     <VCol cols="12">
-      <h5 class="text-h4 mb-6">
-        Permissions List
-      </h5>
+      <h5 class="text-h4 mb-6">Permissions List</h5>
       <p class="mb-0">
-        Each category (Basic, Professional, and Business) includes the four predefined roles shown below.
+        Each category (Basic, Professional, and Business) includes the four
+        predefined roles shown below.
       </p>
     </VCol>
 
     <VCol cols="12">
       <VCard>
-        <VCardText class="d-flex align-center justify-space-between flex-wrap gap-4">
+        <VCardText
+          class="d-flex align-center justify-space-between flex-wrap gap-4"
+        >
           <AppSelect
             :model-value="options.itemsPerPage"
             :items="[
@@ -87,7 +91,7 @@ const editPermission = (name: string) => {
               { value: 100, title: '100' },
               { value: -1, title: 'All' },
             ]"
-            style="width: 5rem;"
+            style="width: 5rem"
             @update:model-value="options.itemsPerPage = parseInt($event, 10)"
           />
 
@@ -96,7 +100,7 @@ const editPermission = (name: string) => {
               v-model="search"
               placeholder="Search"
               density="compact"
-              style="width: 12.5rem;"
+              style="width: 12.5rem"
             />
             <VBtn
               density="default"
@@ -137,15 +141,14 @@ const editPermission = (name: string) => {
           <template #bottom>
             <VDivider />
 
-            <div class="d-flex align-center justify-space-between flex-wrap gap-3 pa-5 pt-3">
+            <div
+              class="d-flex align-center justify-space-between flex-wrap gap-3 pa-5 pt-3"
+            >
               <p class="text-sm text-medium-emphasis mb-0">
                 {{ paginationMeta(options, totalPermissions) }}
               </p>
 
-              <VPagination
-                v-model="options.page"
-                :length="totalPages"
-              />
+              <VPagination v-model="options.page" :length="totalPages" />
             </div>
           </template>
 
@@ -162,21 +165,10 @@ const editPermission = (name: string) => {
               variant="text"
               @click="editPermission(item.raw.name)"
             >
-              <VIcon
-                size="22"
-                icon="tabler-edit"
-              />
+              <VIcon size="22" icon="tabler-edit" />
             </VBtn>
-            <VBtn
-              icon
-              size="small"
-              variant="text"
-              color="medium-emphasis"
-            >
-              <VIcon
-                size="22"
-                icon="tabler-trash"
-              />
+            <VBtn icon size="small" variant="text" color="medium-emphasis">
+              <VIcon size="22" icon="tabler-trash" />
             </VBtn>
           </template>
         </VDataTableServer>
@@ -186,7 +178,9 @@ const editPermission = (name: string) => {
         v-model:isDialogVisible="isPermissionDialogVisible"
         v-model:permission-name="permissionName"
       />
-      <AddEditPermissionDialog v-model:isDialogVisible="isAddPermissionDialogVisible" />
+      <AddEditPermissionDialog
+        v-model:isDialogVisible="isAddPermissionDialogVisible"
+      />
     </VCol>
   </VRow>
 </template>

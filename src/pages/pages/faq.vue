@@ -1,42 +1,45 @@
 <script setup lang="ts">
-import type { FaqCategory } from '@/@fake-db/types'
-import axios from '@axios'
-import sittingGirlWithLaptop from '@images/illustrations/sitting-girl-with-laptop.png'
+import type { FaqCategory } from "@/@fake-db/types";
+import axios from "@axios";
+import sittingGirlWithLaptop from "@images/illustrations/sitting-girl-with-laptop.png";
 
-const faqSearchQuery = ref('')
+const faqSearchQuery = ref("");
 
-const faqs = ref<FaqCategory[]>([])
+const faqs = ref<FaqCategory[]>([]);
 
 const fetchFaqs = () => {
-  return axios.get('/pages/faqs', {
-    params: {
-      q: faqSearchQuery.value,
-    },
-  }).then(response => {
-    faqs.value = response.data
-  }).catch(error => {
-    console.error(error)
-  })
-}
+  return axios
+    .get("/pages/faqs", {
+      params: {
+        q: faqSearchQuery.value,
+      },
+    })
+    .then((response) => {
+      faqs.value = response.data;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
 
-const activeTab = ref('Payment')
-const activeQuestion = ref(0)
+const activeTab = ref("Payment");
+const activeQuestion = ref(0);
 
-watch(activeTab, () => activeQuestion.value = 0)
-watch(faqSearchQuery, fetchFaqs, { immediate: true })
+watch(activeTab, () => (activeQuestion.value = 0));
+watch(faqSearchQuery, fetchFaqs, { immediate: true });
 
 const contactUs = [
   {
-    icon: 'tabler-phone',
-    via: '+ (810) 2548 2568',
-    tagLine: 'We are always happy to help!',
+    icon: "tabler-phone",
+    via: "+ (810) 2548 2568",
+    tagLine: "We are always happy to help!",
   },
   {
-    icon: 'tabler-mail',
-    via: 'hello@help.com',
-    tagLine: 'Best way to get answer faster!',
+    icon: "tabler-mail",
+    via: "hello@help.com",
+    tagLine: "Best way to get answer faster!",
   },
-]
+];
 </script>
 
 <template>
@@ -71,11 +74,7 @@ const contactUs = [
             :value="faq.faqTitle"
             class="text-high-emphasis"
           >
-            <VIcon
-              :icon="faq.faqIcon"
-              :size="20"
-              start
-            />
+            <VIcon :icon="faq.faqIcon" :size="20" start />
             {{ faq.faqTitle }}
           </VTab>
         </VTabs>
@@ -86,11 +85,7 @@ const contactUs = [
         />
       </VCol>
 
-      <VCol
-        cols="12"
-        sm="8"
-        lg="9"
-      >
+      <VCol cols="12" sm="8" lg="9">
         <!-- 👉 Windows -->
         <VWindow
           v-model="activeTab"
@@ -109,10 +104,7 @@ const contactUs = [
                 class="me-3"
                 size="large"
               >
-                <VIcon
-                  :size="32"
-                  :icon="faq.faqIcon"
-                />
+                <VIcon :size="32" :icon="faq.faqIcon" />
               </VAvatar>
 
               <div>
@@ -123,10 +115,7 @@ const contactUs = [
               </div>
             </div>
 
-            <VExpansionPanels
-              v-model="activeQuestion"
-              multiple
-            >
+            <VExpansionPanels v-model="activeQuestion" multiple>
               <VExpansionPanel
                 v-for="item in faq.faqs"
                 :key="item.question"
@@ -143,54 +132,27 @@ const contactUs = [
         cols="12"
         :class="!faqs.length ? 'd-flex justify-center align-center' : ''"
       >
-        <VIcon
-          icon="tabler-help"
-          start
-          size="20"
-        />
-        <span class="text-base font-weight-medium">
-          No Results Found!!
-        </span>
+        <VIcon icon="tabler-help" start size="20" />
+        <span class="text-base font-weight-medium"> No Results Found!! </span>
       </VCol>
     </VRow>
 
     <!-- 👉 You still have a question? -->
     <div class="text-center pt-15">
-      <VChip
-        label
-        color="primary"
-        size="small"
-        class="mb-2"
-      >
-        QUESTION?
-      </VChip>
+      <VChip label color="primary" size="small" class="mb-2"> QUESTION? </VChip>
 
-      <h5 class="text-h5 mb-2">
-        You still have a question?
-      </h5>
+      <h5 class="text-h5 mb-2">You still have a question?</h5>
       <p>
-        If you can't find question in our FAQ, you can contact us. We'll answer you shortly!
+        If you can't find question in our FAQ, you can contact us. We'll answer
+        you shortly!
       </p>
 
       <!-- contacts -->
       <VRow class="mt-4">
-        <VCol
-          v-for="contact in contactUs"
-          :key="contact.icon"
-          sm="6"
-          cols="12"
-        >
-          <VCard
-            flat
-            class="bg-var-theme-background"
-          >
+        <VCol v-for="contact in contactUs" :key="contact.icon" sm="6" cols="12">
+          <VCard flat class="bg-var-theme-background">
             <VCardText>
-              <VAvatar
-                rounded
-                color="primary"
-                variant="tonal"
-                class="me-3"
-              >
+              <VAvatar rounded color="primary" variant="tonal" class="me-3">
                 <VIcon :icon="contact.icon" />
               </VAvatar>
             </VCardText>

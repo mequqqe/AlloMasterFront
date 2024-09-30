@@ -1,10 +1,7 @@
 <script setup lang="ts">
-const date = ref('')
+const date = ref("");
 </script>
 
 <template>
-  <AppDateTimePicker
-    v-model="date"
-    label="Default"
-  />
+  <AppDateTimePicker v-model="date" label="Default" />
 </template>

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useGenerateImageVariant } from '@core/composable/useGenerateImageVariant'
-import pages401 from '@images/pages/401.png'
-import miscMaskDark from '@images/pages/misc-mask-dark.png'
-import miscMaskLight from '@images/pages/misc-mask-light.png'
+import { useGenerateImageVariant } from "@core/composable/useGenerateImageVariant";
+import pages401 from "@images/pages/401.png";
+import miscMaskDark from "@images/pages/misc-mask-dark.png";
+import miscMaskLight from "@images/pages/misc-mask-light.png";
 
-const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
+const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark);
 </script>
 
 <template>
@@ -14,12 +14,7 @@ const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
       error-description="You do not have permission to view this page using the credentials that you have provided while login.
 Please contact your site administrator."
     />
-    <VBtn
-      to="/"
-      class="mb-12"
-    >
-      Back to Home
-    </VBtn>
+    <VBtn to="/" class="mb-12"> Back to Home </VBtn>
 
     <!-- 👉 Image -->
     <div class="misc-avatar w-100 text-center">
@@ -31,10 +26,7 @@ Please contact your site administrator."
       />
     </div>
 
-    <VImg
-      :src="authThemeMask"
-      class="misc-footer-img d-none d-md-block"
-    />
+    <VImg :src="authThemeMask" class="misc-footer-img d-none d-md-block" />
   </div>
 </template>
 

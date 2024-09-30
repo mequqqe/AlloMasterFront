@@ -1,74 +1,53 @@
 <script setup lang="ts">
-import * as demoCode from '@/views/demos/forms/tables/data-table/demoCodeDataTable'
+import * as demoCode from "@/views/demos/forms/tables/data-table/demoCodeDataTable";
 </script>
 
 <template>
   <VRow>
     <VCol cols="12">
       <!-- 👉 Basic -->
-      <AppCardCode
-        title="Basic"
-        :code="demoCode.basic"
-      >
+      <AppCardCode title="Basic" :code="demoCode.basic">
         <DemoDataTableBasic />
       </AppCardCode>
     </VCol>
 
     <VCol>
       <!-- 👉 Dense  -->
-      <AppCardCode
-        title="Dense"
-        :code="demoCode.dense"
-      >
+      <AppCardCode title="Dense" :code="demoCode.dense">
         <DemoDataTableDense />
       </AppCardCode>
     </VCol>
 
     <!-- 👉 Table Cell Slot  -->
     <VCol cols="12">
-      <AppCardCode
-        title="Cell Slot"
-        :code="demoCode.cellSlot"
-      >
+      <AppCardCode title="Cell Slot" :code="demoCode.cellSlot">
         <DemoDataTableCellSlot />
       </AppCardCode>
     </VCol>
 
     <!-- 👉 Table Row selection  -->
     <VCol cols="12">
-      <AppCardCode
-        title="Row Selection"
-        :code="demoCode.rowSelection"
-      >
+      <AppCardCode title="Row Selection" :code="demoCode.rowSelection">
         <DemoDataTableRowSelection />
       </AppCardCode>
     </VCol>
 
     <!-- 👉 Fixed Header  -->
     <VCol cols="12">
-      <AppCardCode
-        title="Fixed Header"
-        :code="demoCode.fixedHeader"
-      >
+      <AppCardCode title="Fixed Header" :code="demoCode.fixedHeader">
         <DemoDataTableFixedHeader />
       </AppCardCode>
     </VCol>
 
     <!-- 👉 Expandable rows -->
     <VCol cols="12">
-      <AppCardCode
-        title="Expandable Rows"
-        :code="demoCode.expandableRows"
-      >
+      <AppCardCode title="Expandable Rows" :code="demoCode.expandableRows">
         <DemoDataTableExpandableRows />
       </AppCardCode>
     </VCol>
     <!-- 👉 Grouping Rows -->
     <VCol cols="12">
-      <AppCardCode
-        title="Grouping Rows"
-        :code="demoCode.groupingRows"
-      >
+      <AppCardCode title="Grouping Rows" :code="demoCode.groupingRows">
         <DemoDataTableGroupingRows />
       </AppCardCode>
     </VCol>
@@ -95,10 +74,7 @@ import * as demoCode from '@/views/demos/forms/tables/data-table/demoCodeDataTab
 
     <!-- 👉 Kitchen Sink  -->
     <VCol cols="12">
-      <AppCardCode
-        title="Kitchen Sink"
-        :code="demoCode.kitchenSink"
-      >
+      <AppCardCode title="Kitchen Sink" :code="demoCode.kitchenSink">
         <DemoDataTableKitchenSink />
       </AppCardCode>
     </VCol>

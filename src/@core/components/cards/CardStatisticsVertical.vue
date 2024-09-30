@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import VueApexCharts from 'vue3-apexcharts'
+import VueApexCharts from "vue3-apexcharts";
 
 interface Props {
-  title: string
-  color?: string
-  icon: string
-  stats: string
-  height: number
-  series: unknown[]
-  chartOptions: unknown
+  title: string;
+  color?: string;
+  icon: string;
+  stats: string;
+  height: number;
+  series: unknown[];
+  chartOptions: unknown;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  color: 'primary',
-})
+  color: "primary",
+});
 </script>
 
 <template>
