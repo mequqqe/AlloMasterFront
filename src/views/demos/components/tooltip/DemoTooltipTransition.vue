@@ -3,11 +3,7 @@
     <!-- Scale transition -->
     <VBtn>
       scale transition
-      <VTooltip
-        location="top"
-        transition="scale-transition"
-        activator="parent"
-      >
+      <VTooltip location="top" transition="scale-transition" activator="parent">
         <span>Scale Transition</span>
       </VTooltip>
     </VBtn>

@@ -1,12 +1,14 @@
 <script setup lang="ts">
-const items = ['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']
+const items = [
+  "California",
+  "Colorado",
+  "Florida",
+  "Georgia",
+  "Texas",
+  "Wyoming",
+];
 </script>
 
 <template>
-  <AppAutocomplete
-    label="States"
-    :items="items"
-    chips
-    multiple
-  />
+  <AppAutocomplete label="States" :items="items" chips multiple />
 </template>

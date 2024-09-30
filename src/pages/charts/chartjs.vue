@@ -1,44 +1,41 @@
 <script setup lang="ts">
-import ChartJsBarChart from '@/views/charts/chartjs/ChartJsBarChart.vue'
-import ChartJsBubbleChart from '@/views/charts/chartjs/ChartJsBubbleChart.vue'
-import ChartJsHorizontalBarChart from '@/views/charts/chartjs/ChartJsHorizontalBarChart.vue'
-import ChartJsLineAreaChart from '@/views/charts/chartjs/ChartJsLineAreaChart.vue'
-import ChartJsLineChart from '@/views/charts/chartjs/ChartJsLineChart.vue'
-import ChartJsPolarAreaChart from '@/views/charts/chartjs/ChartJsPolarAreaChart.vue'
-import ChartJsRadarChart from '@/views/charts/chartjs/ChartJsRadarChart.vue'
-import ChartJsScatterChart from '@/views/charts/chartjs/ChartJsScatterChart.vue'
-import type { ChartJsCustomColors } from '@/views/charts/chartjs/types'
+import ChartJsBarChart from "@/views/charts/chartjs/ChartJsBarChart.vue";
+import ChartJsBubbleChart from "@/views/charts/chartjs/ChartJsBubbleChart.vue";
+import ChartJsHorizontalBarChart from "@/views/charts/chartjs/ChartJsHorizontalBarChart.vue";
+import ChartJsLineAreaChart from "@/views/charts/chartjs/ChartJsLineAreaChart.vue";
+import ChartJsLineChart from "@/views/charts/chartjs/ChartJsLineChart.vue";
+import ChartJsPolarAreaChart from "@/views/charts/chartjs/ChartJsPolarAreaChart.vue";
+import ChartJsRadarChart from "@/views/charts/chartjs/ChartJsRadarChart.vue";
+import ChartJsScatterChart from "@/views/charts/chartjs/ChartJsScatterChart.vue";
+import type { ChartJsCustomColors } from "@/views/charts/chartjs/types";
 
 const chartJsCustomColors: ChartJsCustomColors = {
-  white: '#fff',
-  yellow: '#ffe802',
-  primary: '#836af9',
-  areaChartBlue: '#2c9aff',
-  barChartYellow: '#ffcf5c',
-  polarChartGrey: '#4f5d70',
-  polarChartInfo: '#299aff',
-  lineChartYellow: '#d4e157',
-  polarChartGreen: '#28dac6',
-  lineChartPrimary: '#9e69fd',
-  lineChartWarning: '#ff9800',
-  horizontalBarInfo: '#26c6da',
-  polarChartWarning: '#ff8131',
-  scatterChartGreen: '#28c76f',
-  warningShade: '#ffbd1f',
-  areaChartBlueLight: '#84d0ff',
-  areaChartGreyLight: '#edf1f4',
-  scatterChartWarning: '#ff9f43',
-}
+  white: "#fff",
+  yellow: "#ffe802",
+  primary: "#836af9",
+  areaChartBlue: "#2c9aff",
+  barChartYellow: "#ffcf5c",
+  polarChartGrey: "#4f5d70",
+  polarChartInfo: "#299aff",
+  lineChartYellow: "#d4e157",
+  polarChartGreen: "#28dac6",
+  lineChartPrimary: "#9e69fd",
+  lineChartWarning: "#ff9800",
+  horizontalBarInfo: "#26c6da",
+  polarChartWarning: "#ff8131",
+  scatterChartGreen: "#28c76f",
+  warningShade: "#ffbd1f",
+  areaChartBlueLight: "#84d0ff",
+  areaChartGreyLight: "#edf1f4",
+  scatterChartWarning: "#ff9f43",
+};
 </script>
 
 <template>
   <VRow id="chartjs-wrapper">
     <!-- 👉 Statistics Line Chart  -->
     <VCol cols="12">
-      <VCard
-        title="Statistics"
-        subtitle="Commercial networks and enterprises"
-      >
+      <VCard title="Statistics" subtitle="Commercial networks and enterprises">
         <VCardText>
           <ChartJsLineChart :colors="chartJsCustomColors" />
         </VCardText>
@@ -46,10 +43,7 @@ const chartJsCustomColors: ChartJsCustomColors = {
     </VCol>
 
     <!-- 👉 Radar Chart -->
-    <VCol
-      cols="12"
-      md="6"
-    >
+    <VCol cols="12" md="6">
       <VCard title="Radar Chart">
         <VCardText>
           <ChartJsRadarChart />
@@ -58,10 +52,7 @@ const chartJsCustomColors: ChartJsCustomColors = {
     </VCol>
 
     <!-- 👉 Average Skills Polar Area Chart -->
-    <VCol
-      cols="12"
-      md="6"
-    >
+    <VCol cols="12" md="6">
       <VCard title="Average Skills">
         <VCardText>
           <ChartJsPolarAreaChart :colors="chartJsCustomColors" />
@@ -89,11 +80,7 @@ const chartJsCustomColors: ChartJsCustomColors = {
           <VCardTitle>New Product Data</VCardTitle>
 
           <template #append>
-            <VBtnToggle
-              color="primary"
-              variant="outlined"
-              density="compact"
-            >
+            <VBtnToggle color="primary" variant="outlined" density="compact">
               <VBtn>Daily</VBtn>
               <VBtn>Monthly</VBtn>
               <VBtn>Yearly</VBtn>
@@ -111,9 +98,7 @@ const chartJsCustomColors: ChartJsCustomColors = {
     <VCol cols="12">
       <VCard>
         <VCardItem class="d-flex flex-wrap justify-space-between gap-4">
-          <VCardTitle>
-            Data Science
-          </VCardTitle>
+          <VCardTitle> Data Science </VCardTitle>
 
           <template #append>
             <div class="date-picker-wrapper">
@@ -134,10 +119,7 @@ const chartJsCustomColors: ChartJsCustomColors = {
     </VCol>
 
     <!-- 👉 Latest Statistics -->
-    <VCol
-      cols="12"
-      md="6"
-    >
+    <VCol cols="12" md="6">
       <VCard>
         <VCardItem class="d-flex flex-wrap justify-space-between gap-4">
           <VCardTitle>Latest Statistics</VCardTitle>
@@ -161,10 +143,7 @@ const chartJsCustomColors: ChartJsCustomColors = {
     </VCol>
 
     <!-- 👉 Balance Horizontal Bar Chart -->
-    <VCol
-      cols="12"
-      md="6"
-    >
+    <VCol cols="12" md="6">
       <VCard>
         <VCardItem class="d-flex flex-wrap justify-space-between gap-4">
           <VCardTitle>Balance</VCardTitle>

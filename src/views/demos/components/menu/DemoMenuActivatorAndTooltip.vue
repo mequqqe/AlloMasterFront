@@ -1,7 +1,11 @@
 <script lang="ts" setup>
-import { mergeProps } from 'vue'
+import { mergeProps } from "vue";
 
-const items = [{ title: 'Option 1', value: 'Option 1' }, { title: 'Option 2', value: 'Option 2' }, { title: 'Option 3', value: 'Option 3' }]
+const items = [
+  { title: "Option 1", value: "Option 1" },
+  { title: "Option 2", value: "Option 2" },
+  { title: "Option 3", value: "Option 3" },
+];
 </script>
 
 <template>

@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import VueApexCharts from 'vue3-apexcharts'
-import { useTheme } from 'vuetify'
-import { hexToRgb } from '@layouts/utils'
+import VueApexCharts from "vue3-apexcharts";
+import { useTheme } from "vuetify";
+import { hexToRgb } from "@layouts/utils";
 
-const vuetifyTheme = useTheme()
+const vuetifyTheme = useTheme();
 
-const series = [85]
+const series = [85];
 
 const chartOptions = computed(() => {
-  const currentTheme = vuetifyTheme.current.value.colors
-  const variableTheme = vuetifyTheme.current.value.variables
+  const currentTheme = vuetifyTheme.current.value.colors;
+  const variableTheme = vuetifyTheme.current.value.variables;
 
   return {
-    labels: ['Completed Task'],
+    labels: ["Completed Task"],
     chart: {
-      type: 'radialBar',
+      type: "radialBar",
     },
     plotOptions: {
       radialBar: {
@@ -22,35 +22,35 @@ const chartOptions = computed(() => {
         startAngle: -140,
         endAngle: 130,
         hollow: {
-          size: '65%',
+          size: "65%",
         },
         track: {
           background: currentTheme.surface,
-          strokeWidth: '100%',
+          strokeWidth: "100%",
         },
         dataLabels: {
           name: {
             offsetY: -20,
-            color: `rgba(${hexToRgb(currentTheme['on-surface'])},${variableTheme['disabled-opacity']})`,
-            fontSize: '13px',
-            fontWeight: '400',
-            fontFamily: 'Public Sans',
+            color: `rgba(${hexToRgb(currentTheme["on-surface"])},${variableTheme["disabled-opacity"]})`,
+            fontSize: "13px",
+            fontWeight: "400",
+            fontFamily: "Public Sans",
           },
           value: {
             offsetY: 10,
-            color: `rgba(${hexToRgb(currentTheme['on-background'])},${variableTheme['high-emphasis-opacity']})`,
-            fontSize: '38px',
-            fontWeight: '400',
-            fontFamily: 'Public Sans',
+            color: `rgba(${hexToRgb(currentTheme["on-background"])},${variableTheme["high-emphasis-opacity"]})`,
+            fontSize: "38px",
+            fontWeight: "400",
+            fontFamily: "Public Sans",
           },
         },
       },
     },
     colors: [currentTheme.primary],
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
-        shade: 'dark',
+        shade: "dark",
         shadeIntensity: 0.5,
         gradientToColors: [currentTheme.primary],
         inverseColors: true,
@@ -71,12 +71,12 @@ const chartOptions = computed(() => {
     states: {
       hover: {
         filter: {
-          type: 'none',
+          type: "none",
         },
       },
       active: {
         filter: {
-          type: 'none',
+          type: "none",
         },
       },
     },
@@ -90,35 +90,35 @@ const chartOptions = computed(() => {
         },
       },
     ],
-  }
-})
+  };
+});
 
 const supportTicket = [
   {
-    avatarColor: 'primary',
-    avatarIcon: 'tabler-ticket',
-    title: 'New Tickets',
-    subtitle: '142',
+    avatarColor: "primary",
+    avatarIcon: "tabler-ticket",
+    title: "New Tickets",
+    subtitle: "142",
   },
   {
-    avatarColor: 'info',
-    avatarIcon: 'tabler-circle-check',
-    title: 'Open Tickets',
-    subtitle: '28',
+    avatarColor: "info",
+    avatarIcon: "tabler-circle-check",
+    title: "Open Tickets",
+    subtitle: "28",
   },
 
   {
-    avatarColor: 'warning',
-    avatarIcon: 'tabler-clock',
-    title: 'Response Time',
-    subtitle: '1 Day',
+    avatarColor: "warning",
+    avatarIcon: "tabler-clock",
+    title: "Response Time",
+    subtitle: "1 Day",
   },
-]
+];
 
 const moreList = [
-  { title: 'View More', value: 'View More' },
-  { title: 'Delete', value: 'Delete' },
-]
+  { title: "View More", value: "View More" },
+  { title: "Delete", value: "Delete" },
+];
 </script>
 
 <template>
@@ -136,18 +136,10 @@ const moreList = [
 
     <VCardText>
       <VRow>
-        <VCol
-          cols="12"
-          lg="4"
-          md="4"
-        >
+        <VCol cols="12" lg="4" md="4">
           <div class="mt-lg-7 mt-lg-2 mb-lg-9 mb-4">
-            <h4 class="text-h1">
-              164
-            </h4>
-            <p class="text-sm mb-0">
-              Total Tickets
-            </p>
+            <h4 class="text-h1">164</h4>
+            <p class="text-sm mb-0">Total Tickets</p>
           </div>
 
           <VList class="card-list">
@@ -172,11 +164,7 @@ const moreList = [
             </VListItem>
           </VList>
         </VCol>
-        <VCol
-          cols="12"
-          lg="8"
-          md="8"
-        >
+        <VCol cols="12" lg="8" md="8">
           <VueApexCharts
             :options="chartOptions"
             :series="series"

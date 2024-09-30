@@ -1,6 +1,3 @@
 <template>
-  <AppTextField
-    label="Regular"
-    single-line
-  />
+  <AppTextField label="Regular" single-line />
 </template>

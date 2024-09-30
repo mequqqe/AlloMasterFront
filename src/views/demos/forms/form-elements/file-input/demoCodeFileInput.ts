@@ -13,7 +13,7 @@ export const accept = {
   />
 </template>
 `,
-}
+};
 
 export const basic = {
   ts: `<template>
@@ -24,7 +24,7 @@ export const basic = {
   <VFileInput label="File input" />
 </template>
 `,
-}
+};
 
 export const chips = {
   ts: `<template>
@@ -41,7 +41,7 @@ export const chips = {
   />
 </template>
 `,
-}
+};
 
 export const counter = {
   ts: `<template>
@@ -62,7 +62,7 @@ export const counter = {
   />
 </template>
 `,
-}
+};
 
 export const density = {
   ts: `<template>
@@ -79,7 +79,7 @@ export const density = {
   />
 </template>
 `,
-}
+};
 
 export const loading = {
   ts: `<script setup lang="ts">
@@ -118,7 +118,7 @@ watch(file, () => {
   />
 </template>
 `,
-}
+};
 
 export const multiple = {
   ts: `<template>
@@ -135,7 +135,7 @@ export const multiple = {
   />
 </template>
 `,
-}
+};
 
 export const prependIcon = {
   ts: `<template>
@@ -152,7 +152,7 @@ export const prependIcon = {
   />
 </template>
 `,
-}
+};
 
 export const selectionSlot = {
   ts: `<script lang="ts" setup>
@@ -217,7 +217,7 @@ const files = ref([])
   </VFileInput>
 </template>
 `,
-}
+};
 
 export const showSize = {
   ts: `<template>
@@ -234,7 +234,7 @@ export const showSize = {
   />
 </template>
 `,
-}
+};
 
 export const validation = {
   ts: `<script lang="ts" setup>
@@ -267,7 +267,7 @@ const rules = [fileList => !fileList || !fileList.length || fileList[0].size < 1
   />
 </template>
 `,
-}
+};
 
 export const variant = {
   ts: `<template>
@@ -372,4 +372,4 @@ export const variant = {
   </VRow>
 </template>
 `,
-}
+};

@@ -21,7 +21,7 @@ const currentPage = ref(1)
   />
 </template>
 `,
-}
+};
 
 export const circle = {
   ts: `<script lang="ts" setup>
@@ -48,7 +48,7 @@ const currentPage = ref(1)
   />
 </template>
 `,
-}
+};
 
 export const color = {
   ts: `<script setup lang="ts">
@@ -103,7 +103,7 @@ const pageInfo = ref(3)
   </div>
 </template>
 `,
-}
+};
 
 export const disabled = {
   ts: `<template>
@@ -120,7 +120,7 @@ export const disabled = {
   />
 </template>
 `,
-}
+};
 
 export const icons = {
   ts: `<script lang="ts" setup>
@@ -149,7 +149,7 @@ const currentPage = ref(1)
   />
 </template>
 `,
-}
+};
 
 export const length = {
   ts: `<script lang="ts" setup>
@@ -174,7 +174,7 @@ const currentPage = ref(1)
   />
 </template>
 `,
-}
+};
 
 export const outline = {
   ts: `<script setup lang="ts">
@@ -201,7 +201,7 @@ const currentPage = ref(1)
   />
 </template>
 `,
-}
+};
 
 export const outlineCircle = {
   ts: `<script setup lang="ts">
@@ -230,7 +230,7 @@ const currentPage = ref(1)
   />
 </template>
 `,
-}
+};
 
 export const size = {
   ts: `<script setup lang="ts">
@@ -285,7 +285,7 @@ const largePagination = ref(3)
   </div>
 </template>
 `,
-}
+};
 
 export const totalVisible = {
   ts: `<script lang="ts" setup>
@@ -312,4 +312,4 @@ const currentPage = ref(1)
   />
 </template>
 `,
-}
+};

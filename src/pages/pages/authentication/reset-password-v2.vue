@@ -1,37 +1,32 @@
 <script setup lang="ts">
-import { useGenerateImageVariant } from '@core/composable/useGenerateImageVariant'
-import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
-import { themeConfig } from '@themeConfig'
+import { useGenerateImageVariant } from "@core/composable/useGenerateImageVariant";
+import { VNodeRenderer } from "@layouts/components/VNodeRenderer";
+import { themeConfig } from "@themeConfig";
 
-import authV2ResetPasswordIllustrationDark from '@images/pages/auth-v2-reset-password-illustration-dark.png'
-import authV2ResetPasswordIllustrationLight from '@images/pages/auth-v2-reset-password-illustration-light.png'
-import authV2MaskDark from '@images/pages/misc-mask-dark.png'
-import authV2MaskLight from '@images/pages/misc-mask-light.png'
+import authV2ResetPasswordIllustrationDark from "@images/pages/auth-v2-reset-password-illustration-dark.png";
+import authV2ResetPasswordIllustrationLight from "@images/pages/auth-v2-reset-password-illustration-light.png";
+import authV2MaskDark from "@images/pages/misc-mask-dark.png";
+import authV2MaskLight from "@images/pages/misc-mask-light.png";
 
 const form = ref({
-  newPassword: '',
-  confirmPassword: '',
-})
+  newPassword: "",
+  confirmPassword: "",
+});
 
-const authThemeImg = useGenerateImageVariant(authV2ResetPasswordIllustrationLight,
+const authThemeImg = useGenerateImageVariant(
+  authV2ResetPasswordIllustrationLight,
   authV2ResetPasswordIllustrationDark,
-)
+);
 
-const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
+const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark);
 
-const isPasswordVisible = ref(false)
-const isConfirmPasswordVisible = ref(false)
+const isPasswordVisible = ref(false);
+const isConfirmPasswordVisible = ref(false);
 </script>
 
 <template>
-  <VRow
-    no-gutters
-    class="auth-wrapper bg-surface"
-  >
-    <VCol
-      md="8"
-      class="d-none d-md-flex"
-    >
+  <VRow no-gutters class="auth-wrapper bg-surface">
+    <VCol md="8" class="d-none d-md-flex">
       <div class="position-relative bg-background rounded-lg w-100 ma-8 me-0">
         <div class="d-flex align-center justify-center w-100 h-100">
           <VImg
@@ -41,10 +36,7 @@ const isConfirmPasswordVisible = ref(false)
           />
         </div>
 
-        <VImg
-          class="auth-footer-mask"
-          :src="authThemeMask"
-        />
+        <VImg class="auth-footer-mask" :src="authThemeMask" />
       </div>
     </VCol>
 
@@ -53,20 +45,11 @@ const isConfirmPasswordVisible = ref(false)
       md="4"
       class="auth-card-v2 d-flex align-center justify-center"
     >
-      <VCard
-        flat
-        :max-width="500"
-        class="mt-12 mt-sm-0 pa-4"
-      >
+      <VCard flat :max-width="500" class="mt-12 mt-sm-0 pa-4">
         <VCardText>
-          <VNodeRenderer
-            :nodes="themeConfig.app.logo"
-            class="mb-6"
-          />
+          <VNodeRenderer :nodes="themeConfig.app.logo" class="mb-6" />
 
-          <h5 class="text-h5 mb-1">
-            Reset Password 🔒
-          </h5>
+          <h5 class="text-h5 mb-1">Reset Password 🔒</h5>
           <p class="mb-0">
             for <span class="font-weight-bold">john.doe@email.com</span>
           </p>
@@ -82,7 +65,9 @@ const isConfirmPasswordVisible = ref(false)
                   autofocus
                   label="New Password"
                   :type="isPasswordVisible ? 'text' : 'password'"
-                  :append-inner-icon="isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"
+                  :append-inner-icon="
+                    isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'
+                  "
                   @click:append-inner="isPasswordVisible = !isPasswordVisible"
                 />
               </VCol>
@@ -93,19 +78,18 @@ const isConfirmPasswordVisible = ref(false)
                   v-model="form.confirmPassword"
                   label="Confirm Password"
                   :type="isConfirmPasswordVisible ? 'text' : 'password'"
-                  :append-inner-icon="isConfirmPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"
-                  @click:append-inner="isConfirmPasswordVisible = !isConfirmPasswordVisible"
+                  :append-inner-icon="
+                    isConfirmPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'
+                  "
+                  @click:append-inner="
+                    isConfirmPasswordVisible = !isConfirmPasswordVisible
+                  "
                 />
               </VCol>
 
               <!-- Set password -->
               <VCol cols="12">
-                <VBtn
-                  block
-                  type="submit"
-                >
-                  Set New Password
-                </VBtn>
+                <VBtn block type="submit"> Set New Password </VBtn>
               </VCol>
 
               <!-- back to login -->
@@ -114,10 +98,7 @@ const isConfirmPasswordVisible = ref(false)
                   class="d-flex align-center justify-center"
                   :to="{ name: 'pages-authentication-login-v2' }"
                 >
-                  <VIcon
-                    icon="tabler-chevron-left"
-                    class="flip-in-rtl"
-                  />
+                  <VIcon icon="tabler-chevron-left" class="flip-in-rtl" />
                   <span>Back to login</span>
                 </RouterLink>
               </VCol>

@@ -1,11 +1,7 @@
 <script lang="ts" setup>
-const textareaValue = ref('Hello!')
+const textareaValue = ref("Hello!");
 </script>
 
 <template>
-  <AppTextarea
-    v-model="textareaValue"
-    counter
-    label="Text"
-  />
+  <AppTextarea v-model="textareaValue" counter label="Text" />
 </template>

@@ -1,30 +1,21 @@
 <script lang="ts" setup>
-import type { ProfileTab } from '@/@fake-db/types'
+import type { ProfileTab } from "@/@fake-db/types";
 
 interface Props {
-  data: ProfileTab
+  data: ProfileTab;
 }
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 </script>
 
 <template>
   <VCard class="mb-4">
     <VCardText>
-      <p class="text-xs">
-        ABOUT
-      </p>
+      <p class="text-xs">ABOUT</p>
 
       <VList class="card-list text-medium-emphasis">
-        <VListItem
-          v-for="item in props.data.about"
-          :key="item.property"
-        >
+        <VListItem v-for="item in props.data.about" :key="item.property">
           <template #prepend>
-            <VIcon
-              :icon="item.icon"
-              size="20"
-              class="me-2"
-            />
+            <VIcon :icon="item.icon" size="20" class="me-2" />
           </template>
           <VListItemTitle>
             <span class="font-weight-medium me-1">{{ item.property }}:</span>
@@ -33,21 +24,12 @@ const props = defineProps<Props>()
         </VListItem>
       </VList>
 
-      <p class="text-xs mt-5">
-        CONTACTS
-      </p>
+      <p class="text-xs mt-5">CONTACTS</p>
 
       <VList class="card-list text-medium-emphasis">
-        <VListItem
-          v-for="item in props.data.contacts"
-          :key="item.property"
-        >
+        <VListItem v-for="item in props.data.contacts" :key="item.property">
           <template #prepend>
-            <VIcon
-              :icon="item.icon"
-              size="20"
-              class="me-2"
-            />
+            <VIcon :icon="item.icon" size="20" class="me-2" />
           </template>
           <VListItemTitle>
             <span class="font-weight-medium me-1">{{ item.property }}:</span>
@@ -56,15 +38,10 @@ const props = defineProps<Props>()
         </VListItem>
       </VList>
 
-      <p class="text-xs mt-5">
-        TEAMS
-      </p>
+      <p class="text-xs mt-5">TEAMS</p>
 
       <VList class="card-list text-medium-emphasis">
-        <VListItem
-          v-for="item in props.data.teams"
-          :key="item.property"
-        >
+        <VListItem v-for="item in props.data.teams" :key="item.property">
           <template #prepend>
             <VIcon
               :icon="item.icon"
@@ -84,21 +61,12 @@ const props = defineProps<Props>()
 
   <VCard>
     <VCardText>
-      <p class="text-xs">
-        OVERVIEW
-      </p>
+      <p class="text-xs">OVERVIEW</p>
 
       <VList class="card-list text-medium-emphasis">
-        <VListItem
-          v-for="item in props.data.overview"
-          :key="item.property"
-        >
+        <VListItem v-for="item in props.data.overview" :key="item.property">
           <template #prepend>
-            <VIcon
-              :icon="item.icon"
-              size="20"
-              class="me-2"
-            />
+            <VIcon :icon="item.icon" size="20" class="me-2" />
           </template>
           <VListItemTitle>
             <span class="font-weight-medium me-1">{{ item.property }}:</span>

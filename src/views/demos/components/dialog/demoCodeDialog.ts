@@ -67,7 +67,7 @@ const isDialogVisible = ref(false)
   </VDialog>
 </template>
 `,
-}
+};
 
 export const form = {
   ts: `<script lang="ts" setup>
@@ -294,7 +294,7 @@ const interest = ref([])
   </VDialog>
 </template>
 `,
-}
+};
 
 export const fullscreen = {
   ts: `<script lang="ts" setup>
@@ -551,7 +551,7 @@ const isDialogVisible = ref(false)
 }
 </style>
 `,
-}
+};
 
 export const loader = {
   ts: `<script lang="ts" setup>
@@ -637,7 +637,7 @@ watch(isDialogVisible, value => {
   </VDialog>
 </template>
 `,
-}
+};
 
 export const nesting = {
   ts: `<script lang="ts" setup>
@@ -756,7 +756,7 @@ const isDialogTwoShow = ref(false)
   </VDialog>
 </template>
 `,
-}
+};
 
 export const overflowed = {
   ts: `<script lang="ts" setup>
@@ -863,7 +863,7 @@ const isDialogVisible = ref(false)
   </VDialog>
 </template>
 `,
-}
+};
 
 export const persistent = {
   ts: `<script lang="ts" setup>
@@ -950,7 +950,7 @@ const isDialogVisible = ref(false)
   </VDialog>
 </template>
 `,
-}
+};
 
 export const scrollable = {
   ts: `<script lang="ts" setup>
@@ -1163,4 +1163,4 @@ const isDialogVisible = ref(false)
   </VDialog>
 </template>
 `,
-}
+};

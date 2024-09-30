@@ -1,15 +1,20 @@
-import type { ActiveChat } from './useChat'
-import type { ChatContact, ChatContactWithChat, ChatMessage, ChatOut } from '@/@fake-db/types'
-import axios from '@axios'
+import type { ActiveChat } from "./useChat";
+import type {
+  ChatContact,
+  ChatContactWithChat,
+  ChatMessage,
+  ChatOut,
+} from "@/@fake-db/types";
+import axios from "@axios";
 
 interface State {
-  chatsContacts: ChatContactWithChat[]
-  contacts: ChatContact[]
-  profileUser: ChatContact | undefined
-  activeChat: ActiveChat
+  chatsContacts: ChatContactWithChat[];
+  contacts: ChatContact[];
+  profileUser: ChatContact | undefined;
+  activeChat: ActiveChat;
 }
 
-export const useChatStore = defineStore('chat', {
+export const useChatStore = defineStore("chat", {
   // ℹ️ arrow function recommended for full type inference
   state: (): State => ({
     contacts: [],
@@ -19,33 +24,36 @@ export const useChatStore = defineStore('chat', {
   }),
   actions: {
     async fetchChatsAndContacts(q: string) {
-      const { data } = await axios.get('/apps/chat/chats-and-contacts', {
+      const { data } = await axios.get("/apps/chat/chats-and-contacts", {
         params: { q },
-      })
+      });
 
-      const { chatsContacts, contacts, profileUser } = data
+      const { chatsContacts, contacts, profileUser } = data;
 
-      this.chatsContacts = chatsContacts
-      this.contacts = contacts
-      this.profileUser = profileUser
+      this.chatsContacts = chatsContacts;
+      this.contacts = contacts;
+      this.profileUser = profileUser;
     },
 
-    async getChat(userId: ChatContact['id']) {
-      const { data } = await axios.get(`/apps/chat/chats/${userId}`)
+    async getChat(userId: ChatContact["id"]) {
+      const { data } = await axios.get(`/apps/chat/chats/${userId}`);
 
-      this.activeChat = data
+      this.activeChat = data;
     },
 
-    async sendMsg(message: ChatMessage['message']) {
-      const senderId = this.profileUser?.id
-      const { data } = await axios.post(`/apps/chat/chats/${this.activeChat?.contact.id}`, { message, senderId })
+    async sendMsg(message: ChatMessage["message"]) {
+      const senderId = this.profileUser?.id;
+      const { data } = await axios.post(
+        `/apps/chat/chats/${this.activeChat?.contact.id}`,
+        { message, senderId },
+      );
 
-      const { msg, chat }: { msg: ChatMessage; chat: ChatOut } = data
+      const { msg, chat }: { msg: ChatMessage; chat: ChatOut } = data;
 
       // ? If it's not undefined => New chat is created (Contact is not in list of chats)
       if (chat !== undefined) {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const activeChat = this.activeChat!
+        const activeChat = this.activeChat!;
 
         this.chatsContacts.push({
           ...activeChat.contact,
@@ -55,7 +63,7 @@ export const useChatStore = defineStore('chat', {
             unseenMsgs: 0,
             messages: [msg],
           },
-        })
+        });
 
         if (this.activeChat) {
           this.activeChat.chat = {
@@ -63,22 +71,20 @@ export const useChatStore = defineStore('chat', {
             messages: [msg],
             unseenMsgs: 0,
             userId: this.activeChat?.contact.id,
-          }
+          };
         }
-      }
-      else {
-        this.activeChat?.chat?.messages.push(msg)
+      } else {
+        this.activeChat?.chat?.messages.push(msg);
       }
 
       // Set Last Message for active contact
-      const contact = this.chatsContacts.find(c => {
-        if (this.activeChat)
-          return c.id === this.activeChat.contact.id
+      const contact = this.chatsContacts.find((c) => {
+        if (this.activeChat) return c.id === this.activeChat.contact.id;
 
-        return false
-      }) as ChatContactWithChat
+        return false;
+      }) as ChatContactWithChat;
 
-      contact.chat.lastMessage = msg
+      contact.chat.lastMessage = msg;
     },
   },
-})
+});

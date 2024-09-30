@@ -1,57 +1,42 @@
 <script setup lang="ts">
-import type { DealDetails } from './types'
+import type { DealDetails } from "./types";
 
 const props = defineProps<{
-  formData: DealDetails
-}>()
+  formData: DealDetails;
+}>();
 
 const emit = defineEmits<{
-  (e: 'update:formData', value: DealDetails): void
-}>()
+  (e: "update:formData", value: DealDetails): void;
+}>();
 
-const formData = ref<DealDetails>(props.formData)
+const formData = ref<DealDetails>(props.formData);
 
 const offeredItems = [
-  'Apple iPhone 12 Pro Max (256GB)',
-  'Apple iPhone 12 Pro (512GB)',
-  'Apple iPhone 11 Pro Max (256GB)',
-  'Apple iPhone 11 (64GB)',
-  'Apple iPhone 12 Mini (256GB)',
-  'OnePlus Nord CE 56 (128GB)',
-]
+  "Apple iPhone 12 Pro Max (256GB)",
+  "Apple iPhone 12 Pro (512GB)",
+  "Apple iPhone 11 Pro Max (256GB)",
+  "Apple iPhone 11 (64GB)",
+  "Apple iPhone 12 Mini (256GB)",
+  "OnePlus Nord CE 56 (128GB)",
+];
 
 watch(formData, () => {
-  emit('update:formData', formData.value)
-})
+  emit("update:formData", formData.value);
+});
 </script>
 
 <template>
   <VForm>
     <VRow>
-      <VCol
-        cols="12"
-        sm="6"
-      >
-        <AppTextField
-          v-model="formData.title"
-          label="Deal Title"
-        />
+      <VCol cols="12" sm="6">
+        <AppTextField v-model="formData.title" label="Deal Title" />
       </VCol>
 
-      <VCol
-        cols="12"
-        sm
-      >
-        <AppTextField
-          v-model="formData.code"
-          label="Deal Code"
-        />
+      <VCol cols="12" sm>
+        <AppTextField v-model="formData.code" label="Deal Code" />
       </VCol>
 
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <AppTextarea
           v-model="formData.description"
           label="Deal Description"
@@ -60,10 +45,7 @@ watch(formData, () => {
         />
       </VCol>
 
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <VRow>
           <VCol cols="12">
             <AppSelect
@@ -79,16 +61,16 @@ watch(formData, () => {
             <AppSelect
               v-model="formData.cartCondition"
               label="Cart Condition"
-              :items="['Cart must contain all selected Downloads', 'Cart needs one or more of the selected Downloads']"
+              :items="[
+                'Cart must contain all selected Downloads',
+                'Cart needs one or more of the selected Downloads',
+              ]"
             />
           </VCol>
         </VRow>
       </VCol>
 
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <AppDateTimePicker
           v-model="formData.dealDuration"
           label="Deal Duration"
@@ -96,13 +78,8 @@ watch(formData, () => {
         />
       </VCol>
 
-      <VCol
-        cols="12"
-        sm="6"
-      >
-        <h6 class="text-sm font-weight-medium">
-          Notify Users
-        </h6>
+      <VCol cols="12" sm="6">
+        <h6 class="text-sm font-weight-medium">Notify Users</h6>
 
         <div class="d-flex align-center flex-wrap gap-x-3">
           <VCheckbox

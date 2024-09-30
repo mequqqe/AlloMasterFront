@@ -7,7 +7,7 @@ export const basic = {
   <AppTextField label="Regular" />
 </template>
 `,
-}
+};
 
 export const clearable = {
   ts: `<template>
@@ -24,7 +24,7 @@ export const clearable = {
   />
 </template>
 `,
-}
+};
 
 export const counter = {
   ts: `<script lang="ts" setup>
@@ -89,7 +89,7 @@ const rules = [v => v.length <= 25 || 'Max 25 characters']
   </VRow>
 </template>
 `,
-}
+};
 
 export const customColors = {
   ts: `<template>
@@ -106,7 +106,7 @@ export const customColors = {
   />
 </template>
 `,
-}
+};
 
 export const density = {
   ts: `<template>
@@ -123,7 +123,7 @@ export const density = {
   />
 </template>
 `,
-}
+};
 
 export const iconEvents = {
   ts: `<script lang="ts" setup>
@@ -204,7 +204,7 @@ const sendMessage = () => {
   />
 </template>
 `,
-}
+};
 
 export const iconSlots = {
   ts: `<script lang="ts" setup>
@@ -402,7 +402,7 @@ const clickMe = () => {
 }
 </style>
 `,
-}
+};
 
 export const icons = {
   ts: `<template>
@@ -469,7 +469,7 @@ export const icons = {
   </VRow>
 </template>
 `,
-}
+};
 
 export const labelSlot = {
   ts: `<template>
@@ -490,7 +490,7 @@ export const labelSlot = {
   </AppTextField>
 </template>
 `,
-}
+};
 
 export const passwordInput = {
   ts: `<script lang="ts" setup>
@@ -591,7 +591,7 @@ const rules = {
   </VRow>
 </template>
 `,
-}
+};
 
 export const prefixesAndSuffixes = {
   ts: `<script setup lang="ts">
@@ -686,7 +686,7 @@ const time = ref('04:56')
   </VRow>
 </template>
 `,
-}
+};
 
 export const singleLine = {
   ts: `<template>
@@ -703,7 +703,7 @@ export const singleLine = {
   />
 </template>
 `,
-}
+};
 
 export const state = {
   ts: `<template>
@@ -742,7 +742,7 @@ export const state = {
   </VRow>
 </template>
 `,
-}
+};
 
 export const validation = {
   ts: `<script lang="ts" setup>
@@ -780,7 +780,7 @@ const email = ref('')
   </VForm>
 </template>
 `,
-}
+};
 
 export const variant = {
   ts: `<template>
@@ -885,4 +885,4 @@ export const variant = {
   </VRow>
 </template>
 `,
-}
+};

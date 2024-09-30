@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-const tRefInstagramBadge = ref()
-const tRefTwitterBadge = ref()
-const tRefWhatsappBadge = ref()
+const tRefInstagramBadge = ref();
+const tRefTwitterBadge = ref();
+const tRefWhatsappBadge = ref();
 
-const showTwitterBadgeOnHover = useElementHover(tRefTwitterBadge)
-const showInstagramBadgeOnHover = useElementHover(tRefInstagramBadge)
-const showWhatsappBadgeOnHover = useElementHover(tRefWhatsappBadge)
+const showTwitterBadgeOnHover = useElementHover(tRefTwitterBadge);
+const showInstagramBadgeOnHover = useElementHover(tRefInstagramBadge);
+const showWhatsappBadgeOnHover = useElementHover(tRefWhatsappBadge);
 </script>
 
 <template>
@@ -15,11 +15,7 @@ const showWhatsappBadgeOnHover = useElementHover(tRefWhatsappBadge)
       transition="slide-x-transition"
       :model-value="showTwitterBadgeOnHover"
     >
-      <VIcon
-        ref="tRefTwitterBadge"
-        size="25"
-        icon="tabler-brand-twitter"
-      />
+      <VIcon ref="tRefTwitterBadge" size="25" icon="tabler-brand-twitter" />
     </VBadge>
 
     <VBadge
@@ -27,11 +23,7 @@ const showWhatsappBadgeOnHover = useElementHover(tRefWhatsappBadge)
       transition="scale-transition"
       :model-value="showInstagramBadgeOnHover"
     >
-      <VIcon
-        ref="tRefInstagramBadge"
-        size="25"
-        icon="tabler-brand-instagram"
-      />
+      <VIcon ref="tRefInstagramBadge" size="25" icon="tabler-brand-instagram" />
     </VBadge>
 
     <VBadge
@@ -39,11 +31,7 @@ const showWhatsappBadgeOnHover = useElementHover(tRefWhatsappBadge)
       transition="slide-x-transition"
       :model-value="showWhatsappBadgeOnHover"
     >
-      <VIcon
-        ref="tRefWhatsappBadge"
-        size="25"
-        icon="tabler-brand-whatsapp"
-      />
+      <VIcon ref="tRefWhatsappBadge" size="25" icon="tabler-brand-whatsapp" />
     </VBadge>
   </div>
 </template>

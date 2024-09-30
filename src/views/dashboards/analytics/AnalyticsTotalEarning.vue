@@ -1,29 +1,29 @@
 <script setup lang="ts">
-import VueApexCharts from 'vue3-apexcharts'
-import { useTheme } from 'vuetify'
-import { hexToRgb } from '@layouts/utils'
+import VueApexCharts from "vue3-apexcharts";
+import { useTheme } from "vuetify";
+import { hexToRgb } from "@layouts/utils";
 
-const vuetifyTheme = useTheme()
+const vuetifyTheme = useTheme();
 
 const series = [
   {
-    name: 'Earning',
+    name: "Earning",
     data: [15, 10, 20, 8, 12, 18, 12, 5],
   },
   {
-    name: 'Expense',
+    name: "Expense",
     data: [-7, -10, -7, -12, -6, -9, -5, -8],
   },
-]
+];
 
 const chartOptions = computed(() => {
-  const currentTheme = vuetifyTheme.current.value.colors
+  const currentTheme = vuetifyTheme.current.value.colors;
 
   return {
     chart: {
       parentHeightOffset: 0,
       stacked: true,
-      type: 'bar',
+      type: "bar",
       toolbar: { show: false },
     },
     tooltip: {
@@ -35,13 +35,16 @@ const chartOptions = computed(() => {
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: '18%',
+        columnWidth: "18%",
         borderRadius: 5,
-        startingShape: 'rounded',
-        endingShape: 'rounded',
+        startingShape: "rounded",
+        endingShape: "rounded",
       },
     },
-    colors: [`rgba(${hexToRgb(currentTheme.primary)}, 1)`, `rgba(${hexToRgb(currentTheme.secondary)}, 1)`],
+    colors: [
+      `rgba(${hexToRgb(currentTheme.primary)}, 1)`,
+      `rgba(${hexToRgb(currentTheme.secondary)}, 1)`,
+    ],
     dataLabels: {
       enabled: false,
     },
@@ -76,7 +79,7 @@ const chartOptions = computed(() => {
         options: {
           plotOptions: {
             bar: {
-              columnWidth: '22%',
+              columnWidth: "22%",
             },
           },
         },
@@ -90,7 +93,7 @@ const chartOptions = computed(() => {
           plotOptions: {
             bar: {
               borderRadius: 8,
-              columnWidth: '26%',
+              columnWidth: "26%",
             },
           },
         },
@@ -104,7 +107,7 @@ const chartOptions = computed(() => {
           plotOptions: {
             bar: {
               borderRadius: 6,
-              columnWidth: '28%',
+              columnWidth: "28%",
             },
           },
         },
@@ -114,7 +117,7 @@ const chartOptions = computed(() => {
         options: {
           plotOptions: {
             bar: {
-              columnWidth: '16%',
+              columnWidth: "16%",
             },
           },
         },
@@ -125,7 +128,7 @@ const chartOptions = computed(() => {
           plotOptions: {
             bar: {
               borderRadius: 6,
-              columnWidth: '18%',
+              columnWidth: "18%",
             },
           },
         },
@@ -136,7 +139,7 @@ const chartOptions = computed(() => {
           plotOptions: {
             bar: {
               borderRadius: 5,
-              columnWidth: '20%',
+              columnWidth: "20%",
             },
           },
         },
@@ -146,7 +149,7 @@ const chartOptions = computed(() => {
         options: {
           plotOptions: {
             bar: {
-              columnWidth: '24%',
+              columnWidth: "24%",
             },
           },
         },
@@ -155,34 +158,34 @@ const chartOptions = computed(() => {
     states: {
       hover: {
         filter: {
-          type: 'none',
+          type: "none",
         },
       },
       active: {
         filter: {
-          type: 'none',
+          type: "none",
         },
       },
     },
-  }
-})
+  };
+});
 
 const totalEarnings = [
   {
-    avatar: 'tabler-currency-dollar',
-    avatarColor: 'primary',
-    title: 'Total Sales',
-    subtitle: 'Total Sales',
-    earning: '+$98',
+    avatar: "tabler-currency-dollar",
+    avatarColor: "primary",
+    title: "Total Sales",
+    subtitle: "Total Sales",
+    earning: "+$98",
   },
   {
-    avatar: 'tabler-brand-paypal',
-    avatarColor: 'secondary',
-    title: 'Total Revenue',
-    subtitle: 'Client Payment',
-    earning: '+$126',
+    avatar: "tabler-brand-paypal",
+    avatarColor: "secondary",
+    title: "Total Revenue",
+    subtitle: "Client Payment",
+    earning: "+$126",
   },
-]
+];
 </script>
 
 <template>
@@ -191,21 +194,21 @@ const totalEarnings = [
       <VCardTitle>Total Earning</VCardTitle>
 
       <div class="d-flex align-center mt-2">
-        <h4 class="text-h1 me-2">
-          87%
-        </h4>
+        <h4 class="text-h1 me-2">87%</h4>
         <div class="text-success">
-          <VIcon
-            size="18"
-            icon="tabler-chevron-up"
-          />
+          <VIcon size="18" icon="tabler-chevron-up" />
           <span class="text-base">25.8%</span>
         </div>
       </div>
 
       <template #append>
         <div class="mt-n10 me-n2">
-          <MoreBtn :menu-list="[{ title: 'View More', value: 'View More' }, { title: 'Delete', value: 'Delete' }]" />
+          <MoreBtn
+            :menu-list="[
+              { title: 'View More', value: 'View More' },
+              { title: 'Delete', value: 'Delete' },
+            ]"
+          />
         </div>
       </template>
     </VCardItem>
@@ -219,10 +222,7 @@ const totalEarnings = [
       />
 
       <VList class="card-list mt-4">
-        <VListItem
-          v-for="earning in totalEarnings"
-          :key="earning.title"
-        >
+        <VListItem v-for="earning in totalEarnings" :key="earning.title">
           <VListItemTitle class="font-weight-medium">
             {{ earning.title }}
           </VListItemTitle>
@@ -241,7 +241,9 @@ const totalEarnings = [
           </template>
 
           <template #append>
-            <span class="text-success font-weight-medium">{{ earning.earning }}</span>
+            <span class="text-success font-weight-medium">{{
+              earning.earning
+            }}</span>
           </template>
         </VListItem>
       </VList>

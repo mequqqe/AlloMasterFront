@@ -29,7 +29,7 @@ const items = [
   />
 </template>
 `,
-}
+};
 
 export const clearable = {
   ts: `<script lang="ts" setup>
@@ -71,7 +71,7 @@ const items = [
   />
 </template>
 `,
-}
+};
 
 export const density = {
   ts: `<script lang="ts" setup>
@@ -113,7 +113,7 @@ const items = [
   />
 </template>
 `,
-}
+};
 
 export const multiple = {
   ts: `<script lang="ts" setup>
@@ -249,7 +249,7 @@ const items = [
   </VRow>
 </template>
 `,
-}
+};
 
 export const noDataWithChips = {
   ts: `<script lang="ts" setup>
@@ -324,7 +324,7 @@ watch(selectedList, value => {
   </AppCombobox>
 </template>
 `,
-}
+};
 
 export const variant = {
   ts: `<script lang="ts" setup>
@@ -443,4 +443,4 @@ const items = [
   </VRow>
 </template>
 `,
-}
+};

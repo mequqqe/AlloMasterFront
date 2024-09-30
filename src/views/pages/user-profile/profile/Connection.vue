@@ -1,17 +1,17 @@
 <script lang="ts" setup>
-import type { ProfileConnections } from '@/@fake-db/types'
+import type { ProfileConnections } from "@/@fake-db/types";
 
 interface Props {
-  connectionsData: ProfileConnections[]
+  connectionsData: ProfileConnections[];
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 
 const moreList = [
-  { title: 'Share connections', value: 'Share connections' },
-  { title: 'Suggest edits', value: 'Suggest edits' },
-  { title: 'Report Bug', value: 'Report Bug' },
-]
+  { title: "Share connections", value: "Share connections" },
+  { title: "Suggest edits", value: "Suggest edits" },
+  { title: "Report Bug", value: "Report Bug" },
+];
 </script>
 
 <template>
@@ -24,28 +24,24 @@ const moreList = [
 
     <VCardText>
       <VList class="card-list">
-        <VListItem
-          v-for="data in props.connectionsData"
-          :key="data.name"
-        >
+        <VListItem v-for="data in props.connectionsData" :key="data.name">
           <template #prepend>
-            <VAvatar
-              size="38"
-              :image="data.avatar"
-            />
+            <VAvatar size="38" :image="data.avatar" />
           </template>
 
           <VListItemTitle class="font-weight-medium">
             {{ data.name }}
           </VListItemTitle>
-          <VListItemSubtitle>{{ data.connections }} Connections</VListItemSubtitle>
+          <VListItemSubtitle
+            >{{ data.connections }} Connections</VListItemSubtitle
+          >
 
           <template #append>
             <VBtn
               icon
               size="30"
               class="rounded"
-              :variant="data.isFriend ? 'elevated' : 'tonal' "
+              :variant="data.isFriend ? 'elevated' : 'tonal'"
             >
               <VIcon
                 size="20"
@@ -57,12 +53,7 @@ const moreList = [
 
         <VListItem>
           <VListItemTitle>
-            <VBtn
-              block
-              variant="text"
-            >
-              View all connections
-            </VBtn>
+            <VBtn block variant="text"> View all connections </VBtn>
           </VListItemTitle>
         </VListItem>
       </VList>

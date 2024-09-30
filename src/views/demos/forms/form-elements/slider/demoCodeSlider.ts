@@ -237,7 +237,7 @@ const increment = () => {
   }
 </style>
 `,
-}
+};
 
 export const appendTextField = {
   ts: `<script lang="ts" setup>
@@ -394,7 +394,7 @@ const blueColorValue = ref(255)
   </VRow>
 </template>
 `,
-}
+};
 
 export const basic = {
   ts: `<script setup lang="ts">
@@ -429,7 +429,7 @@ const sliderValue = ref(30)
   </VRow>
 </template>
 `,
-}
+};
 
 export const colors = {
   ts: `<script lang="ts" setup>
@@ -514,7 +514,7 @@ const sliderThumbColorValue = ref(50)
   </VRow>
 </template>
 `,
-}
+};
 
 export const disabledAndReadonly = {
   ts: `<template>
@@ -569,7 +569,7 @@ export const disabledAndReadonly = {
   </VRow>
 </template>
 `,
-}
+};
 
 export const icons = {
   ts: `<script lang="ts" setup>
@@ -636,7 +636,7 @@ const zoomInOut = ref(10)
   </VRow>
 </template>
 `,
-}
+};
 
 export const minAndMax = {
   ts: `<script lang="ts" setup>
@@ -685,7 +685,7 @@ const slider = ref(40)
   </VSlider>
 </template>
 `,
-}
+};
 
 export const size = {
   ts: `<template>
@@ -708,7 +708,7 @@ export const size = {
   />
 </template>
 `,
-}
+};
 
 export const step = {
   ts: `<script lang="ts" setup>
@@ -739,7 +739,7 @@ const value = ref(0)
   />
 </template>
 `,
-}
+};
 
 export const thumb = {
   ts: `<script lang="ts" setup>
@@ -862,7 +862,7 @@ const slider = ref(45)
   </VRow>
 </template>
 `,
-}
+};
 
 export const ticks = {
   ts: `<script lang="ts" setup>
@@ -987,7 +987,7 @@ const ticksLabels = {
   </VRow>
 </template>
 `,
-}
+};
 
 export const validation = {
   ts: `<script lang="ts" setup>
@@ -1022,7 +1022,7 @@ const rules = [v => v <= 40 || 'Only 40 in stock']
   />
 </template>
 `,
-}
+};
 
 export const vertical = {
   ts: `<script lang="ts" setup>
@@ -1047,4 +1047,4 @@ const value = ref(10)
   />
 </template>
 `,
-}
+};

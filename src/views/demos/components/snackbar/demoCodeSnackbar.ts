@@ -29,7 +29,7 @@ const isSnackbarVisible = ref(false)
   </VSnackbar>
 </template>
 `,
-}
+};
 
 export const multiLine = {
   ts: `<script lang="ts" setup>
@@ -86,7 +86,7 @@ const isSnackbarVisible = ref(false)
   </VSnackbar>
 </template>
 `,
-}
+};
 
 export const position = {
   ts: `<script lang="ts" setup>
@@ -403,7 +403,7 @@ const isSnackbarCenteredVisible = ref(false)
   </div>
 </template>
 `,
-}
+};
 
 export const timeout = {
   ts: `<script lang="ts" setup>
@@ -442,7 +442,7 @@ const isSnackbarVisible = ref(false)
   </VSnackbar>
 </template>
 `,
-}
+};
 
 export const transition = {
   ts: `<script lang="ts" setup>
@@ -543,7 +543,7 @@ const isSnackbarScrollReverseVisible = ref(false)
   </div>
 </template>
 `,
-}
+};
 
 export const variants = {
   ts: `<script lang="ts" setup>
@@ -712,7 +712,7 @@ const isFlatSnackbarVisible = ref(false)
   </div>
 </template>
 `,
-}
+};
 
 export const vertical = {
   ts: `<script lang="ts" setup>
@@ -781,7 +781,7 @@ const isSnackbarVisible = ref(false)
   </VSnackbar>
 </template>
 `,
-}
+};
 
 export const withAction = {
   ts: `<script lang="ts" setup>
@@ -832,4 +832,4 @@ const isSnackbarVisibility = ref(false)
   </VSnackbar>
 </template>
 `,
-}
+};

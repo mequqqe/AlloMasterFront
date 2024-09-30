@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import authV1BottomShape from '@images/svg/auth-v1-bottom-shape.svg?raw'
-import authV1TopShape from '@images/svg/auth-v1-top-shape.svg?raw'
-import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
-import { themeConfig } from '@themeConfig'
+import authV1BottomShape from "@images/svg/auth-v1-bottom-shape.svg?raw";
+import authV1TopShape from "@images/svg/auth-v1-top-shape.svg?raw";
+import { VNodeRenderer } from "@layouts/components/VNodeRenderer";
+import { themeConfig } from "@themeConfig";
 </script>
 
 <template>
@@ -21,10 +21,7 @@ import { themeConfig } from '@themeConfig'
       />
 
       <!-- 👉 Auth card -->
-      <VCard
-        class="auth-card pa-4"
-        max-width="448"
-      >
+      <VCard class="auth-card pa-4" max-width="448">
         <VCardItem class="justify-center">
           <template #prepend>
             <div class="d-flex">
@@ -38,23 +35,17 @@ import { themeConfig } from '@themeConfig'
         </VCardItem>
 
         <VCardText class="pt-2">
-          <h5 class="text-h5 mb-1">
-            Verify your email ✉️
-          </h5>
+          <h5 class="text-h5 mb-1">Verify your email ✉️</h5>
           <p>
-            Account activation link sent to your email address: hello@example.com Please follow the link inside to continue.
+            Account activation link sent to your email address:
+            hello@example.com Please follow the link inside to continue.
           </p>
 
-          <VBtn
-            block
-            to="/"
-            class="mb-6"
-          >
-            Skip for now
-          </VBtn>
+          <VBtn block to="/" class="mb-6"> Skip for now </VBtn>
 
           <div class="d-flex align-center justify-center">
-            <span class="me-1">Didn't get the mail? </span><a href="#">Resend</a>
+            <span class="me-1">Didn't get the mail? </span
+            ><a href="#">Resend</a>
           </div>
         </VCardText>
       </VCard>

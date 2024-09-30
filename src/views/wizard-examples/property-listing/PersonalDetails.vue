@@ -1,42 +1,41 @@
 <script setup lang="ts">
-import type { PersonalDetails } from './types'
-import type { CustomInputContent } from '@core/types'
+import type { PersonalDetails } from "./types";
+import type { CustomInputContent } from "@core/types";
 
 const props = defineProps<{
-  formData: PersonalDetails
-}>()
+  formData: PersonalDetails;
+}>();
 
 const emit = defineEmits<{
-  (e: 'update:formData', value: PersonalDetails): void
-}>()
+  (e: "update:formData", value: PersonalDetails): void;
+}>();
 
 const propertyRadioContent: CustomInputContent[] = [
   {
-    title: 'I am the builder',
-    desc: 'List property as Builder, list your project and get highest reach fast.',
-    icon: { icon: 'custom-office', size: '40' },
-    value: 'builder',
+    title: "I am the builder",
+    desc: "List property as Builder, list your project and get highest reach fast.",
+    icon: { icon: "custom-office", size: "40" },
+    value: "builder",
   },
   {
-    title: 'I am the owner',
-    desc: 'Submit property as an Individual. Lease, Rent or Sell at the best price.',
-    icon: { icon: 'custom-diamond', size: '40' },
-    value: 'owner',
+    title: "I am the owner",
+    desc: "Submit property as an Individual. Lease, Rent or Sell at the best price.",
+    icon: { icon: "custom-diamond", size: "40" },
+    value: "owner",
   },
   {
-    title: 'I am the broker',
-    desc: 'Earn highest commission by listing your clients properties at best price.',
-    value: 'broker',
-    icon: { icon: 'custom-suitcase', size: '40' },
-
+    title: "I am the broker",
+    desc: "Earn highest commission by listing your clients properties at best price.",
+    value: "broker",
+    icon: { icon: "custom-suitcase", size: "40" },
   },
-]
+];
 
-const formData = ref<PersonalDetails>(props.formData)
+const formData = ref<PersonalDetails>(props.formData);
 
 watch(formData, () => {
-  emit('update:formData', formData.value)
-})
+  emit("update:formData", formData.value);
+});
 </script>
 
 <template>
@@ -51,10 +50,7 @@ watch(formData, () => {
         />
       </VCol>
 
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <!-- 👉 First Name -->
         <AppTextField
           v-model="formData.firstName"
@@ -63,10 +59,7 @@ watch(formData, () => {
         />
       </VCol>
 
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <!-- 👉 Last Name -->
         <AppTextField
           v-model="formData.lastName"
@@ -75,10 +68,7 @@ watch(formData, () => {
         />
       </VCol>
 
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <!-- 👉 Username -->
         <AppTextField
           v-model="formData.username"
@@ -87,10 +77,7 @@ watch(formData, () => {
         />
       </VCol>
 
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <!-- 👉 Password -->
         <AppTextField
           v-model="formData.password"
@@ -100,10 +87,7 @@ watch(formData, () => {
         />
       </VCol>
 
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <!-- 👉 Email -->
         <AppTextField
           v-model="formData.email"
@@ -113,10 +97,7 @@ watch(formData, () => {
         />
       </VCol>
 
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <!-- 👉 Contact -->
         <AppTextField
           v-model="formData.contact"

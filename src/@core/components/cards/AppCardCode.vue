@@ -1,31 +1,36 @@
 <script lang="ts" setup>
-import 'prismjs'
-import 'prismjs/themes/prism-tomorrow.css'
-import type { Ref } from 'vue'
-import Prism from 'vue-prism-component'
+import "prismjs";
+import "prismjs/themes/prism-tomorrow.css";
+import type { Ref } from "vue";
+import Prism from "vue-prism-component";
 
 interface Props {
-  title: string
-  code: CodeProp
-  codeLanguage?: string
-  noPadding?: boolean
+  title: string;
+  code: CodeProp;
+  codeLanguage?: string;
+  noPadding?: boolean;
 }
 
 interface CodeProp {
-  ts: string
-  js: string
+  ts: string;
+  js: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  codeLanguage: 'markup',
+  codeLanguage: "markup",
   noPadding: false,
-})
+});
 
-const preferredCodeLanguage = useStorage('preferredCodeLanguage', 'ts') as unknown as Ref<keyof CodeProp>
+const preferredCodeLanguage = useStorage(
+  "preferredCodeLanguage",
+  "ts",
+) as unknown as Ref<keyof CodeProp>;
 
-const isCodeShown = ref(false)
+const isCodeShown = ref(false);
 
-const { copy, copied } = useClipboard({ source: computed(() => props.code[preferredCodeLanguage.value]) })
+const { copy, copied } = useClipboard({
+  source: computed(() => props.code[preferredCodeLanguage.value]),
+});
 </script>
 
 <template>
@@ -39,10 +44,7 @@ const { copy, copied } = useClipboard({ source: computed(() => props.code[prefer
           :class="isCodeShown ? '' : 'text-disabled'"
           @click="isCodeShown = !isCodeShown"
         >
-          <VIcon
-            size="20"
-            icon="tabler-code"
-          />
+          <VIcon size="20" icon="tabler-code" />
         </IconBtn>
       </template>
     </VCardItem>
@@ -70,7 +72,9 @@ const { copy, copied } = useClipboard({ source: computed(() => props.code[prefer
                 <VIcon
                   size="x-large"
                   icon="custom-typescript"
-                  :color="preferredCodeLanguage === 'ts' ? 'primary' : 'secondary'"
+                  :color="
+                    preferredCodeLanguage === 'ts' ? 'primary' : 'secondary'
+                  "
                 />
               </VBtn>
               <VBtn
@@ -81,7 +85,9 @@ const { copy, copied } = useClipboard({ source: computed(() => props.code[prefer
                 <VIcon
                   size="x-large"
                   icon="custom-javascript"
-                  :color="preferredCodeLanguage === 'js' ? 'primary' : 'secondary'"
+                  :color="
+                    preferredCodeLanguage === 'js' ? 'primary' : 'secondary'
+                  "
                 />
               </VBtn>
             </VBtnToggle>
@@ -91,14 +97,20 @@ const { copy, copied } = useClipboard({ source: computed(() => props.code[prefer
             <Prism
               :key="props.code[preferredCodeLanguage]"
               :language="props.codeLanguage"
-              :style="$vuetify.locale.isRtl ? 'text-align: right' : 'text-align: left'"
+              :style="
+                $vuetify.locale.isRtl ? 'text-align: right' : 'text-align: left'
+              "
             >
               {{ props.code[preferredCodeLanguage] }}
             </Prism>
             <IconBtn
               class="position-absolute app-card-code-copy-icon"
               color="white"
-              @click="() => { copy() }"
+              @click="
+                () => {
+                  copy();
+                }
+              "
             >
               <VIcon
                 :icon="copied ? 'tabler-check' : 'tabler-copy'"

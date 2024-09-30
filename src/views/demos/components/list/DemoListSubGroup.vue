@@ -1,42 +1,31 @@
 <script lang="ts" setup>
-const open = ref(['Users', 'Admin'])
+const open = ref(["Users", "Admin"]);
 
 const admins = [
-  ['Management', 'tabler-users'],
-  ['Settings', 'tabler-settings'],
-]
+  ["Management", "tabler-users"],
+  ["Settings", "tabler-settings"],
+];
 
 const cruds = [
-  ['Create', 'tabler-plus'],
-  ['Read', 'tabler-file'],
-  ['Update', 'tabler-reload'],
-  ['Delete', 'tabler-trash'],
-]
+  ["Create", "tabler-plus"],
+  ["Read", "tabler-file"],
+  ["Update", "tabler-reload"],
+  ["Delete", "tabler-trash"],
+];
 </script>
 
 <template>
   <VList v-model:opened="open">
-    <VListItem
-      prepend-icon="tabler-home"
-      title="Home"
-      value="Home"
-    />
+    <VListItem prepend-icon="tabler-home" title="Home" value="Home" />
 
     <VListGroup value="Users">
       <template #activator="{ props }">
-        <VListItem
-          v-bind="props"
-          prepend-icon="tabler-users"
-          title="Users"
-        />
+        <VListItem v-bind="props" prepend-icon="tabler-users" title="Users" />
       </template>
 
       <VListGroup value="Admin">
         <template #activator="{ props }">
-          <VListItem
-            v-bind="props"
-            title="Admin"
-          />
+          <VListItem v-bind="props" title="Admin" />
         </template>
 
         <VListItem
@@ -50,10 +39,7 @@ const cruds = [
 
       <VListGroup value="Actions">
         <template #activator="{ props }">
-          <VListItem
-            v-bind="props"
-            title="Actions"
-          />
+          <VListItem v-bind="props" title="Actions" />
         </template>
 
         <VListItem

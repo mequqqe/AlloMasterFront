@@ -1,30 +1,30 @@
 <script setup lang="ts">
 interface Emit {
-  (e: 'update:isDialogVisible', val: boolean): void
+  (e: "update:isDialogVisible", val: boolean): void;
 }
 
 interface Prop {
-  isDialogVisible: boolean
+  isDialogVisible: boolean;
 }
 
-const props = defineProps<Prop>()
+const props = defineProps<Prop>();
 
-const emit = defineEmits<Emit>()
+const emit = defineEmits<Emit>();
 
-const selectedPlan = ref('standard')
+const selectedPlan = ref("standard");
 
 const plansList = [
-  { desc: 'Standard - $99/month', title: 'Standard', value: 'standard' },
-  { desc: 'Basic - $0/month', title: 'Basic', value: 'basic' },
-  { desc: 'Enterprise - $499/month', title: 'Enterprise', value: 'enterprice' },
-  { desc: 'Company - $999/month', title: 'Company', value: 'company' },
-]
+  { desc: "Standard - $99/month", title: "Standard", value: "standard" },
+  { desc: "Basic - $0/month", title: "Basic", value: "basic" },
+  { desc: "Enterprise - $499/month", title: "Enterprise", value: "enterprice" },
+  { desc: "Company - $999/month", title: "Company", value: "company" },
+];
 
-const isConfirmDialogVisible = ref(false)
+const isConfirmDialogVisible = ref(false);
 
 const dialogModelValueUpdate = (val: boolean) => {
-  emit('update:isDialogVisible', val)
-}
+  emit("update:isDialogVisible", val);
+};
 </script>
 
 <template>
@@ -46,13 +46,9 @@ const dialogModelValueUpdate = (val: boolean) => {
       />
 
       <VCardItem class="text-center">
-        <VCardTitle class="text-h5 mb-5">
-          Upgrade Plan
-        </VCardTitle>
+        <VCardTitle class="text-h5 mb-5"> Upgrade Plan </VCardTitle>
 
-        <VCardSubtitle>
-          Choose the best plan for user.
-        </VCardSubtitle>
+        <VCardSubtitle> Choose the best plan for user. </VCardSubtitle>
       </VCardItem>
 
       <VCardText class="d-flex align-center flex-column flex-sm-nowrap px-15">
@@ -61,9 +57,7 @@ const dialogModelValueUpdate = (val: boolean) => {
           :selected-radio="selectedPlan"
           :grid-column="{ cols: '12', sm: '6' }"
         />
-        <VBtn class="mt-5">
-          Upgrade
-        </VBtn>
+        <VBtn class="mt-5"> Upgrade </VBtn>
       </VCardText>
 
       <VDivider class="my-3" />
@@ -75,9 +69,7 @@ const dialogModelValueUpdate = (val: boolean) => {
         <div class="d-flex justify-space-between flex-wrap">
           <div class="d-flex align-center me-3">
             <sup class="text-primary">$</sup>
-            <h3 class="text-h3 text-primary">
-              99
-            </h3>
+            <h3 class="text-h3 text-primary">99</h3>
             <sub class="text-body-1 mt-3">/ month</sub>
           </div>
           <VBtn

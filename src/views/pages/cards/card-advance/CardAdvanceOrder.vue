@@ -1,144 +1,125 @@
 <script setup lang="ts">
-const currentActiveTab = ref('New')
+const currentActiveTab = ref("New");
 
 const orders = [
   {
-    tabName: 'New',
+    tabName: "New",
     timeline1: [
       {
-        icon: 'tabler-circle-check',
-        type: 'SENDER',
-        name: 'Myrtle Ullrich',
-        address: '101 Boulder, California(CA), 95959',
+        icon: "tabler-circle-check",
+        type: "SENDER",
+        name: "Myrtle Ullrich",
+        address: "101 Boulder, California(CA), 95959",
       },
       {
-        icon: 'tabler-map-pin',
-        type: 'RECEIVER',
-        name: 'Barry Schowalter',
-        address: '939 Orange, California(CA),92118',
+        icon: "tabler-map-pin",
+        type: "RECEIVER",
+        name: "Barry Schowalter",
+        address: "939 Orange, California(CA),92118",
       },
-
     ],
     timeline2: [
       {
-        icon: 'tabler-circle-check',
-        type: 'SENDER',
-        name: 'Veronica Herman',
-        address: '162 Windsor, California(CA), 95492',
+        icon: "tabler-circle-check",
+        type: "SENDER",
+        name: "Veronica Herman",
+        address: "162 Windsor, California(CA), 95492",
       },
       {
-        icon: 'tabler-map-pin',
-        type: 'RECEIVER',
-        name: 'Helen Jacobs',
-        address: '487 Sunset, California(CA), 94043',
+        icon: "tabler-map-pin",
+        type: "RECEIVER",
+        name: "Helen Jacobs",
+        address: "487 Sunset, California(CA), 94043",
       },
-
     ],
   },
   {
-    tabName: 'Preparing',
+    tabName: "Preparing",
     timeline1: [
       {
-        icon: 'tabler-circle-check',
-        type: 'SENDER',
-        name: 'Barry Schowalter',
-        address: '939 Orange, California(CA),92118',
+        icon: "tabler-circle-check",
+        type: "SENDER",
+        name: "Barry Schowalter",
+        address: "939 Orange, California(CA),92118",
       },
       {
-        icon: 'tabler-map-pin',
-        type: 'RECEIVER',
-        name: 'Myrtle Ullrich',
-        address: '101 Boulder, California(CA), 95959',
+        icon: "tabler-map-pin",
+        type: "RECEIVER",
+        name: "Myrtle Ullrich",
+        address: "101 Boulder, California(CA), 95959",
       },
-
     ],
     timeline2: [
       {
-        icon: 'tabler-circle-check',
-        type: 'SENDER',
-        name: 'Veronica Herman',
-        address: '162 Windsor, California(CA), 95492',
+        icon: "tabler-circle-check",
+        type: "SENDER",
+        name: "Veronica Herman",
+        address: "162 Windsor, California(CA), 95492",
       },
       {
-        icon: 'tabler-map-pin',
-        type: 'RECEIVER',
-        name: 'Helen Jacobs',
-        address: '487 Sunset, California(CA), 94043',
+        icon: "tabler-map-pin",
+        type: "RECEIVER",
+        name: "Helen Jacobs",
+        address: "487 Sunset, California(CA), 94043",
       },
-
     ],
   },
   {
-    tabName: 'Shipping',
+    tabName: "Shipping",
     timeline1: [
       {
-        icon: 'tabler-circle-check',
-        type: 'SENDER',
-        name: 'Veronica Herman',
-        address: '101 Boulder, California(CA), 95959',
+        icon: "tabler-circle-check",
+        type: "SENDER",
+        name: "Veronica Herman",
+        address: "101 Boulder, California(CA), 95959",
       },
       {
-        icon: 'tabler-map-pin',
-        type: 'RECEIVER',
-        name: 'Barry Schowalter',
-        address: '939 Orange, California(CA),92118',
+        icon: "tabler-map-pin",
+        type: "RECEIVER",
+        name: "Barry Schowalter",
+        address: "939 Orange, California(CA),92118",
       },
-
     ],
     timeline2: [
       {
-        icon: 'tabler-circle-check',
-        type: 'SENDER',
-        name: 'Myrtle Ullrich',
-        address: '162 Windsor, California(CA), 95492',
+        icon: "tabler-circle-check",
+        type: "SENDER",
+        name: "Myrtle Ullrich",
+        address: "162 Windsor, California(CA), 95492",
       },
       {
-        icon: 'tabler-map-pin',
-        type: 'RECEIVER',
-        name: 'Helen Jacobs',
-        address: '487 Sunset, California(CA), 94043',
+        icon: "tabler-map-pin",
+        type: "RECEIVER",
+        name: "Helen Jacobs",
+        address: "487 Sunset, California(CA), 94043",
       },
-
     ],
   },
-]
+];
 
 const moreList = [
-  { title: 'Refresh', value: 'refresh' },
-  { title: 'Download', value: 'Download' },
-  { title: 'View All', value: 'View All' },
-]
+  { title: "Refresh", value: "refresh" },
+  { title: "Download", value: "Download" },
+  { title: "View All", value: "View All" },
+];
 </script>
 
 <template>
-  <VCard
-    title="Orders by Countries"
-    subtitle="62 Deliveries in Progress"
-  >
+  <VCard title="Orders by Countries" subtitle="62 Deliveries in Progress">
     <template #append>
       <div class="mt-n4 me-n2">
         <MoreBtn :menu-list="moreList" />
       </div>
     </template>
 
-    <VTabs
-      v-model="currentActiveTab"
-      grow
-    >
-      <VTab
-        v-for="order in orders"
-        :key="order.tabName"
-        :value="order.tabName"
-      >
+    <VTabs v-model="currentActiveTab" grow>
+      <VTab v-for="order in orders" :key="order.tabName" :value="order.tabName">
         {{ order.tabName }}
       </VTab>
     </VTabs>
 
     <VCardText>
-      <VWindow
-        v-model="currentActiveTab"
-        class="disable-tab-transition"
-      >
+      <VWindow v-model="currentActiveTab" class="disable-tab-transition">
         <VWindowItem
           v-for="order in orders"
           :key="order.tabName"
@@ -164,7 +145,9 @@ const moreList = [
                   :color="item.type === 'SENDER' ? 'success' : 'primary'"
                 />
               </template>
-              <p :class="`text-sm text-${item.type === 'SENDER' ? 'success' : 'primary'} mb-0`">
+              <p
+                :class="`text-sm text-${item.type === 'SENDER' ? 'success' : 'primary'} mb-0`"
+              >
                 {{ item.type }}
               </p>
               <p class="app-timeline-title mb-0">
@@ -176,10 +159,7 @@ const moreList = [
             </VTimelineItem>
           </VTimeline>
 
-          <VDivider
-            class="my-3"
-            style="border-style: dashed;"
-          />
+          <VDivider class="my-3" style="border-style: dashed" />
 
           <VTimeline
             side="end"
@@ -201,7 +181,9 @@ const moreList = [
                   :color="item.type === 'SENDER' ? 'success' : 'primary'"
                 />
               </template>
-              <p :class="`text-sm text-${item.type === 'SENDER' ? 'success' : 'primary'} mb-0`">
+              <p
+                :class="`text-sm text-${item.type === 'SENDER' ? 'success' : 'primary'} mb-0`"
+              >
                 {{ item.type }}
               </p>
               <p class="app-timeline-title mb-0">

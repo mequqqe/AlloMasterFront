@@ -1,24 +1,26 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-import type { ConnectionsTab } from '@/@fake-db/types'
-import axios from '@axios'
+import { useRoute } from "vue-router";
+import type { ConnectionsTab } from "@/@fake-db/types";
+import axios from "@axios";
 
-const router = useRoute()
-const connectionData = ref<ConnectionsTab[]>([])
+const router = useRoute();
+const connectionData = ref<ConnectionsTab[]>([]);
 
 const fetchProjectData = () => {
-  if (router.params.tab === 'connections') {
-    axios.get('/pages/profile', {
-      params: {
-        tab: router.params.tab,
-      },
-    }).then(response => {
-      connectionData.value = response.data
-    })
+  if (router.params.tab === "connections") {
+    axios
+      .get("/pages/profile", {
+        params: {
+          tab: router.params.tab,
+        },
+      })
+      .then((response) => {
+        connectionData.value = response.data;
+      });
   }
-}
+};
 
-watch(router, fetchProjectData, { immediate: true })
+watch(router, fetchProjectData, { immediate: true });
 </script>
 
 <template>
@@ -45,10 +47,7 @@ watch(router, fetchProjectData, { immediate: true })
 
         <VCardItem>
           <VCardTitle class="d-flex flex-column align-center justify-center">
-            <VAvatar
-              size="100"
-              :image="data.avatar"
-            />
+            <VAvatar size="100" :image="data.avatar" />
 
             <p class="mt-4 mb-0">
               {{ data.name }}
@@ -93,16 +92,15 @@ watch(router, fetchProjectData, { immediate: true })
 
           <div class="d-flex justify-center gap-4 mt-5">
             <VBtn
-              :prepend-icon="data.isConnected ? 'tabler-user-check' : 'tabler-user-plus'"
+              :prepend-icon="
+                data.isConnected ? 'tabler-user-check' : 'tabler-user-plus'
+              "
               :variant="data.isConnected ? 'elevated' : 'tonal'"
             >
-              {{ data.isConnected ? 'connected' : 'connect' }}
+              {{ data.isConnected ? "connected" : "connect" }}
             </VBtn>
 
-            <IconBtn
-              variant="tonal"
-              class="rounded"
-            >
+            <IconBtn variant="tonal" class="rounded">
               <VIcon icon="tabler-mail" />
             </IconBtn>
           </div>

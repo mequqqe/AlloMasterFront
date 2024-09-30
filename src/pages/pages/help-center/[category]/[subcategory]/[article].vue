@@ -1,45 +1,43 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-import type { HelpCenterSubcategoriesType, HelpCenterSubcategoryArticlesType } from '@/@fake-db/types'
-import axios from '@axios'
+import { useRoute } from "vue-router";
+import type {
+  HelpCenterSubcategoriesType,
+  HelpCenterSubcategoryArticlesType,
+} from "@/@fake-db/types";
+import axios from "@axios";
 
-const route = useRoute()
+const route = useRoute();
 
-const apiData = ref<HelpCenterSubcategoriesType>()
-const activeTab = ref(route.params.article)
-const activeArticle = ref<HelpCenterSubcategoryArticlesType>()
+const apiData = ref<HelpCenterSubcategoriesType>();
+const activeTab = ref(route.params.article);
+const activeArticle = ref<HelpCenterSubcategoryArticlesType>();
 
 const fetchHelpCenterArticlesData = () => {
-  return axios.get('/pages/help-center/article', {
-    params: {
-      article: activeTab.value,
-      category: route.params.category,
-      subcategory: route.params.subcategory,
-    },
-  }).then(res => {
-    apiData.value = res.data.activeSubcategory
-    activeArticle.value = res.data.activeArticle
-  })
-}
+  return axios
+    .get("/pages/help-center/article", {
+      params: {
+        article: activeTab.value,
+        category: route.params.category,
+        subcategory: route.params.subcategory,
+      },
+    })
+    .then((res) => {
+      apiData.value = res.data.activeSubcategory;
+      activeArticle.value = res.data.activeArticle;
+    });
+};
 
-watch(activeTab, fetchHelpCenterArticlesData, { immediate: true })
+watch(activeTab, fetchHelpCenterArticlesData, { immediate: true });
 </script>
 
 <template>
   <VRow v-if="activeArticle && apiData">
-    <VCol
-      cols="12"
-      md="4"
-    >
+    <VCol cols="12" md="4">
       <h6 class="text-base mb-3">
         {{ apiData.title }}
       </h6>
 
-      <VTabs
-        v-model="activeTab"
-        direction="vertical"
-        class="v-tabs-pill"
-      >
+      <VTabs v-model="activeTab" direction="vertical" class="v-tabs-pill">
         <VTab
           v-for="data in apiData.articles"
           :key="data.slug"
@@ -60,10 +58,7 @@ watch(activeTab, fetchHelpCenterArticlesData, { immediate: true })
       </VTabs>
     </VCol>
 
-    <VCol
-      cols="12"
-      md="8"
-    >
+    <VCol cols="12" md="8">
       <VWindow class="disable-tab-transition">
         <VWindowItem>
           <VCard>
@@ -72,24 +67,20 @@ watch(activeTab, fetchHelpCenterArticlesData, { immediate: true })
                 variant="tonal"
                 :to="{
                   name: 'pages-help-center-category-subcategory',
-                  params: { category: route.params.category, subcategory: route.params.subcategory },
+                  params: {
+                    category: route.params.category,
+                    subcategory: route.params.subcategory,
+                  },
                 }"
               >
-                <VIcon
-                  icon="tabler-chevron-left"
-                  class="flip-in-rtl"
-                />
+                <VIcon icon="tabler-chevron-left" class="flip-in-rtl" />
                 <span>Back to categories</span>
               </VBtn>
             </VCardText>
 
             <VCardItem>
               <template #prepend>
-                <VAvatar
-                  color="primary"
-                  variant="tonal"
-                  rounded
-                >
+                <VAvatar color="primary" variant="tonal" rounded>
                   <VIcon icon="tabler-currency-dollar" />
                 </VAvatar>
               </template>
@@ -111,9 +102,7 @@ watch(activeTab, fetchHelpCenterArticlesData, { immediate: true })
                   <h6 class="text-h6 mb-1">
                     {{ activeArticle.title }}
                   </h6>
-                  <p class="mb-1">
-                    55 People found this helpful
-                  </p>
+                  <p class="mb-1">55 People found this helpful</p>
                 </div>
                 <h6 class="text-h6">
                   Still need help?
@@ -122,20 +111,10 @@ watch(activeTab, fetchHelpCenterArticlesData, { immediate: true })
               </div>
 
               <div class="article-votes d-flex align-center gap-3">
-                <VAvatar
-                  color="primary"
-                  variant="tonal"
-                  rounded
-                  size="30"
-                >
+                <VAvatar color="primary" variant="tonal" rounded size="30">
                   <VIcon icon="tabler-thumb-up" />
                 </VAvatar>
-                <VAvatar
-                  color="primary"
-                  variant="tonal"
-                  rounded
-                  size="30"
-                >
+                <VAvatar color="primary" variant="tonal" rounded size="30">
                   <VIcon icon="tabler-thumb-down" />
                 </VAvatar>
               </div>

@@ -1,49 +1,49 @@
 <script setup lang="ts">
-import DealDetails from '@/views/wizard-examples/create-deal/DealDetails.vue'
-import DealReviewComplete from '@/views/wizard-examples/create-deal/DealReviewComplete.vue'
-import CreateDealType from '@/views/wizard-examples/create-deal/DealType.vue'
-import DealUsage from '@/views/wizard-examples/create-deal/DealUsage.vue'
+import DealDetails from "@/views/wizard-examples/create-deal/DealDetails.vue";
+import DealReviewComplete from "@/views/wizard-examples/create-deal/DealReviewComplete.vue";
+import CreateDealType from "@/views/wizard-examples/create-deal/DealType.vue";
+import DealUsage from "@/views/wizard-examples/create-deal/DealUsage.vue";
 
-import type { CreateDealData } from '@/views/wizard-examples/create-deal/types'
+import type { CreateDealData } from "@/views/wizard-examples/create-deal/types";
 
 const createDealSteps = [
   {
-    title: 'Deal Type',
-    subtitle: 'Choose type of deal',
-    icon: 'tabler-users',
+    title: "Deal Type",
+    subtitle: "Choose type of deal",
+    icon: "tabler-users",
   },
   {
-    title: 'Deal Details',
-    subtitle: 'Provide deal details',
-    icon: 'tabler-id',
+    title: "Deal Details",
+    subtitle: "Provide deal details",
+    icon: "tabler-id",
   },
   {
-    title: 'Deal Usage',
-    subtitle: 'Limitations & Offers',
-    icon: 'tabler-credit-card',
+    title: "Deal Usage",
+    subtitle: "Limitations & Offers",
+    icon: "tabler-credit-card",
   },
   {
-    title: 'Review & Complete',
-    subtitle: 'Launch a deal',
-    icon: 'tabler-checkbox',
+    title: "Review & Complete",
+    subtitle: "Launch a deal",
+    icon: "tabler-checkbox",
   },
-]
+];
 
-const currentStep = ref(0)
+const currentStep = ref(0);
 
 const createDealData = ref<CreateDealData>({
   dealType: {
-    Offer: 'percentage',
+    Offer: "percentage",
     discount: null,
     region: null,
   },
   dealDetails: {
-    title: '',
-    code: '',
-    description: '',
+    title: "",
+    code: "",
+    description: "",
     offeredUItems: [],
     cartCondition: null,
-    dealDuration: '',
+    dealDuration: "",
     notification: {
       email: false,
       sms: false,
@@ -62,11 +62,11 @@ const createDealData = ref<CreateDealData>({
   dealReviewComplete: {
     isDealDetailsConfirmed: true,
   },
-})
+});
 
 const onSubmit = () => {
-  console.log('createDealData :>> ', createDealData.value)
-}
+  console.log("createDealData :>> ", createDealData.value);
+};
 </script>
 
 <template>
@@ -89,16 +89,9 @@ const onSubmit = () => {
         </VCardText>
       </VCol>
 
-      <VCol
-        cols="12"
-        md="8"
-        lg="9"
-      >
+      <VCol cols="12" md="8" lg="9">
         <VCardText>
-          <VWindow
-            v-model="currentStep"
-            class="disable-tab-transition"
-          >
+          <VWindow v-model="currentStep" class="disable-tab-transition">
             <VWindowItem>
               <CreateDealType v-model:form-data="createDealData.dealType" />
             </VWindowItem>
@@ -112,7 +105,9 @@ const onSubmit = () => {
             </VWindowItem>
 
             <VWindowItem>
-              <DealReviewComplete v-model:form-data="createDealData.dealReviewComplete" />
+              <DealReviewComplete
+                v-model:form-data="createDealData.dealReviewComplete"
+              />
             </VWindowItem>
           </VWindow>
 
@@ -123,11 +118,7 @@ const onSubmit = () => {
               :disabled="currentStep === 0"
               @click="currentStep--"
             >
-              <VIcon
-                icon="tabler-chevron-left"
-                start
-                class="flip-in-rtl"
-              />
+              <VIcon icon="tabler-chevron-left" start class="flip-in-rtl" />
               Previous
             </VBtn>
 
@@ -140,17 +131,10 @@ const onSubmit = () => {
               submit
             </VBtn>
 
-            <VBtn
-              v-else
-              @click="currentStep++"
-            >
+            <VBtn v-else @click="currentStep++">
               Next
 
-              <VIcon
-                icon="tabler-chevron-right"
-                end
-                class="flip-in-rtl"
-              />
+              <VIcon icon="tabler-chevron-right" end class="flip-in-rtl" />
             </VBtn>
           </div>
         </VCardText>

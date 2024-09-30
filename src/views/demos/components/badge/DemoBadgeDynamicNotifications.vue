@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const notifications = ref<number>()
+const notifications = ref<number>();
 </script>
 
 <template>
@@ -10,10 +10,7 @@ const notifications = ref<number>()
       color="success"
       class="me-5"
     >
-      <VIcon
-        size="40"
-        icon="tabler-brand-vue"
-      />
+      <VIcon size="40" icon="tabler-brand-vue" />
     </VBadge>
 
     <div class="demo-space-x">
@@ -21,10 +18,7 @@ const notifications = ref<number>()
         Send Message
       </VBtn>
 
-      <VBtn
-        color="error"
-        @click="notifications = 0"
-      >
+      <VBtn color="error" @click="notifications = 0">
         Clear Notifications
       </VBtn>
     </div>

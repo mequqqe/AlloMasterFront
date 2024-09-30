@@ -1,46 +1,52 @@
 <script setup lang="ts">
-import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
-import type { Email } from '@/@fake-db/types'
-import type { MoveEmailToAction } from '@/views/apps/email/useEmail'
-import { useEmail } from '@/views/apps/email/useEmail'
-import { useEmailStore } from '@/views/apps/email/useEmailStore'
-import { formatDate } from '@core/utils/formatters'
+import { PerfectScrollbar } from "vue3-perfect-scrollbar";
+import type { Email } from "@/@fake-db/types";
+import type { MoveEmailToAction } from "@/views/apps/email/useEmail";
+import { useEmail } from "@/views/apps/email/useEmail";
+import { useEmailStore } from "@/views/apps/email/useEmailStore";
+import { formatDate } from "@core/utils/formatters";
 
 interface Props {
-  email: Email | null
+  email: Email | null;
   emailMeta: {
-    hasPreviousEmail: boolean
-    hasNextEmail: boolean
-  }
+    hasPreviousEmail: boolean;
+    hasNextEmail: boolean;
+  };
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 
 const emit = defineEmits<{
-  (e: 'refresh'): void
-  (e: 'navigated', direction: 'previous' | 'next'): void
-  (e: 'close'): void
-  (e: 'trash'): void
-  (e: 'unread'): void
-  (e: 'star'): void
-  (e: 'unstar'): void
-}>()
+  (e: "refresh"): void;
+  (e: "navigated", direction: "previous" | "next"): void;
+  (e: "close"): void;
+  (e: "trash"): void;
+  (e: "unread"): void;
+  (e: "star"): void;
+  (e: "unstar"): void;
+}>();
 
-const store = useEmailStore()
+const store = useEmailStore();
 
-const { labels, resolveLabelColor, emailMoveToFolderActions, shallShowMoveToActionFor, moveSelectedEmailTo } = useEmail()
+const {
+  labels,
+  resolveLabelColor,
+  emailMoveToFolderActions,
+  shallShowMoveToActionFor,
+  moveSelectedEmailTo,
+} = useEmail();
 
 const handleMoveMailsTo = (action: MoveEmailToAction) => {
-  moveSelectedEmailTo(action, [(props.email as Email).id])
-  emit('refresh')
-  emit('close')
-}
+  moveSelectedEmailTo(action, [(props.email as Email).id]);
+  emit("refresh");
+  emit("close");
+};
 
-const updateMailLabel = (label: Email['labels'][number]) => {
-  store.updateEmailLabels([(props.email as Email).id], label)
+const updateMailLabel = (label: Email["labels"][number]) => {
+  store.updateEmailLabels([(props.email as Email).id], label);
 
-  emit('refresh')
-}
+  emit("refresh");
+};
 </script>
 
 <template>
@@ -57,19 +63,16 @@ const updateMailLabel = (label: Email['labels'][number]) => {
       <!-- 👉 header -->
 
       <div class="email-view-header d-flex align-center px-5 py-3">
-        <IconBtn
-          class="me-4"
-          @click="$emit('close')"
-        >
-          <VIcon
-            size="22"
-            icon="tabler-chevron-left"
-            class="flip-in-rtl"
-          />
+        <IconBtn class="me-4" @click="$emit('close')">
+          <VIcon size="22" icon="tabler-chevron-left" class="flip-in-rtl" />
         </IconBtn>
 
-        <div class="d-flex align-center flex-wrap flex-grow-1 overflow-hidden gap-3">
-          <h2 class="text-body-1 font-weight-medium text-high-emphasis text-truncate">
+        <div
+          class="d-flex align-center flex-wrap flex-grow-1 overflow-hidden gap-3"
+        >
+          <h2
+            class="text-body-1 font-weight-medium text-high-emphasis text-truncate"
+          >
             {{ props.email.subject }}
           </h2>
 
@@ -94,27 +97,34 @@ const updateMailLabel = (label: Email['labels'][number]) => {
           </IconBtn>
 
           <!-- Dots vertical -->
-          <MoreBtn
-            density="comfortable"
-            color="undefined"
-          />
+          <MoreBtn density="comfortable" color="undefined" />
         </div>
       </div>
 
       <VDivider />
 
       <!-- 👉 Action bar -->
-      <div class="email-view-action-bar d-flex align-center text-medium-emphasis px-5">
+      <div
+        class="email-view-action-bar d-flex align-center text-medium-emphasis px-5"
+      >
         <!-- Trash -->
         <IconBtn
           v-show="!props.email.isDeleted"
-          @click="$emit('trash'); $emit('close')"
+          @click="
+            $emit('trash');
+            $emit('close');
+          "
         >
           <VIcon icon="tabler-trash" />
         </IconBtn>
 
         <!-- Read/Unread -->
-        <IconBtn @click.stop="$emit('unread'); $emit('close')">
+        <IconBtn
+          @click.stop="
+            $emit('unread');
+            $emit('close');
+          "
+        >
           <VIcon icon="tabler-mail" />
         </IconBtn>
 
@@ -128,17 +138,17 @@ const updateMailLabel = (label: Email['labels'][number]) => {
                 :key="moveTo.title"
               >
                 <VListItem
-                  :class="shallShowMoveToActionFor(moveTo.action) ? 'd-flex' : 'd-none'"
+                  :class="
+                    shallShowMoveToActionFor(moveTo.action)
+                      ? 'd-flex'
+                      : 'd-none'
+                  "
                   class="align-center"
                   href="#"
                   @click="handleMoveMailsTo(moveTo.action)"
                 >
                   <template #prepend>
-                    <VIcon
-                      :icon="moveTo.icon"
-                      class="me-2"
-                      size="20"
-                    />
+                    <VIcon :icon="moveTo.icon" class="me-2" size="20" />
                   </template>
                   <VListItemTitle class="text-capitalize">
                     {{ moveTo.action }}
@@ -161,11 +171,7 @@ const updateMailLabel = (label: Email['labels'][number]) => {
                 @click.stop="updateMailLabel(label.title)"
               >
                 <template #prepend>
-                  <VBadge
-                    inline
-                    :color="resolveLabelColor(label.title)"
-                    dot
-                  />
+                  <VBadge inline :color="resolveLabelColor(label.title)" dot />
                 </template>
                 <VListItemTitle class="ms-2 text-capitalize">
                   {{ label.title }}
@@ -184,20 +190,14 @@ const updateMailLabel = (label: Email['labels'][number]) => {
               :disabled="!props.emailMeta.hasPreviousEmail"
               @click="$emit('navigated', 'previous')"
             >
-              <VIcon
-                icon="tabler-chevron-left"
-                class="flip-in-rtl"
-              />
+              <VIcon icon="tabler-chevron-left" class="flip-in-rtl" />
             </IconBtn>
 
             <IconBtn
               :disabled="!props.emailMeta.hasNextEmail"
               @click="$emit('navigated', 'next')"
             >
-              <VIcon
-                icon="tabler-chevron-right"
-                class="flip-in-rtl"
-              />
+              <VIcon icon="tabler-chevron-right" class="flip-in-rtl" />
             </IconBtn>
           </div>
         </div>
@@ -213,10 +213,7 @@ const updateMailLabel = (label: Email['labels'][number]) => {
       >
         <VCard class="mx-5 my-4">
           <div class="d-flex align-start align-sm-center px-6 py-3">
-            <VAvatar
-              class="me-3"
-              size="32"
-            >
+            <VAvatar class="me-3" size="32">
               <VImg
                 :src="props.email.from.avatar"
                 :alt="props.email.from.name"
@@ -225,8 +222,13 @@ const updateMailLabel = (label: Email['labels'][number]) => {
 
             <div class="d-flex flex-wrap flex-grow-1 overflow-hidden">
               <div class="text-truncate">
-                <span class="d-block text-high-emphasis font-weight-medium text-truncate">{{ props.email.from.name }}</span>
-                <span class="text-sm text-disabled">{{ props.email.from.email }}</span>
+                <span
+                  class="d-block text-high-emphasis font-weight-medium text-truncate"
+                  >{{ props.email.from.name }}</span
+                >
+                <span class="text-sm text-disabled">{{
+                  props.email.from.email
+                }}</span>
               </div>
 
               <VSpacer />
@@ -240,9 +242,18 @@ const updateMailLabel = (label: Email['labels'][number]) => {
                 <!-- Star/Unstar -->
                 <IconBtn
                   :color="props.email.isStarred ? 'warning' : 'default'"
-                  @click="props.email?.isStarred ? $emit('unstar') : $emit('star'); $emit('refresh')"
+                  @click="
+                    props.email?.isStarred ? $emit('unstar') : $emit('star');
+                    $emit('refresh');
+                  "
                 >
-                  <VIcon :icon="props.email.isStarred ? 'tabler-star-filled' : 'tabler-star' " />
+                  <VIcon
+                    :icon="
+                      props.email.isStarred
+                        ? 'tabler-star-filled'
+                        : 'tabler-star'
+                    "
+                  />
                 </IconBtn>
               </div>
             </div>
@@ -257,10 +268,7 @@ const updateMailLabel = (label: Email['labels'][number]) => {
 
           <VCardText>
             <!-- eslint-disable vue/no-v-html -->
-            <div
-              class="text-base"
-              v-html="props.email.message"
-            />
+            <div class="text-base" v-html="props.email.message" />
             <!-- eslint-enable -->
           </VCardText>
 
@@ -292,11 +300,9 @@ const updateMailLabel = (label: Email['labels'][number]) => {
         <VCard class="mx-5 mb-5">
           <VCardText class="font-weight-medium text-high-emphasis">
             <div class="text-base">
-              Click here to <span class="text-primary cursor-pointer">
-                Reply
-              </span> or <span class="text-primary cursor-pointer">
-                Forward
-              </span>
+              Click here to
+              <span class="text-primary cursor-pointer"> Reply </span> or
+              <span class="text-primary cursor-pointer"> Forward </span>
             </div>
           </VCardText>
         </VCard>

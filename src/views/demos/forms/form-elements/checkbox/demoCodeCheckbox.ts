@@ -49,7 +49,7 @@ const capitalizedLabel = label => {
   </div>
 </template>
 `,
-}
+};
 
 export const checkboxValue = {
   ts: `<script lang="ts" setup>
@@ -100,7 +100,7 @@ const checkboxString = ref('Show')
   </div>
 </template>
 `,
-}
+};
 
 export const colors = {
   ts: `<script lang="ts" setup>
@@ -147,7 +147,7 @@ const selectedCheckbox = ref([])
   </div>
 </template>
 `,
-}
+};
 
 export const density = {
   ts: `<script lang="ts" setup>
@@ -204,7 +204,7 @@ const capitalizedLabel = label => {
   </div>
 </template>
 `,
-}
+};
 
 export const icon = {
   ts: `<script lang="ts" setup>
@@ -285,7 +285,7 @@ const capitalizedLabel = label => {
   </div>
 </template>
 `,
-}
+};
 
 export const inlineTextField = {
   ts: `<script lang="ts" setup>
@@ -376,7 +376,7 @@ const isInputEnabled = ref(false)
   </VRow>
 </template>
 `,
-}
+};
 
 export const labelSlot = {
   ts: `<script lang="ts" setup>
@@ -437,7 +437,7 @@ const checkbox = ref(false)
   </VCheckbox>
 </template>
 `,
-}
+};
 
 export const modelAsArray = {
   ts: `<script lang="ts" setup>
@@ -504,7 +504,7 @@ const selected = ref(['John'])
   </p>
 </template>
 `,
-}
+};
 
 export const states = {
   ts: `<script setup lang="ts">
@@ -583,4 +583,4 @@ const toggleOffCheckbox = ref(false)
   </div>
 </template>
 `,
-}
+};

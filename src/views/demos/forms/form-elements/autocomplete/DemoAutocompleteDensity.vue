@@ -1,6 +1,13 @@
 <script setup lang="ts">
-const select = ref(['Florida'])
-const items = ['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']
+const select = ref(["Florida"]);
+const items = [
+  "California",
+  "Colorado",
+  "Florida",
+  "Georgia",
+  "Texas",
+  "Wyoming",
+];
 </script>
 
 <template>

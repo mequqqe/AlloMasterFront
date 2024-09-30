@@ -1,33 +1,30 @@
 <script lang="ts" setup>
-import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
-import { useChat } from './useChat'
-import type { ChatContact as TypeChatContact } from '@/@fake-db/types'
-import ChatContact from '@/views/apps/chat/ChatContact.vue'
-import { useChatStore } from '@/views/apps/chat/useChatStore'
+import { PerfectScrollbar } from "vue3-perfect-scrollbar";
+import { useChat } from "./useChat";
+import type { ChatContact as TypeChatContact } from "@/@fake-db/types";
+import ChatContact from "@/views/apps/chat/ChatContact.vue";
+import { useChatStore } from "@/views/apps/chat/useChatStore";
 
 const props = defineProps<{
-  search: string
-  isDrawerOpen: boolean
-}>()
+  search: string;
+  isDrawerOpen: boolean;
+}>();
 
 defineEmits<{
-  (e: 'openChatOfContact', id: TypeChatContact['id']): void
-  (e: 'showUserProfile'): void
-  (e: 'close'): void
-}>()
+  (e: "openChatOfContact", id: TypeChatContact["id"]): void;
+  (e: "showUserProfile"): void;
+  (e: "close"): void;
+}>();
 
-const { resolveAvatarBadgeVariant } = useChat()
-const search = useVModel(props, 'search')
+const { resolveAvatarBadgeVariant } = useChat();
+const search = useVModel(props, "search");
 
-const store = useChatStore()
+const store = useChatStore();
 </script>
 
 <template>
   <!-- 👉 Chat list header -->
-  <div
-    v-if="store.profileUser"
-    class="chat-list-header"
-  >
+  <div v-if="store.profileUser" class="chat-list-header">
     <VBadge
       dot
       location="bottom right"
@@ -41,10 +38,7 @@ const store = useChatStore()
         class="cursor-pointer"
         @click="$emit('showUserProfile')"
       >
-        <VImg
-          :src="store.profileUser.avatar"
-          alt="John Doe"
-        />
+        <VImg :src="store.profileUser.avatar" alt="John Doe" />
       </VAvatar>
     </VBadge>
 
@@ -54,21 +48,12 @@ const store = useChatStore()
       class="ms-4 me-1 chat-list-search"
     >
       <template #prepend-inner>
-        <VIcon
-          size="22"
-          icon="tabler-search"
-        />
+        <VIcon size="22" icon="tabler-search" />
       </template>
     </AppTextField>
 
-    <IconBtn
-      v-if="$vuetify.display.smAndDown"
-      @click="$emit('close')"
-    >
-      <VIcon
-        icon="tabler-x"
-        class="text-medium-emphasis"
-      />
+    <IconBtn v-if="$vuetify.display.smAndDown" @click="$emit('close')">
+      <VIcon icon="tabler-x" class="text-medium-emphasis" />
     </IconBtn>
   </div>
   <VDivider />
@@ -79,7 +64,10 @@ const store = useChatStore()
     :options="{ wheelPropagation: false }"
   >
     <li>
-      <span class="chat-contact-header d-block text-primary text-xl font-weight-medium">Chats</span>
+      <span
+        class="chat-contact-header d-block text-primary text-xl font-weight-medium"
+        >Chats</span
+      >
     </li>
 
     <ChatContact
@@ -93,10 +81,14 @@ const store = useChatStore()
     <span
       v-show="!store.chatsContacts.length"
       class="no-chat-items-text text-disabled"
-    >No chats found</span>
+      >No chats found</span
+    >
 
     <li>
-      <span class="chat-contact-header d-block text-primary text-xl font-weight-medium">Contacts</span>
+      <span
+        class="chat-contact-header d-block text-primary text-xl font-weight-medium"
+        >Contacts</span
+      >
     </li>
 
     <ChatContact
@@ -109,7 +101,8 @@ const store = useChatStore()
     <span
       v-show="!store.contacts.length"
       class="no-chat-items-text text-disabled"
-    >No contacts found</span>
+      >No contacts found</span
+    >
   </PerfectScrollbar>
 </template>
 

@@ -1,22 +1,16 @@
 <script setup lang="ts">
-import type {
-  HelpCenterArticlesOverviewType,
-} from '@/@fake-db/types'
+import type { HelpCenterArticlesOverviewType } from "@/@fake-db/types";
 
 interface Props {
-  articles: HelpCenterArticlesOverviewType[]
+  articles: HelpCenterArticlesOverviewType[];
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 </script>
 
 <template>
   <VRow>
-    <VCol
-      cols="12"
-      lg="10"
-      class="mx-auto mb-8"
-    >
+    <VCol cols="12" lg="10" class="mx-auto mb-8">
       <VRow>
         <VCol
           v-for="article in props.articles"
@@ -24,10 +18,7 @@ const props = defineProps<Props>()
           cols="12"
           md="4"
         >
-          <VCard
-            flat
-            border
-          >
+          <VCard flat border>
             <VCardText class="text-center">
               <VImg
                 :src="article.img"
@@ -48,7 +39,11 @@ const props = defineProps<Props>()
                 variant="tonal"
                 :to="{
                   name: 'pages-help-center-category-subcategory-article',
-                  params: { category: 'getting-started', subcategory: 'account', article: 'changing-your-username' },
+                  params: {
+                    category: 'getting-started',
+                    subcategory: 'account',
+                    article: 'changing-your-username',
+                  },
                 }"
               >
                 Read More

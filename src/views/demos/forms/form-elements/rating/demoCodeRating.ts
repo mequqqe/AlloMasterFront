@@ -7,7 +7,7 @@ export const basic = {
   <VRating />
 </template>
 `,
-}
+};
 
 export const clearable = {
   ts: `<template>
@@ -18,7 +18,7 @@ export const clearable = {
   <VRating clearable />
 </template>
 `,
-}
+};
 
 export const colors = {
   ts: `<script lang="ts" setup>
@@ -61,7 +61,7 @@ const ratingColors = [
   </div>
 </template>
 `,
-}
+};
 
 export const density = {
   ts: `<template>
@@ -72,7 +72,7 @@ export const density = {
   <VRating density="compact" />
 </template>
 `,
-}
+};
 
 export const hover = {
   ts: `<template>
@@ -83,7 +83,7 @@ export const hover = {
   <VRating hover />
 </template>
 `,
-}
+};
 
 export const incremented = {
   ts: `<script lang="ts" setup>
@@ -110,7 +110,7 @@ const rating = ref(4.5)
   />
 </template>
 `,
-}
+};
 
 export const itemSlot = {
   ts: `<script lang="ts" setup>
@@ -149,7 +149,7 @@ const rating = ref(4.5)
   </VRating>
 </template>
 `,
-}
+};
 
 export const length = {
   ts: `<script lang="ts" setup>
@@ -202,7 +202,7 @@ const rating = ref(2)
   </p>
 </template>
 `,
-}
+};
 
 export const readonly = {
   ts: `<template>
@@ -219,7 +219,7 @@ export const readonly = {
   />
 </template>
 `,
-}
+};
 
 export const size = {
   ts: `<script lang="ts" setup>
@@ -282,4 +282,4 @@ const rating = ref(4)
   </div>
 </template>
 `,
-}
+};

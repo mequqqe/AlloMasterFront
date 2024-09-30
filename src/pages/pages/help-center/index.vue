@@ -2,29 +2,29 @@
 import type {
   HelpCenterArticlesOverviewType,
   HelpCenterCategoriesType,
-} from '@/@fake-db/types'
+} from "@/@fake-db/types";
 
-import HelpCenterLandingArticlesOverview from '@/views/pages/help-center/HelpCenterLandingArticlesOverview.vue'
-import HelpCenterLandingFooter from '@/views/pages/help-center/HelpCenterLandingFooter.vue'
-import HelpCenterLandingKnowledgeBase from '@/views/pages/help-center/HelpCenterLandingKnowledgeBase.vue'
-import axios from '@axios'
+import HelpCenterLandingArticlesOverview from "@/views/pages/help-center/HelpCenterLandingArticlesOverview.vue";
+import HelpCenterLandingFooter from "@/views/pages/help-center/HelpCenterLandingFooter.vue";
+import HelpCenterLandingKnowledgeBase from "@/views/pages/help-center/HelpCenterLandingKnowledgeBase.vue";
+import axios from "@axios";
 
 interface ApiDataType {
-  categories: HelpCenterCategoriesType[]
-  keepLearning: HelpCenterArticlesOverviewType[]
-  popularArticles: HelpCenterArticlesOverviewType[]
+  categories: HelpCenterCategoriesType[];
+  keepLearning: HelpCenterArticlesOverviewType[];
+  popularArticles: HelpCenterArticlesOverviewType[];
 }
 
-const apiData = ref<ApiDataType>()
+const apiData = ref<ApiDataType>();
 
 // fetching data from the @fake-db
 const fetchHelpCenterData = () => {
-  return axios.get('/pages/help-center/landing').then(res => {
-    apiData.value = res.data
-  })
-}
+  return axios.get("/pages/help-center/landing").then((res) => {
+    apiData.value = res.data;
+  });
+};
 
-fetchHelpCenterData()
+fetchHelpCenterData();
 </script>
 
 <template>
@@ -37,9 +37,7 @@ fetchHelpCenterData()
 
     <!-- 👉 Popular Articles -->
     <VCardText class="py-12">
-      <h5 class="text-h3 text-center my-6">
-        Popular Articles
-      </h5>
+      <h5 class="text-h3 text-center my-6">Popular Articles</h5>
 
       <HelpCenterLandingArticlesOverview :articles="apiData.popularArticles" />
     </VCardText>
@@ -47,9 +45,7 @@ fetchHelpCenterData()
     <!-- 👉 Knowledge Base -->
     <div>
       <VCardText class="bg-var-theme-background py-12">
-        <h5 class="text-h3 text-center my-6">
-          Knowledge Base
-        </h5>
+        <h5 class="text-h3 text-center my-6">Knowledge Base</h5>
 
         <HelpCenterLandingKnowledgeBase :categories="apiData.categories" />
       </VCardText>
@@ -57,9 +53,7 @@ fetchHelpCenterData()
 
     <!-- 👉 Keep Learning -->
     <VCardText class="py-12">
-      <h5 class="text-h3 text-center my-6">
-        Keep Learning
-      </h5>
+      <h5 class="text-h3 text-center my-6">Keep Learning</h5>
 
       <HelpCenterLandingArticlesOverview :articles="apiData.keepLearning" />
     </VCardText>

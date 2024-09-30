@@ -1,17 +1,17 @@
 <script setup lang="ts">
 interface Props {
-  collapsed?: boolean
-  noActions?: boolean
-  actionCollapsed?: boolean
-  actionRefresh?: boolean
-  actionRemove?: boolean
-  title?: string
+  collapsed?: boolean;
+  noActions?: boolean;
+  actionCollapsed?: boolean;
+  actionRefresh?: boolean;
+  actionRemove?: boolean;
+  title?: string;
 }
 
 interface Emit {
-  (e: 'collapsed', isContentCollapsed: boolean): void
-  (e: 'refresh', hideOverlay: () => void): void
-  (e: 'trash'): void
+  (e: "collapsed", isContentCollapsed: boolean): void;
+  (e: "refresh", hideOverlay: () => void): void;
+  (e: "trash"): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -21,41 +21,41 @@ const props = withDefaults(defineProps<Props>(), {
   actionRefresh: false,
   actionRemove: false,
   title: undefined,
-})
+});
 
-const emit = defineEmits<Emit>()
+const emit = defineEmits<Emit>();
 
 // inherit Attribute make false
 defineOptions({
   inheritAttrs: false,
-})
+});
 
-const isContentCollapsed = ref(props.collapsed)
-const isCardRemoved = ref(false)
-const isOverlayVisible = ref(false)
+const isContentCollapsed = ref(props.collapsed);
+const isCardRemoved = ref(false);
+const isOverlayVisible = ref(false);
 
 // hiding overlay
 const hideOverlay = () => {
-  isOverlayVisible.value = false
-}
+  isOverlayVisible.value = false;
+};
 
 // trigger collapse
 const triggerCollapse = () => {
-  isContentCollapsed.value = !isContentCollapsed.value
-  emit('collapsed', isContentCollapsed.value)
-}
+  isContentCollapsed.value = !isContentCollapsed.value;
+  emit("collapsed", isContentCollapsed.value);
+};
 
 // trigger refresh
 const triggerRefresh = () => {
-  isOverlayVisible.value = true
-  emit('refresh', hideOverlay)
-}
+  isOverlayVisible.value = true;
+  emit("refresh", hideOverlay);
+};
 
 // trigger removal
 const triggeredRemove = () => {
-  isCardRemoved.value = true
-  emit('trash')
-}
+  isCardRemoved.value = true;
+  emit("trash");
+};
 </script>
 
 <template>
@@ -80,49 +80,51 @@ const triggeredRemove = () => {
 
               <!-- 👉 Collapse button -->
               <IconBtn
-                v-if="(!(actionRemove || actionRefresh) || actionCollapsed) && !noActions"
+                v-if="
+                  (!(actionRemove || actionRefresh) || actionCollapsed) &&
+                  !noActions
+                "
                 @click="triggerCollapse"
               >
                 <VIcon
                   size="20"
                   icon="tabler-chevron-up"
-                  :style="{ transform: isContentCollapsed ? 'rotate(-180deg)' : null }"
-                  style="transition-duration: 0.28s;"
+                  :style="{
+                    transform: isContentCollapsed ? 'rotate(-180deg)' : null,
+                  }"
+                  style="transition-duration: 0.28s"
                 />
               </IconBtn>
 
               <!-- 👉 Overlay button -->
               <IconBtn
-                v-if="(!(actionRemove || actionCollapsed) || actionRefresh) && !noActions"
+                v-if="
+                  (!(actionRemove || actionCollapsed) || actionRefresh) &&
+                  !noActions
+                "
                 @click="triggerRefresh"
               >
-                <VIcon
-                  size="20"
-                  icon="tabler-refresh"
-                />
+                <VIcon size="20" icon="tabler-refresh" />
               </IconBtn>
 
               <!-- 👉 Close button -->
               <IconBtn
-                v-if="(!(actionRefresh || actionCollapsed) || actionRemove) && !noActions"
+                v-if="
+                  (!(actionRefresh || actionCollapsed) || actionRemove) &&
+                  !noActions
+                "
                 @click="triggeredRemove"
               >
-                <VIcon
-                  size="20"
-                  icon="tabler-x"
-                />
+                <VIcon size="20" icon="tabler-x" />
               </IconBtn>
             </div>
-          <!-- !SECTION -->
+            <!-- !SECTION -->
           </template>
         </VCardItem>
 
         <!-- 👉 card content -->
         <VExpandTransition>
-          <div
-            v-show="!isContentCollapsed"
-            class="v-card-content"
-          >
+          <div v-show="!isContentCollapsed" class="v-card-content">
             <slot />
           </div>
         </VExpandTransition>
@@ -143,7 +145,7 @@ const triggeredRemove = () => {
 
 <style lang="scss">
 .v-card-item {
-  +.v-card-content {
+  + .v-card-content {
     .v-card-text:first-child {
       padding-block-start: 0;
     }

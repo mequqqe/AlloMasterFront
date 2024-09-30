@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import pages500 from '@images/pages/404.png'
-import miscMaskDark from '@images/pages/misc-mask-dark.png'
-import miscMaskLight from '@images/pages/misc-mask-light.png'
+import pages500 from "@images/pages/404.png";
+import miscMaskDark from "@images/pages/misc-mask-dark.png";
+import miscMaskLight from "@images/pages/misc-mask-light.png";
 
-import { useGenerateImageVariant } from '@core/composable/useGenerateImageVariant'
+import { useGenerateImageVariant } from "@core/composable/useGenerateImageVariant";
 
-const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
+const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark);
 </script>
 
 <template>
@@ -14,12 +14,7 @@ const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
       error-title="Internal server error 👨🏻‍💻"
       error-description="Oops, something went wrong!"
     />
-    <VBtn
-      to="/"
-      class="mb-12"
-    >
-      Back to Home
-    </VBtn>
+    <VBtn to="/" class="mb-12"> Back to Home </VBtn>
 
     <!-- 👉 Image -->
     <div class="misc-avatar w-100 text-center">
@@ -31,10 +26,7 @@ const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
       />
     </div>
 
-    <VImg
-      :src="authThemeMask"
-      class="misc-footer-img d-none d-md-block"
-    />
+    <VImg :src="authThemeMask" class="misc-footer-img d-none d-md-block" />
   </div>
 </template>
 

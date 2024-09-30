@@ -1,28 +1,27 @@
 <script lang="ts" setup>
-import type { ChatContact, ChatContactWithChat } from '@/@fake-db/types'
-import { useChat } from '@/views/apps/chat/useChat'
-import { useChatStore } from '@/views/apps/chat/useChatStore'
-import { avatarText, formatDateToMonthShort } from '@core/utils/formatters'
+import type { ChatContact, ChatContactWithChat } from "@/@fake-db/types";
+import { useChat } from "@/views/apps/chat/useChat";
+import { useChatStore } from "@/views/apps/chat/useChatStore";
+import { avatarText, formatDateToMonthShort } from "@core/utils/formatters";
 
 interface Props {
-  isChatContact?: boolean
-  user: ChatContact | ChatContactWithChat
+  isChatContact?: boolean;
+  user: ChatContact | ChatContactWithChat;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   isChatContact: false,
-})
+});
 
-const store = useChatStore()
-const { resolveAvatarBadgeVariant } = useChat()
+const store = useChatStore();
+const { resolveAvatarBadgeVariant } = useChat();
 
 const isChatContactActive = computed(() => {
-  const isActive = store.activeChat?.contact.id === props.user.id
-  if (!props.isChatContact)
-    return !store.activeChat?.chat && isActive
+  const isActive = store.activeChat?.contact.id === props.user.id;
+  if (!props.isChatContact) return !store.activeChat?.chat && isActive;
 
-  return isActive
-})
+  return isActive;
+});
 </script>
 
 <template>
@@ -43,7 +42,11 @@ const isChatContactActive = computed(() => {
       <VAvatar
         size="38"
         :variant="!props.user.avatar ? 'tonal' : undefined"
-        :color="!props.user.avatar ? resolveAvatarBadgeVariant(props.user.status) : undefined"
+        :color="
+          !props.user.avatar
+            ? resolveAvatarBadgeVariant(props.user.status)
+            : undefined
+        "
       >
         <VImg
           v-if="props.user.avatar"
@@ -58,14 +61,20 @@ const isChatContactActive = computed(() => {
         {{ props.user.fullName }}
       </p>
       <p class="mb-0 text-truncate text-disabled">
-        {{ props.isChatContact && 'chat' in props.user ? props.user.chat.lastMessage.message : props.user.about }}
+        {{
+          props.isChatContact && "chat" in props.user
+            ? props.user.chat.lastMessage.message
+            : props.user.about
+        }}
       </p>
     </div>
     <div
       v-if="props.isChatContact && 'chat' in props.user"
       class="d-flex flex-column align-self-start"
     >
-      <span class="d-block text-sm text-disabled whitespace-no-wrap">{{ formatDateToMonthShort(props.user.chat.lastMessage.time) }}</span>
+      <span class="d-block text-sm text-disabled whitespace-no-wrap">{{
+        formatDateToMonthShort(props.user.chat.lastMessage.time)
+      }}</span>
       <VBadge
         v-if="props.user.chat.unseenMsgs"
         color="error"
@@ -91,7 +100,11 @@ const isChatContactActive = computed(() => {
   @include vuetifyStates.states($active: false);
 
   &.chat-contact-active {
-    background: linear-gradient(72.47deg, rgb(var(--v-theme-primary)) 0%, #fff 300%);
+    background: linear-gradient(
+      72.47deg,
+      rgb(var(--v-theme-primary)) 0%,
+      #fff 300%
+    );
     color: #fff;
 
     --v-theme-on-background: #fff;

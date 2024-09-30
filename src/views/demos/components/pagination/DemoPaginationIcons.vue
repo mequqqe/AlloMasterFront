@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const currentPage = ref(1)
+const currentPage = ref(1);
 </script>
 
 <template>

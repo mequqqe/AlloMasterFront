@@ -1,16 +1,10 @@
 <template>
   <VRow>
-    <VCol
-      cols="12"
-      md="6"
-    >
+    <VCol cols="12" md="6">
       <TimelineBasic />
     </VCol>
 
-    <VCol
-      cols="12"
-      md="6"
-    >
+    <VCol cols="12" md="6">
       <TimelineCard />
     </VCol>
 

@@ -55,7 +55,7 @@ export const colors = {
   </div>
 </template>
 `,
-}
+};
 
 export const group = {
   ts: `<script setup lang="ts">
@@ -204,7 +204,7 @@ import avatar6 from '@images/avatars/avatar-6.png'
   </div>
 </template>
 `,
-}
+};
 
 export const icons = {
   ts: `<template>
@@ -275,7 +275,7 @@ export const icons = {
   </div>
 </template>
 `,
-}
+};
 
 export const images = {
   ts: `<script setup lang="ts">
@@ -328,7 +328,7 @@ import avatar6 from '@images/avatars/avatar-6.png'
   </div>
 </template>
 `,
-}
+};
 
 export const rounded = {
   ts: `<template>
@@ -409,7 +409,7 @@ export const rounded = {
   </div>
 </template>
 `,
-}
+};
 
 export const sizes = {
   ts: `<template>
@@ -484,7 +484,7 @@ export const sizes = {
   </div>
 </template>
 `,
-}
+};
 
 export const tonal = {
   ts: `<template>
@@ -571,4 +571,4 @@ export const tonal = {
   </div>
 </template>
 `,
-}
+};

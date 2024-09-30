@@ -33,7 +33,7 @@ const radioGroup = ref(1)
   </div>
 </template>
 `,
-}
+};
 
 export const colors = {
   ts: `<script lang="ts" setup>
@@ -88,7 +88,7 @@ const colorsRadio = [
   </VRadioGroup>
 </template>
 `,
-}
+};
 
 export const density = {
   ts: `<script lang="ts" setup>
@@ -167,7 +167,7 @@ const inlineRadio = ref('radio-1')
   </VRadioGroup>
 </template>
 `,
-}
+};
 
 export const icon = {
   ts: `<script lang="ts" setup>
@@ -208,7 +208,7 @@ const radioGroup = ref(1)
   </VRadioGroup>
 </template>
 `,
-}
+};
 
 export const inline = {
   ts: `<script lang="ts" setup>
@@ -279,7 +279,7 @@ const inlineRadio = ref('radio-1')
   </VRadioGroup>
 </template>
 `,
-}
+};
 
 export const labelSlot = {
   ts: `<script lang="ts" setup>
@@ -346,7 +346,7 @@ const radios = ref('Duckduckgo')
   </VRadioGroup>
 </template>
 `,
-}
+};
 
 export const validation = {
   ts: `<script lang="ts" setup>
@@ -391,4 +391,4 @@ const rules = [value => value !== 3 ? true : 'Do not select the third one!']
   </VRadioGroup>
 </template>
 `,
-}
+};

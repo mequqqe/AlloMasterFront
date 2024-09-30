@@ -1,24 +1,23 @@
 <script setup lang="ts">
-import { useGenerateImageVariant } from '@core/composable/useGenerateImageVariant'
-import miscMaskDark from '@images/pages/misc-mask-dark.png'
-import miscMaskLight from '@images/pages/misc-mask-light.png'
-import miscUnderMaintenance from '@images/pages/misc-under-maintenance.png'
+import { useGenerateImageVariant } from "@core/composable/useGenerateImageVariant";
+import miscMaskDark from "@images/pages/misc-mask-dark.png";
+import miscMaskLight from "@images/pages/misc-mask-light.png";
+import miscUnderMaintenance from "@images/pages/misc-under-maintenance.png";
 
-const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
+const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark);
 </script>
 
 <template>
   <div class="misc-wrapper">
     <div class="text-center mb-12">
       <!-- 👉 Title and subtitle -->
-      <h4 class="text-h4 font-weight-medium mb-3">
-        Under Maintenance! 🚧
-      </h4>
-      <p>Sorry for the inconvenience but we're performing some maintenance at the moment</p>
+      <h4 class="text-h4 font-weight-medium mb-3">Under Maintenance! 🚧</h4>
+      <p>
+        Sorry for the inconvenience but we're performing some maintenance at the
+        moment
+      </p>
 
-      <VBtn to="/">
-        Back to Home
-      </VBtn>
+      <VBtn to="/"> Back to Home </VBtn>
     </div>
 
     <!-- 👉 Image -->
@@ -31,10 +30,7 @@ const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
       />
     </div>
 
-    <VImg
-      :src="authThemeMask"
-      class="misc-footer-img d-none d-md-block"
-    />
+    <VImg :src="authThemeMask" class="misc-footer-img d-none d-md-block" />
   </div>
 </template>
 

@@ -191,7 +191,7 @@ watch(search, query => {
   />
 </template>
 `,
-}
+};
 
 export const basic = {
   ts: `<script setup lang="ts">
@@ -223,7 +223,7 @@ const items = [
   />
 </template>
 `,
-}
+};
 
 export const chips = {
   ts: `<script setup lang="ts">
@@ -259,7 +259,7 @@ const items = [
   />
 </template>
 `,
-}
+};
 
 export const clearable = {
   ts: `<script setup lang="ts">
@@ -295,7 +295,7 @@ const items = [
   />
 </template>
 `,
-}
+};
 
 export const customFilter = {
   ts: `<script setup lang="ts">
@@ -374,7 +374,7 @@ function customFilter(item, queryText, itemText) {
   />
 </template>
 `,
-}
+};
 
 export const density = {
   ts: `<script setup lang="ts">
@@ -413,7 +413,7 @@ const items = [
   />
 </template>
 `,
-}
+};
 
 export const multiple = {
   ts: `<script setup lang="ts">
@@ -449,7 +449,7 @@ const items = [
   />
 </template>
 `,
-}
+};
 
 export const slots = {
   ts: `<script setup lang="ts">
@@ -595,7 +595,7 @@ const people = [
   </AppAutocomplete>
 </template>
 `,
-}
+};
 
 export const stateSelector = {
   ts: `<script setup lang="ts">
@@ -780,7 +780,7 @@ const states = [
   </AppAutocomplete>
 </template>
 `,
-}
+};
 
 export const validation = {
   ts: `<script setup lang="ts">
@@ -819,7 +819,7 @@ const nameRules = [v => !!v.length || 'Select at least one option.']
   />
 </template>
 `,
-}
+};
 
 export const variant = {
   ts: `<script setup lang="ts">
@@ -967,4 +967,4 @@ const items = [
   </VRow>
 </template>
 `,
-}
+};

@@ -1,29 +1,23 @@
 <script setup lang="ts">
-import { useGenerateImageVariant } from '@core/composable/useGenerateImageVariant'
-import authV2ForgotPasswordIllustrationDark from '@images/pages/auth-v2-two-step-illustration-dark.png'
-import authV2ForgotPasswordIllustrationLight from '@images/pages/auth-v2-two-step-illustration-light.png'
-import authV2MaskDark from '@images/pages/misc-mask-dark.png'
-import authV2MaskLight from '@images/pages/misc-mask-light.png'
-import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
-import { themeConfig } from '@themeConfig'
+import { useGenerateImageVariant } from "@core/composable/useGenerateImageVariant";
+import authV2ForgotPasswordIllustrationDark from "@images/pages/auth-v2-two-step-illustration-dark.png";
+import authV2ForgotPasswordIllustrationLight from "@images/pages/auth-v2-two-step-illustration-light.png";
+import authV2MaskDark from "@images/pages/misc-mask-dark.png";
+import authV2MaskLight from "@images/pages/misc-mask-light.png";
+import { VNodeRenderer } from "@layouts/components/VNodeRenderer";
+import { themeConfig } from "@themeConfig";
 
 const authThemeImg = useGenerateImageVariant(
   authV2ForgotPasswordIllustrationLight,
   authV2ForgotPasswordIllustrationDark,
-)
+);
 
-const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
+const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark);
 </script>
 
 <template>
-  <VRow
-    class="auth-wrapper bg-surface"
-    no-gutters
-  >
-    <VCol
-      md="8"
-      class="d-none d-md-flex"
-    >
+  <VRow class="auth-wrapper bg-surface" no-gutters>
+    <VCol md="8" class="d-none d-md-flex">
       <div class="position-relative bg-background rounded-lg w-100 ma-8 me-0">
         <div class="d-flex align-center justify-center w-100 h-100">
           <VImg
@@ -33,10 +27,7 @@ const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
           />
         </div>
 
-        <VImg
-          class="auth-footer-mask"
-          :src="authThemeMask"
-        />
+        <VImg class="auth-footer-mask" :src="authThemeMask" />
       </div>
     </VCol>
 
@@ -45,26 +36,16 @@ const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
       md="4"
       class="auth-card-v2 d-flex align-center justify-center"
     >
-      <VCard
-        flat
-        :max-width="500"
-        class="mt-12 mt-sm-0 pa-4"
-      >
+      <VCard flat :max-width="500" class="mt-12 mt-sm-0 pa-4">
         <VCardText>
-          <VNodeRenderer
-            :nodes="themeConfig.app.logo"
-            class="mb-6"
-          />
+          <VNodeRenderer :nodes="themeConfig.app.logo" class="mb-6" />
 
-          <h5 class="text-h5 mb-1">
-            Two Step Verification 💬
-          </h5>
+          <h5 class="text-h5 mb-1">Two Step Verification 💬</h5>
           <p class="mb-2">
-            We sent a verification code to your mobile. Enter the code from the mobile in the field below.
+            We sent a verification code to your mobile. Enter the code from the
+            mobile in the field below.
           </p>
-          <h6 class="text-base font-weight-medium">
-            ******1234
-          </h6>
+          <h6 class="text-base font-weight-medium">******1234</h6>
         </VCardText>
 
         <VCardText>
@@ -77,12 +58,7 @@ const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
 
               <!-- reset password -->
               <VCol cols="12">
-                <VBtn
-                  block
-                  type="submit"
-                >
-                  Verify my account
-                </VBtn>
+                <VBtn block type="submit"> Verify my account </VBtn>
               </VCol>
 
               <!-- back to login -->

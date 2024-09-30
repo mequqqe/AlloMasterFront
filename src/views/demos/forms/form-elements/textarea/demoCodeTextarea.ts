@@ -23,7 +23,7 @@ const textareaValue = ref('The Woodman set to work at once, and so sharp was his
   />
 </template>
 `,
-}
+};
 
 export const basic = {
   ts: `<template>
@@ -34,7 +34,7 @@ export const basic = {
   <AppTextarea label="Default" />
 </template>
 `,
-}
+};
 
 export const browserAutocomplete = {
   ts: `<template>
@@ -51,7 +51,7 @@ export const browserAutocomplete = {
   />
 </template>
 `,
-}
+};
 
 export const clearable = {
   ts: `<script setup lang="ts">
@@ -80,7 +80,7 @@ const textareaValue = ref('This is clearable text.')
   />
 </template>
 `,
-}
+};
 
 export const counter = {
   ts: `<script lang="ts" setup>
@@ -107,7 +107,7 @@ const textareaValue = ref('Hello!')
   />
 </template>
 `,
-}
+};
 
 export const icons = {
   ts: `<template>
@@ -182,7 +182,7 @@ export const icons = {
   </VRow>
 </template>
 `,
-}
+};
 
 export const noResize = {
   ts: `<script lang="ts" setup>
@@ -211,7 +211,7 @@ const value = ref('Marshmallow tiramisu pie dessert gingerbread tart caramels ma
   />
 </template>
 `,
-}
+};
 
 export const rows = {
   ts: `<template>
@@ -318,7 +318,7 @@ export const rows = {
   </VRow>
 </template>
 `,
-}
+};
 
 export const states = {
   ts: `<template>
@@ -365,7 +365,7 @@ export const states = {
   </VRow>
 </template>
 `,
-}
+};
 
 export const validation = {
   ts: `<script lang="ts" setup>
@@ -396,7 +396,7 @@ const rules = [v => v.length <= 25 || 'Max 25 characters']
   />
 </template>
 `,
-}
+};
 
 export const variant = {
   ts: `<template>
@@ -537,4 +537,4 @@ export const variant = {
   </VRow>
 </template>
 `,
-}
+};

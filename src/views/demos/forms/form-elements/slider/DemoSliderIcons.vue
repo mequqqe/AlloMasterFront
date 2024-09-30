@@ -1,23 +1,17 @@
 <script lang="ts" setup>
-const mediaSlider = ref(0)
-const alarmSlider = ref(0)
-const zoomInOut = ref(10)
+const mediaSlider = ref(0);
+const alarmSlider = ref(0);
+const zoomInOut = ref(10);
 </script>
 
 <template>
   <VRow>
     <VCol cols="12">
-      <VSlider
-        v-model="mediaSlider"
-        prepend-icon="tabler-volume"
-      />
+      <VSlider v-model="mediaSlider" prepend-icon="tabler-volume" />
     </VCol>
 
     <VCol cols="12">
-      <VSlider
-        v-model="alarmSlider"
-        append-icon="tabler-alarm"
-      />
+      <VSlider v-model="alarmSlider" append-icon="tabler-alarm" />
     </VCol>
 
     <VCol cols="12">

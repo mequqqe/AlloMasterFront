@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import authV1BottomShape from '@images/svg/auth-v1-bottom-shape.svg?raw'
-import authV1TopShape from '@images/svg/auth-v1-top-shape.svg?raw'
-import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
-import { themeConfig } from '@themeConfig'
+import authV1BottomShape from "@images/svg/auth-v1-bottom-shape.svg?raw";
+import authV1TopShape from "@images/svg/auth-v1-top-shape.svg?raw";
+import { VNodeRenderer } from "@layouts/components/VNodeRenderer";
+import { themeConfig } from "@themeConfig";
 </script>
 
 <template>
@@ -21,10 +21,7 @@ import { themeConfig } from '@themeConfig'
       />
 
       <!-- 👉 Auth card -->
-      <VCard
-        class="auth-card pa-4"
-        max-width="448"
-      >
+      <VCard class="auth-card pa-4" max-width="448">
         <VCardItem class="justify-center">
           <template #prepend>
             <div class="d-flex">
@@ -38,15 +35,12 @@ import { themeConfig } from '@themeConfig'
         </VCardItem>
 
         <VCardText class="pt-2">
-          <h5 class="text-h5 mb-1">
-            Two Step Verification 💬
-          </h5>
+          <h5 class="text-h5 mb-1">Two Step Verification 💬</h5>
           <p class="mb-2">
-            We sent a verification code to your mobile. Enter the code from the mobile in the field below.
+            We sent a verification code to your mobile. Enter the code from the
+            mobile in the field below.
           </p>
-          <h6 class="text-base font-weight-medium">
-            ******1234
-          </h6>
+          <h6 class="text-base font-weight-medium">******1234</h6>
         </VCardText>
 
         <VCardText>
@@ -59,12 +53,7 @@ import { themeConfig } from '@themeConfig'
 
               <!-- reset password -->
               <VCol cols="12">
-                <VBtn
-                  block
-                  type="submit"
-                >
-                  Verify my account
-                </VBtn>
+                <VBtn block type="submit"> Verify my account </VBtn>
               </VCol>
 
               <!-- back to login -->

@@ -1,17 +1,21 @@
 <script setup lang="ts">
-import FlatPickr from 'vue-flatpickr-component'
-import { useTheme } from 'vuetify'
+import FlatPickr from "vue-flatpickr-component";
+import { useTheme } from "vuetify";
 
 // @ts-expect-error There won't be declaration file for it
-import { VField, filterFieldProps, makeVFieldProps } from 'vuetify/lib/components/VField/VField'
+import {
+  VField,
+  filterFieldProps,
+  makeVFieldProps,
+} from "vuetify/lib/components/VField/VField";
 
 // @ts-expect-error There won't be declaration file for it
-import { VInput, makeVInputProps } from 'vuetify/lib/components/VInput/VInput'
+import { VInput, makeVInputProps } from "vuetify/lib/components/VInput/VInput";
 
 // @ts-expect-error There won't be declaration file for it
-import { filterInputAttrs } from 'vuetify/lib/util/helpers'
+import { filterInputAttrs } from "vuetify/lib/util/helpers";
 
-import { useThemeConfig } from '@core/composable/useThemeConfig'
+import { useThemeConfig } from "@core/composable/useThemeConfig";
 
 const props = defineProps({
   autofocus: Boolean,
@@ -25,96 +29,99 @@ const props = defineProps({
   suffix: String,
   type: {
     type: String,
-    default: 'text',
+    default: "text",
   },
   modelModifiers: Object as PropType<Record<string, boolean>>,
   ...makeVInputProps({
-    density: 'compact',
-    hideDetails: 'auto',
+    density: "compact",
+    hideDetails: "auto",
   }),
   ...makeVFieldProps({
-    variant: 'outlined',
-    color: 'primary',
+    variant: "outlined",
+    color: "primary",
   }),
-})
+});
 
-const emit = defineEmits<Emit>()
+const emit = defineEmits<Emit>();
 
 interface Emit {
-  (e: 'click:control', val: MouseEvent): true
-  (e: 'mousedown:control', val: MouseEvent): true
-  (e: 'update:focused', val: MouseEvent): true
-  (e: 'update:modelValue', val: string): void
-  (e: 'click:clear', el: MouseEvent): void
+  (e: "click:control", val: MouseEvent): true;
+  (e: "mousedown:control", val: MouseEvent): true;
+  (e: "update:focused", val: MouseEvent): true;
+  (e: "update:modelValue", val: string): void;
+  (e: "click:clear", el: MouseEvent): void;
 }
 
 // inherit Attribute make false
 defineOptions({
   inheritAttrs: false,
-})
+});
 
-const attrs = useAttrs()
+const attrs = useAttrs();
 
-const [rootAttrs, compAttrs] = filterInputAttrs(attrs)
+const [rootAttrs, compAttrs] = filterInputAttrs(attrs);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const [{ modelValue: _, ...inputProps }] = VInput.filterProps(props)
-const [fieldProps] = filterFieldProps(props)
+const [{ modelValue: _, ...inputProps }] = VInput.filterProps(props);
+const [fieldProps] = filterFieldProps(props);
 
-const refFlatPicker = ref()
-const { focused } = useFocus(refFlatPicker)
-const isCalendarOpen = ref(false)
-const isInlinePicker = ref(false)
+const refFlatPicker = ref();
+const { focused } = useFocus(refFlatPicker);
+const isCalendarOpen = ref(false);
+const isInlinePicker = ref(false);
 
 // flat picker prop manipulation
 if (compAttrs.config && compAttrs.config.inline) {
-  isInlinePicker.value = compAttrs.config.inline
-  Object.assign(compAttrs, { altInputClass: 'inlinePicker' })
+  isInlinePicker.value = compAttrs.config.inline;
+  Object.assign(compAttrs, { altInputClass: "inlinePicker" });
 }
 
 // v-field clear prop
 const onClear = (el: MouseEvent) => {
-  el.stopPropagation()
+  el.stopPropagation();
 
   nextTick(() => {
-    emit('update:modelValue', '')
+    emit("update:modelValue", "");
 
-    emit('click:clear', el)
-  })
-}
+    emit("click:clear", el);
+  });
+};
 
-const { theme } = useThemeConfig()
-const vuetifyTheme = useTheme()
+const { theme } = useThemeConfig();
+const vuetifyTheme = useTheme();
 
-const vuetifyThemesName = Object.keys(vuetifyTheme.themes.value)
+const vuetifyThemesName = Object.keys(vuetifyTheme.themes.value);
 
 // Themes class added to flat-picker component for light and dark support
 const updateThemeClassInCalendar = () => {
   // ℹ️ Flatpickr don't render it's instance in mobile and device simulator
-  if (!refFlatPicker.value.fp.calendarContainer)
-    return
+  if (!refFlatPicker.value.fp.calendarContainer) return;
 
-  vuetifyThemesName.forEach(t => {
-    refFlatPicker.value.fp.calendarContainer.classList.remove(`v-theme--${t}`)
-  })
-  refFlatPicker.value.fp.calendarContainer.classList.add(`v-theme--${vuetifyTheme.global.name.value}`)
-}
+  vuetifyThemesName.forEach((t) => {
+    refFlatPicker.value.fp.calendarContainer.classList.remove(`v-theme--${t}`);
+  });
+  refFlatPicker.value.fp.calendarContainer.classList.add(
+    `v-theme--${vuetifyTheme.global.name.value}`,
+  );
+};
 
-watch(theme, updateThemeClassInCalendar)
+watch(theme, updateThemeClassInCalendar);
 
 onMounted(() => {
-  updateThemeClassInCalendar()
-})
+  updateThemeClassInCalendar();
+});
 
 const emitModelValue = (val: string) => {
-  emit('update:modelValue', val)
-}
+  emit("update:modelValue", val);
+};
 
 const elementId = computed(() => {
-  const _elementIdToken = fieldProps.id || fieldProps.label
+  const _elementIdToken = fieldProps.id || fieldProps.label;
 
-  return _elementIdToken ? `app-picker-field-${_elementIdToken}-${Math.random().toString(36).slice(2, 7)}` : undefined
-})
+  return _elementIdToken
+    ? `app-picker-field-${_elementIdToken}-${Math.random().toString(36).slice(2, 7)}`
+    : undefined;
+});
 </script>
 
 <template>
@@ -131,11 +138,16 @@ const elementId = computed(() => {
       v-bind="{ ...inputProps, ...rootAttrs }"
       :model-value="modelValue"
       :hide-details="props.hideDetails"
-      :class="[{
-        'v-text-field--prefixed': props.prefix,
-        'v-text-field--suffixed': props.suffix,
-        'v-text-field--flush-details': ['plain', 'underlined'].includes(props.variant),
-      }, props.class]"
+      :class="[
+        {
+          'v-text-field--prefixed': props.prefix,
+          'v-text-field--suffixed': props.suffix,
+          'v-text-field--flush-details': ['plain', 'underlined'].includes(
+            props.variant,
+          ),
+        },
+        props.class,
+      ]"
       class="position-relative v-text-field"
       :style="props.style"
     >
@@ -176,7 +188,7 @@ const elementId = computed(() => {
                 :placeholder="props.placeholder"
                 class="flat-picker-custom-style"
                 type="text"
-              >
+              />
             </div>
           </template>
         </VField>
@@ -211,8 +223,14 @@ const elementId = computed(() => {
   padding-inline: var(--v-field-padding-start);
 }
 
-$heading-color: rgba(var(--v-theme-on-background), var(--v-high-emphasis-opacity));
-$body-color: rgba(var(--v-theme-on-background), var(--v-medium-emphasis-opacity));
+$heading-color: rgba(
+  var(--v-theme-on-background),
+  var(--v-high-emphasis-opacity)
+);
+$body-color: rgba(
+  var(--v-theme-on-background),
+  var(--v-medium-emphasis-opacity)
+);
 $disabled-color: rgba(var(--v-theme-on-background), var(--v-disabled-opacity));
 
 // hide the input when your picker is inline
@@ -279,7 +297,10 @@ input[altinputclass="inlinePicker"] {
     &.inRange,
     &.inRange:hover {
       border: none;
-      background: rgba(var(--v-theme-primary), var(--v-activated-opacity)) !important;
+      background: rgba(
+        var(--v-theme-primary),
+        var(--v-activated-opacity)
+      ) !important;
       box-shadow: none !important;
       color: rgb(var(--v-theme-primary));
     }
@@ -308,8 +329,8 @@ input[altinputclass="inlinePicker"] {
     }
 
     &.flatpickr-disabled,
-    &.prevMonthDay:not(.startRange,.inRange),
-    &.nextMonthDay:not(.endRange,.inRange) {
+    &.prevMonthDay:not(.startRange, .inRange),
+    &.nextMonthDay:not(.endRange, .inRange) {
       opacity: var(--v-disabled-opacity);
     }
 
@@ -335,7 +356,8 @@ input[altinputclass="inlinePicker"] {
   }
 
   .flatpickr-months {
-    border-block-end: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
+    border-block-end: 1px solid
+      rgba(var(--v-border-color), var(--v-border-opacity));
 
     .flatpickr-prev-month,
     .flatpickr-next-month {

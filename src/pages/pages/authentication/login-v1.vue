@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import AuthProvider from '@/views/pages/authentication/AuthProvider.vue'
-import authV1BottomShape from '@images/svg/auth-v1-bottom-shape.svg?raw'
-import authV1TopShape from '@images/svg/auth-v1-top-shape.svg?raw'
-import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
-import { themeConfig } from '@themeConfig'
+import AuthProvider from "@/views/pages/authentication/AuthProvider.vue";
+import authV1BottomShape from "@images/svg/auth-v1-bottom-shape.svg?raw";
+import authV1TopShape from "@images/svg/auth-v1-top-shape.svg?raw";
+import { VNodeRenderer } from "@layouts/components/VNodeRenderer";
+import { themeConfig } from "@themeConfig";
 
 const form = ref({
-  email: '',
-  password: '',
+  email: "",
+  password: "",
   remember: false,
-})
+});
 
-const isPasswordVisible = ref(false)
+const isPasswordVisible = ref(false);
 </script>
 
 <template>
@@ -30,10 +30,7 @@ const isPasswordVisible = ref(false)
       />
 
       <!-- 👉 Auth Card -->
-      <VCard
-        class="auth-card pa-4"
-        max-width="448"
-      >
+      <VCard class="auth-card pa-4" max-width="448">
         <VCardItem class="justify-center">
           <template #prepend>
             <div class="d-flex">
@@ -48,7 +45,9 @@ const isPasswordVisible = ref(false)
 
         <VCardText class="pt-1">
           <h5 class="text-h5 mb-1">
-            Welcome to <span class="text-capitalize">{{ themeConfig.app.title }}</span>! 👋🏻
+            Welcome to
+            <span class="text-capitalize">{{ themeConfig.app.title }}</span
+            >! 👋🏻
           </h5>
           <p class="mb-0">
             Please sign-in to your account and start the adventure
@@ -74,16 +73,17 @@ const isPasswordVisible = ref(false)
                   v-model="form.password"
                   label="Password"
                   :type="isPasswordVisible ? 'text' : 'password'"
-                  :append-inner-icon="isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"
+                  :append-inner-icon="
+                    isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'
+                  "
                   @click:append-inner="isPasswordVisible = !isPasswordVisible"
                 />
 
                 <!-- remember me checkbox -->
-                <div class="d-flex align-center justify-space-between flex-wrap mt-2 mb-4">
-                  <VCheckbox
-                    v-model="form.remember"
-                    label="Remember me"
-                  />
+                <div
+                  class="d-flex align-center justify-space-between flex-wrap mt-2 mb-4"
+                >
+                  <VCheckbox v-model="form.remember" label="Remember me" />
 
                   <RouterLink
                     class="text-primary ms-2 mb-1"
@@ -94,19 +94,11 @@ const isPasswordVisible = ref(false)
                 </div>
 
                 <!-- login button -->
-                <VBtn
-                  block
-                  type="submit"
-                >
-                  Login
-                </VBtn>
+                <VBtn block type="submit"> Login </VBtn>
               </VCol>
 
               <!-- create account -->
-              <VCol
-                cols="12"
-                class="text-center text-base"
-              >
+              <VCol cols="12" class="text-center text-base">
                 <span>New on our platform?</span>
                 <RouterLink
                   class="text-primary ms-2"
@@ -116,20 +108,14 @@ const isPasswordVisible = ref(false)
                 </RouterLink>
               </VCol>
 
-              <VCol
-                cols="12"
-                class="d-flex align-center"
-              >
+              <VCol cols="12" class="d-flex align-center">
                 <VDivider />
                 <span class="mx-4">or</span>
                 <VDivider />
               </VCol>
 
               <!-- auth providers -->
-              <VCol
-                cols="12"
-                class="text-center"
-              >
+              <VCol cols="12" class="text-center">
                 <AuthProvider />
               </VCol>
             </VRow>

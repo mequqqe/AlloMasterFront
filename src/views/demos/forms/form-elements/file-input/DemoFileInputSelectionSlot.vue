@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const files = ref<File[]>([])
+const files = ref<File[]>([]);
 </script>
 
 <template>
@@ -11,10 +11,7 @@ const files = ref<File[]>([])
     prepend-icon="tabler-paperclip"
   >
     <template #selection="{ fileNames }">
-      <template
-        v-for="fileName in fileNames"
-        :key="fileName"
-      >
+      <template v-for="fileName in fileNames" :key="fileName">
         <VChip
           label
           size="small"

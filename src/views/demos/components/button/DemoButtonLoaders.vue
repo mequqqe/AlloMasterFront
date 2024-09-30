@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-const loadings = ref<boolean[]>([])
+const loadings = ref<boolean[]>([]);
 
 const load = (i: number) => {
-  loadings.value[i] = true
+  loadings.value[i] = true;
   setTimeout(() => {
-    loadings.value[i] = false
-  }, 3000)
-}
+    loadings.value[i] = false;
+  }, 3000);
+};
 </script>
 
 <template>
@@ -27,10 +27,7 @@ const load = (i: number) => {
       @click="load(1)"
     >
       Upload
-      <VIcon
-        end
-        icon="tabler-cloud-upload"
-      />
+      <VIcon end icon="tabler-cloud-upload" />
     </VBtn>
 
     <VBtn
@@ -69,19 +66,19 @@ const load = (i: number) => {
   </div>
 </template>
 
-  <style lang="scss" scoped>
-  .custom-loader {
-    display: flex;
-    animation: loader 1s infinite;
+<style lang="scss" scoped>
+.custom-loader {
+  display: flex;
+  animation: loader 1s infinite;
+}
+
+@keyframes loader {
+  from {
+    transform: rotate(0);
   }
 
-  @keyframes loader {
-    from {
-      transform: rotate(0);
-    }
-
-    to {
-      transform: rotate(360deg);
-    }
+  to {
+    transform: rotate(360deg);
   }
-  </style>
+}
+</style>

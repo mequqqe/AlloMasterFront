@@ -1,6 +1,20 @@
 <script lang="ts" setup>
-const selectedSwitch = ref(['Primary', 'Secondary', 'Success', 'Info', 'Warning', 'Error'])
-const switches = ref(['Primary', 'Secondary', 'Success', 'Info', 'Warning', 'Error'])
+const selectedSwitch = ref([
+  "Primary",
+  "Secondary",
+  "Success",
+  "Info",
+  "Warning",
+  "Error",
+]);
+const switches = ref([
+  "Primary",
+  "Secondary",
+  "Success",
+  "Info",
+  "Warning",
+  "Error",
+]);
 </script>
 
 <template>

@@ -1,89 +1,83 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref } from "vue";
 
-const token = localStorage.getItem('token') // assuming the token is stored with the key 'token'
+const token = localStorage.getItem("token"); // assuming the token is stored with the key 'token'
 
 const userData = ref({
   id: 0,
-  company: '',
-  phone: '',
-  email: '',
-  address: '',
-})
+  company: "",
+  phone: "",
+  email: "",
+  address: "",
+});
 
 const fetchUserData = async () => {
   if (token) {
     try {
-      const response = await fetch('http://localhost:8000/api/company/my-company', {
-        method: 'GET',
-        headers: {
-          accept: '*/*',
-          Authorization: `Bearer ${token}`,
+      const response = await fetch(
+        "http://localhost:8000/api/company/my-company",
+        {
+          method: "GET",
+          headers: {
+            accept: "*/*",
+            Authorization: `Bearer ${token}`,
+          },
         },
-      })
+      );
 
       if (response.ok) {
-        const data = await response.json()
+        const data = await response.json();
 
         userData.value = {
           id: data.ID,
           company: data.CompanyName,
           phone: data.PhoneNumber,
           email: data.Mail,
-          address: '', // Address is not available in the API response, you can set it accordingly
-        }
+          address: "", // Address is not available in the API response, you can set it accordingly
+        };
+      } else {
+        console.error("Failed to fetch user data");
       }
-      else {
-        console.error('Failed to fetch user data')
-      }
+    } catch (error) {
+      console.error("Error:", error);
     }
-    catch (error) {
-      console.error('Error:', error)
-    }
+  } else {
+    console.error("Token not found in localStorage");
   }
-  else {
-    console.error('Token not found in localStorage')
-  }
-}
+};
 
-onMounted(fetchUserData)
+onMounted(fetchUserData);
 
 const standardPlan = {
-  plan: 'Standard',
+  plan: "Standard",
   price: 99,
-  benefits: ['10 Users', 'Up to 10GB storage', 'Basic Support'],
-}
+  benefits: ["10 Users", "Up to 10GB storage", "Basic Support"],
+};
 
-const isUserInfoEditDialogVisible = ref(false)
-const isUpgradePlanDialogVisible = ref(false)
+const isUserInfoEditDialogVisible = ref(false);
+const isUpgradePlanDialogVisible = ref(false);
 
 // 👉 Status variant resolver
 const resolveUserStatusVariant = (stat: string) => {
-  if (stat === 'pending')
-    return 'warning'
-  if (stat === 'active')
-    return 'success'
-  if (stat === 'inactive')
-    return 'secondary'
+  if (stat === "pending") return "warning";
+  if (stat === "active") return "success";
+  if (stat === "inactive") return "secondary";
 
-  return 'primary'
-}
+  return "primary";
+};
 
 // 👉 Role variant resolver
 const resolveUserRoleVariant = (role: string) => {
-  if (role === 'subscriber')
-    return { color: 'warning', icon: 'tabler-user' }
-  if (role === 'author')
-    return { color: 'success', icon: 'tabler-circle-check' }
-  if (role === 'maintainer')
-    return { color: 'primary', icon: 'tabler-chart-pie-2' }
-  if (role === 'editor')
-    return { color: 'info', icon: 'tabler-pencil' }
-  if (role === 'admin')
-    return { color: 'secondary', icon: 'tabler-server-2' }
+  if (role === "subscriber") return { color: "warning", icon: "tabler-user" };
+  if (role === "author")
+    return { color: "success", icon: "tabler-circle-check" };
+  if (role === "maintainer")
+    return { color: "primary", icon: "tabler-chart-pie-2" };
+  if (role === "editor") return { color: "info", icon: "tabler-pencil" };
+  if (role === "admin") return { color: "secondary", icon: "tabler-server-2" };
 
-  return { color: 'primary', icon: 'tabler-user' }
-}
+  return { color: "primary", icon: "tabler-user" };
+};
 </script>
 
 <template>
@@ -93,9 +87,7 @@ const resolveUserRoleVariant = (role: string) => {
       <VCard>
         <!-- 👉 Details -->
         <VCardText>
-          <p class="text-sm text-uppercase text-disabled">
-            Details
-          </p>
+          <p class="text-sm text-uppercase text-disabled">Details</p>
 
           <!-- 👉 User Details list -->
           <VList class="card-list mt-2">
@@ -147,12 +139,7 @@ const resolveUserRoleVariant = (role: string) => {
             Edit
           </VBtn>
 
-          <VBtn
-            variant="tonal"
-            color="error"
-          >
-            Suspend
-          </VBtn>
+          <VBtn variant="tonal" color="error"> Suspend </VBtn>
         </VCardText>
       </VCard>
     </VCol>

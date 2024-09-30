@@ -1,93 +1,93 @@
 <script lang="ts" setup>
-import { VDataTable } from 'vuetify/labs/VDataTable'
+import { VDataTable } from "vuetify/labs/VDataTable";
 
-const isCurrentPasswordVisible = ref(false)
-const isNewPasswordVisible = ref(false)
-const isConfirmPasswordVisible = ref(false)
-const currentPassword = ref('')
-const newPassword = ref('')
-const confirmPassword = ref('')
+const isCurrentPasswordVisible = ref(false);
+const isNewPasswordVisible = ref(false);
+const isConfirmPasswordVisible = ref(false);
+const currentPassword = ref("");
+const newPassword = ref("");
+const confirmPassword = ref("");
 
 const passwordRequirements = [
-  'Minimum 8 characters long - the more, the better',
-  'At least one lowercase character',
-  'At least one number, symbol, or whitespace character',
-]
+  "Minimum 8 characters long - the more, the better",
+  "At least one lowercase character",
+  "At least one number, symbol, or whitespace character",
+];
 
 const serverKeys = [
   {
-    name: 'Server Key 1',
-    key: '23eaf7f0-f4f7-495e-8b86-fad3261282ac',
-    createdOn: '28 Apr 2021, 18:20 GTM+4:10',
-    permission: 'Full Access',
+    name: "Server Key 1",
+    key: "23eaf7f0-f4f7-495e-8b86-fad3261282ac",
+    createdOn: "28 Apr 2021, 18:20 GTM+4:10",
+    permission: "Full Access",
   },
   {
-    name: 'Server Key 2',
-    key: 'bb98e571-a2e2-4de8-90a9-2e231b5e99',
-    createdOn: '12 Feb 2021, 10:30 GTM+2:30',
-    permission: 'Read Only',
+    name: "Server Key 2",
+    key: "bb98e571-a2e2-4de8-90a9-2e231b5e99",
+    createdOn: "12 Feb 2021, 10:30 GTM+2:30",
+    permission: "Read Only",
   },
   {
-    name: 'Server Key 3',
-    key: '2e915e59-3105-47f2-8838-6e46bf83b711',
-    createdOn: '28 Dec 2020, 12:21 GTM+4:10',
-    permission: 'Full Access',
+    name: "Server Key 3",
+    key: "2e915e59-3105-47f2-8838-6e46bf83b711",
+    createdOn: "28 Dec 2020, 12:21 GTM+4:10",
+    permission: "Full Access",
   },
-]
+];
 
 const recentDevicesHeaders = [
-  { title: 'BROWSER', key: 'browser' },
-  { title: 'DEVICE', key: 'device' },
-  { title: 'LOCATION', key: 'location' },
-  { title: 'RECENT ACTIVITY', key: 'recentActivity' },
-]
+  { title: "BROWSER", key: "browser" },
+  { title: "DEVICE", key: "device" },
+  { title: "LOCATION", key: "location" },
+  { title: "RECENT ACTIVITY", key: "recentActivity" },
+];
 
 const recentDevices = [
   {
-    browser: 'Chrome on Windows',
-    device: 'HP Spectre 360',
-    location: 'New York, NY',
-    recentActivity: '28 Apr 2022, 18:20',
-    deviceIcon: { icon: 'tabler-brand-windows', color: 'primary' },
+    browser: "Chrome on Windows",
+    device: "HP Spectre 360",
+    location: "New York, NY",
+    recentActivity: "28 Apr 2022, 18:20",
+    deviceIcon: { icon: "tabler-brand-windows", color: "primary" },
   },
   {
-    browser: 'Chrome on iPhone',
-    device: 'iPhone 12x',
-    location: 'Los Angeles, CA',
-    recentActivity: '20 Apr 2022, 10:20',
-    deviceIcon: { icon: 'tabler-device-mobile', color: 'error' },
+    browser: "Chrome on iPhone",
+    device: "iPhone 12x",
+    location: "Los Angeles, CA",
+    recentActivity: "20 Apr 2022, 10:20",
+    deviceIcon: { icon: "tabler-device-mobile", color: "error" },
   },
   {
-    browser: 'Chrome on Android',
-    device: 'Oneplus 9 Pro',
-    location: 'San Francisco, CA',
-    recentActivity: '16 Apr 2022, 04:20',
-    deviceIcon: { icon: 'tabler-brand-android', color: 'success' },
+    browser: "Chrome on Android",
+    device: "Oneplus 9 Pro",
+    location: "San Francisco, CA",
+    recentActivity: "16 Apr 2022, 04:20",
+    deviceIcon: { icon: "tabler-brand-android", color: "success" },
   },
   {
-    browser: 'Chrome on MacOS',
-    device: 'Apple iMac',
-    location: 'New York, NY',
-    recentActivity: '28 Apr 2022, 18:20',
-    deviceIcon: { icon: 'tabler-brand-apple', color: 'secondary' },
+    browser: "Chrome on MacOS",
+    device: "Apple iMac",
+    location: "New York, NY",
+    recentActivity: "28 Apr 2022, 18:20",
+    deviceIcon: { icon: "tabler-brand-apple", color: "secondary" },
   },
   {
-    browser: 'Chrome on Windows',
-    device: 'HP Spectre 360',
-    location: 'Los Angeles, CA',
-    recentActivity: '20 Apr 2022, 10:20',
-    deviceIcon: { icon: 'tabler-brand-windows', color: 'primary' },
+    browser: "Chrome on Windows",
+    device: "HP Spectre 360",
+    location: "Los Angeles, CA",
+    recentActivity: "20 Apr 2022, 10:20",
+    deviceIcon: { icon: "tabler-brand-windows", color: "primary" },
   },
   {
-    browser: 'Chrome on Android',
-    device: 'Oneplus 9 Pro',
-    location: 'San Francisco, CA',
-    recentActivity: '16 Apr 2022, 04:20',
-    deviceIcon: { icon: 'tabler-brand-android', color: 'success' },
+    browser: "Chrome on Android",
+    device: "Oneplus 9 Pro",
+    location: "San Francisco, CA",
+    recentActivity: "16 Apr 2022, 04:20",
+    deviceIcon: { icon: "tabler-brand-android", color: "success" },
   },
-]
+];
 
-const isOneTimePasswordDialogVisible = ref(false)
+const isOneTimePasswordDialogVisible = ref(false);
 </script>
 
 <template>
@@ -99,48 +99,51 @@ const isOneTimePasswordDialogVisible = ref(false)
           <VCardText class="pt-0">
             <!-- 👉 Current Password -->
             <VRow>
-              <VCol
-                cols="12"
-                md="6"
-              >
+              <VCol cols="12" md="6">
                 <!-- 👉 current password -->
                 <AppTextField
                   v-model="currentPassword"
                   :type="isCurrentPasswordVisible ? 'text' : 'password'"
-                  :append-inner-icon="isCurrentPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"
+                  :append-inner-icon="
+                    isCurrentPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'
+                  "
                   label="Current Password"
-                  @click:append-inner="isCurrentPasswordVisible = !isCurrentPasswordVisible"
+                  @click:append-inner="
+                    isCurrentPasswordVisible = !isCurrentPasswordVisible
+                  "
                 />
               </VCol>
             </VRow>
 
             <!-- 👉 New Password -->
             <VRow>
-              <VCol
-                cols="12"
-                md="6"
-              >
+              <VCol cols="12" md="6">
                 <!-- 👉 new password -->
                 <AppTextField
                   v-model="newPassword"
                   :type="isNewPasswordVisible ? 'text' : 'password'"
-                  :append-inner-icon="isNewPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"
+                  :append-inner-icon="
+                    isNewPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'
+                  "
                   label="New Password"
-                  @click:append-inner="isNewPasswordVisible = !isNewPasswordVisible"
+                  @click:append-inner="
+                    isNewPasswordVisible = !isNewPasswordVisible
+                  "
                 />
               </VCol>
 
-              <VCol
-                cols="12"
-                md="6"
-              >
+              <VCol cols="12" md="6">
                 <!-- 👉 confirm password -->
                 <AppTextField
                   v-model="confirmPassword"
                   :type="isConfirmPasswordVisible ? 'text' : 'password'"
-                  :append-inner-icon="isConfirmPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"
+                  :append-inner-icon="
+                    isConfirmPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'
+                  "
                   label="Confirm New Password"
-                  @click:append-inner="isConfirmPasswordVisible = !isConfirmPasswordVisible"
+                  @click:append-inner="
+                    isConfirmPasswordVisible = !isConfirmPasswordVisible
+                  "
                 />
               </VCol>
             </VRow>
@@ -160,11 +163,7 @@ const isOneTimePasswordDialogVisible = ref(false)
                 class="text-medium-emphasis"
               >
                 <template #prepend>
-                  <VIcon
-                    size="8"
-                    icon="tabler-circle"
-                    class="me-3"
-                  />
+                  <VIcon size="8" icon="tabler-circle" class="me-3" />
                 </template>
               </VListItem>
             </VList>
@@ -174,13 +173,7 @@ const isOneTimePasswordDialogVisible = ref(false)
           <VCardText class="d-flex flex-wrap gap-4">
             <VBtn>Save changes</VBtn>
 
-            <VBtn
-              type="reset"
-              color="secondary"
-              variant="tonal"
-            >
-              Reset
-            </VBtn>
+            <VBtn type="reset" color="secondary" variant="tonal"> Reset </VBtn>
           </VCardText>
         </VForm>
       </VCard>
@@ -195,13 +188,13 @@ const isOneTimePasswordDialogVisible = ref(false)
             Two factor authentication is not enabled yet.
           </h6>
           <p>
-            Two-factor authentication adds an additional layer of security to your account by
-            <br>
+            Two-factor authentication adds an additional layer of security to
+            your account by
+            <br />
             requiring more than just a password to log in.
-            <a
-              href="javascript:void(0)"
-              class="text-decoration-none"
-            >Learn more.</a>
+            <a href="javascript:void(0)" class="text-decoration-none"
+              >Learn more.</a
+            >
           </p>
 
           <VBtn @click="isOneTimePasswordDialogVisible = true">
@@ -217,20 +210,22 @@ const isOneTimePasswordDialogVisible = ref(false)
       <VCard title="Create an API key">
         <VRow no-gutters>
           <!-- 👉 Choose API Key -->
-          <VCol
-            cols="12"
-            md="5"
-            order-md="0"
-            order="1"
-          >
+          <VCol cols="12" md="5" order-md="0" order="1">
             <VCardText>
-              <VForm @submit.prevent="() => { }">
+              <VForm @submit.prevent="() => {}">
                 <VRow>
                   <!-- 👉 Choose API Key -->
                   <VCol cols="12">
                     <AppSelect
                       label="Choose the API key type you want to create"
-                      :items="['Full Control', 'Modify', 'Read & Execute', 'List Folder Contents', 'Read Only', 'Read & Write']"
+                      :items="[
+                        'Full Control',
+                        'Modify',
+                        'Read & Execute',
+                        'List Folder Contents',
+                        'Read Only',
+                        'Read & Write',
+                      ]"
                     />
                   </VCol>
 
@@ -241,12 +236,7 @@ const isOneTimePasswordDialogVisible = ref(false)
 
                   <!-- 👉 Create Key Button -->
                   <VCol cols="12">
-                    <VBtn
-                      type="submit"
-                      block
-                    >
-                      Create Key
-                    </VBtn>
+                    <VBtn type="submit" block> Create Key </VBtn>
                   </VCol>
                 </VRow>
               </VForm>
@@ -264,7 +254,11 @@ const isOneTimePasswordDialogVisible = ref(false)
             <VImg
               :src="laptopGirl"
               :width="200"
-              :style="$vuetify.display.smAndDown ? '' : 'position: absolute; bottom: 0;'"
+              :style="
+                $vuetify.display.smAndDown
+                  ? ''
+                  : 'position: absolute; bottom: 0;'
+              "
             />
           </VCol>
         </VRow>
@@ -276,9 +270,10 @@ const isOneTimePasswordDialogVisible = ref(false)
       <!-- SECTION: API Keys List -->
       <VCard title="API Key List &amp; Access">
         <VCardText>
-          An API key is a simple encrypted string that identifies an application without any principal. They are useful
-          for accessing public data anonymously, and are used to associate API requests with your project for quota and
-          billing.
+          An API key is a simple encrypted string that identifies an application
+          without any principal. They are useful for accessing public data
+          anonymously, and are used to associate API requests with your project
+          for quota and billing.
         </VCardText>
 
         <!-- 👉 Server Status -->
@@ -293,7 +288,11 @@ const isOneTimePasswordDialogVisible = ref(false)
             <MoreBtn
               :menu-list="[
                 { prependIcon: 'tabler-pencil', title: 'Edit', value: 'Edit' },
-                { prependIcon: 'tabler-trash', title: 'Delete', value: 'Delete' },
+                {
+                  prependIcon: 'tabler-trash',
+                  title: 'Delete',
+                  value: 'Delete',
+                },
               ]"
               item-props
               class="position-absolute server-close-btn"
@@ -304,11 +303,7 @@ const isOneTimePasswordDialogVisible = ref(false)
                 {{ serverKey.name }}
               </h6>
 
-              <VChip
-                label
-                color="primary"
-                size="small"
-              >
+              <VChip label color="primary" size="small">
                 {{ serverKey.permission }}
               </VChip>
             </div>
@@ -319,10 +314,7 @@ const isOneTimePasswordDialogVisible = ref(false)
               </h6>
 
               <div class="cursor-pointer">
-                <VIcon
-                  icon="tabler-copy"
-                  class="text-disabled"
-                />
+                <VIcon icon="tabler-copy" class="text-disabled" />
               </div>
             </div>
 
@@ -363,7 +355,9 @@ const isOneTimePasswordDialogVisible = ref(false)
   </VRow>
 
   <!-- SECTION Enable One time password -->
-  <TwoFactorAuthDialog v-model:isDialogVisible="isOneTimePasswordDialogVisible" />
+  <TwoFactorAuthDialog
+    v-model:isDialogVisible="isOneTimePasswordDialogVisible"
+  />
   <!-- !SECTION -->
 </template>
 

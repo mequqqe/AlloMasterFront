@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import AppSearchHeaderBg from '@images/pages/app-search-header-bg.png'
+import AppSearchHeaderBg from "@images/pages/app-search-header-bg.png";
 
 interface Props {
-  title?: string
-  subtitle?: string
-  customClass?: string
+  title?: string;
+  subtitle?: string;
+  customClass?: string;
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 
 defineOptions({
   inheritAttrs: false,
-})
+});
 </script>
 
 <template>
@@ -35,10 +35,7 @@ defineOptions({
         density="comfortable"
       >
         <template #prepend-inner>
-          <VIcon
-            icon="tabler-search"
-            size="23"
-          />
+          <VIcon icon="tabler-search" size="23" />
         </template>
       </AppTextField>
 

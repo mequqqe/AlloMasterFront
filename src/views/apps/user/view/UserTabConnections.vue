@@ -1,79 +1,79 @@
 <script lang="ts" setup>
-import asana from '@images/icons/brands/asana.png'
-import behance from '@images/icons/brands/behance.png'
-import dribbble from '@images/icons/brands/dribbble.png'
-import facebook from '@images/icons/brands/facebook.png'
-import github from '@images/icons/brands/github.png'
-import google from '@images/icons/brands/google.png'
-import linkedin from '@images/icons/brands/linkedin.png'
-import mailchimp from '@images/icons/brands/mailchimp.png'
-import slack from '@images/icons/brands/slack.png'
-import twitter from '@images/icons/brands/twitter.png'
+import asana from "@images/icons/brands/asana.png";
+import behance from "@images/icons/brands/behance.png";
+import dribbble from "@images/icons/brands/dribbble.png";
+import facebook from "@images/icons/brands/facebook.png";
+import github from "@images/icons/brands/github.png";
+import google from "@images/icons/brands/google.png";
+import linkedin from "@images/icons/brands/linkedin.png";
+import mailchimp from "@images/icons/brands/mailchimp.png";
+import slack from "@images/icons/brands/slack.png";
+import twitter from "@images/icons/brands/twitter.png";
 
 const connectedAccounts = ref([
   {
     img: google,
-    title: 'Google',
-    text: 'Calendar and contacts',
+    title: "Google",
+    text: "Calendar and contacts",
     connected: true,
   },
   {
     img: slack,
-    title: 'Slack',
-    text: 'Communication',
+    title: "Slack",
+    text: "Communication",
     connected: false,
   },
   {
     img: github,
-    title: 'Github',
-    text: 'Manage your Git repositories',
+    title: "Github",
+    text: "Manage your Git repositories",
     connected: true,
   },
   {
     img: mailchimp,
-    title: 'Mailchimp',
-    text: 'Email marketing service',
+    title: "Mailchimp",
+    text: "Email marketing service",
     connected: false,
   },
   {
     img: asana,
-    title: 'Asana',
-    text: 'Communication',
+    title: "Asana",
+    text: "Communication",
     connected: false,
   },
-])
+]);
 
 const socialAccounts = ref([
   {
     img: facebook,
-    title: 'Facebook',
+    title: "Facebook",
     connected: false,
   },
   {
     img: twitter,
-    title: 'Twitter',
-    link: 'https://twitter.com/theme_selection',
-    username: '@Theme_Selection',
+    title: "Twitter",
+    link: "https://twitter.com/theme_selection",
+    username: "@Theme_Selection",
     connected: true,
   },
   {
     img: linkedin,
-    title: 'Linkedin',
-    link: 'https://www.linkedin.com/company/pixinvent',
-    username: '@Pixinvent',
+    title: "Linkedin",
+    link: "https://www.linkedin.com/company/pixinvent",
+    username: "@Pixinvent",
     connected: true,
   },
   {
     img: dribbble,
-    title: 'Dribbble',
+    title: "Dribbble",
     connected: false,
   },
   {
     img: behance,
-    title: 'Behance',
+    title: "Behance",
     connected: false,
   },
-])
+]);
 </script>
 
 <template>
@@ -98,11 +98,7 @@ const socialAccounts = ref([
                 </h6>
               </template>
               <template #prepend>
-                <VAvatar
-                  start
-                  :size="35"
-                  :image="account.img"
-                />
+                <VAvatar start :size="35" :image="account.img" />
               </template>
 
               <template #append>
@@ -127,20 +123,12 @@ const socialAccounts = ref([
           </p>
 
           <VList class="card-list">
-            <VListItem
-              v-for="(account) in socialAccounts"
-              :key="account.title"
-            >
+            <VListItem v-for="account in socialAccounts" :key="account.title">
               <h6 class="text-h6">
                 {{ account.title }}
               </h6>
               <template #prepend>
-                <VAvatar
-                  start
-                  size="35"
-                  rounded="0"
-                  :image="account.img"
-                />
+                <VAvatar start size="35" rounded="0" :image="account.img" />
               </template>
 
               <VListItemSubtitle v-if="account.connected">
@@ -153,9 +141,7 @@ const socialAccounts = ref([
                 </a>
               </VListItemSubtitle>
 
-              <VListItemSubtitle v-else>
-                Not connected
-              </VListItemSubtitle>
+              <VListItemSubtitle v-else> Not connected </VListItemSubtitle>
 
               <template #append>
                 <IconBtn
@@ -163,7 +149,9 @@ const socialAccounts = ref([
                   :color="account.connected ? 'error' : 'secondary'"
                   class="rounded"
                 >
-                  <VIcon :icon="account.connected ? 'tabler-trash' : 'tabler-link'" />
+                  <VIcon
+                    :icon="account.connected ? 'tabler-trash' : 'tabler-link'"
+                  />
                 </IconBtn>
               </template>
             </VListItem>

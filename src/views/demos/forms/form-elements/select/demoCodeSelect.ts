@@ -26,7 +26,7 @@ const items = [
   />
 </template>
 `,
-}
+};
 
 export const chips = {
   ts: `<script lang="ts" setup>
@@ -70,7 +70,7 @@ const selected = ref([
   />
 </template>
 `,
-}
+};
 
 export const customTextAndValue = {
   ts: `<script lang="ts" setup>
@@ -143,7 +143,7 @@ const items = [
   />
 </template>
 `,
-}
+};
 
 export const density = {
   ts: `<script lang="ts" setup>
@@ -175,7 +175,7 @@ const items = [
   />
 </template>
 `,
-}
+};
 
 export const icons = {
   ts: `<script lang="ts" setup>
@@ -274,7 +274,7 @@ const states = [
   </VRow>
 </template>
 `,
-}
+};
 
 export const menuProps = {
   ts: `<script lang="ts" setup>
@@ -306,7 +306,7 @@ const items = [
   />
 </template>
 `,
-}
+};
 
 export const multiple = {
   ts: `<script lang="ts" setup>
@@ -373,7 +373,7 @@ const states = [
   />
 </template>
 `,
-}
+};
 
 export const selectionSlot = {
   ts: `<script lang="ts" setup>
@@ -473,7 +473,7 @@ const value = ref(['Sandra Adams'])
   </AppSelect>
 </template>
 `,
-}
+};
 
 export const variant = {
   ts: `<script lang="ts" setup>
@@ -605,4 +605,4 @@ const items = [
   </VRow>
 </template>
 `,
-}
+};

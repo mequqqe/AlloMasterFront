@@ -1,28 +1,28 @@
 <script setup lang="ts">
-import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
+import { PerfectScrollbar } from "vue3-perfect-scrollbar";
 
 interface SubmitData {
-  emailFrom: string
-  emailTo: string
-  invoiceSubject: string
-  paymentMessage: string
+  emailFrom: string;
+  emailTo: string;
+  invoiceSubject: string;
+  paymentMessage: string;
 }
 interface Emit {
-  (e: 'update:isDrawerOpen', value: boolean): void
-  (e: 'submit', value: SubmitData): void
+  (e: "update:isDrawerOpen", value: boolean): void;
+  (e: "submit", value: SubmitData): void;
 }
 
 interface Props {
-  isDrawerOpen: boolean
+  isDrawerOpen: boolean;
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 
-const emit = defineEmits<Emit>()
+const emit = defineEmits<Emit>();
 
-const emailFrom = ref('shelbyComapny@email.com')
-const emailTo = ref('qConsolidated@email.com')
-const invoiceSubject = ref('Invoice of purchased Admin Templates')
+const emailFrom = ref("shelbyComapny@email.com");
+const emailTo = ref("qConsolidated@email.com");
+const invoiceSubject = ref("Invoice of purchased Admin Templates");
 
 const paymentMessage = ref(`Dear Queen Consolidated,
 
@@ -30,21 +30,21 @@ Thank you for your business, always a pleasure to work with you!
 
 We have generated a new invoice in the amount of $95.59
 
-We would appreciate payment of this invoice by 05/11/2019`)
+We would appreciate payment of this invoice by 05/11/2019`);
 
 const onSubmit = () => {
-  emit('update:isDrawerOpen', false)
-  emit('submit', {
+  emit("update:isDrawerOpen", false);
+  emit("submit", {
     emailFrom: emailFrom.value,
     emailTo: emailTo.value,
     invoiceSubject: invoiceSubject.value,
     paymentMessage: paymentMessage.value,
-  })
-}
+  });
+};
 
 const handleDrawerModelValueUpdate = (val: boolean) => {
-  emit('update:isDrawerOpen', val)
-}
+  emit("update:isDrawerOpen", val);
+};
 </script>
 
 <template>
@@ -68,24 +68,15 @@ const handleDrawerModelValueUpdate = (val: boolean) => {
           <VForm @submit.prevent="onSubmit">
             <VRow>
               <VCol cols="12">
-                <AppTextField
-                  v-model="emailFrom"
-                  label="Form"
-                />
+                <AppTextField v-model="emailFrom" label="Form" />
               </VCol>
 
               <VCol cols="12">
-                <AppTextField
-                  v-model="emailTo"
-                  label="To"
-                />
+                <AppTextField v-model="emailTo" label="To" />
               </VCol>
 
               <VCol cols="12">
-                <AppTextField
-                  v-model="invoiceSubject"
-                  label="Subject"
-                />
+                <AppTextField v-model="invoiceSubject" label="Subject" />
               </VCol>
 
               <VCol cols="12">
@@ -98,24 +89,12 @@ const handleDrawerModelValueUpdate = (val: boolean) => {
 
               <VCol cols="12">
                 <div class="mb-6">
-                  <VChip
-                    label
-                    color="primary"
-                    size="small"
-                  >
-                    <VIcon
-                      start
-                      icon="tabler-link"
-                    />
+                  <VChip label color="primary" size="small">
+                    <VIcon start icon="tabler-link" />
                     Invoice Attached
                   </VChip>
                 </div>
-                <VBtn
-                  type="submit"
-                  class="me-3"
-                >
-                  Send
-                </VBtn>
+                <VBtn type="submit" class="me-3"> Send </VBtn>
 
                 <VBtn
                   color="secondary"

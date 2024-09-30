@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const textareaValue = ref('This is clearable text.')
+const textareaValue = ref("This is clearable text.");
 </script>
 
 <template>

@@ -1,25 +1,20 @@
 <script setup lang="ts">
 interface Props {
-  title: string
-  color?: string
-  icon: string
-  stats: string
+  title: string;
+  color?: string;
+  icon: string;
+  stats: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  color: 'primary',
-})
+  color: "primary",
+});
 </script>
 
 <template>
   <VCard>
     <VCardText class="d-flex flex-column align-center justify-center">
-      <VAvatar
-        v-if="props.icon"
-        size="42"
-        variant="tonal"
-        :color="props.color"
-      >
+      <VAvatar v-if="props.icon" size="42" variant="tonal" :color="props.color">
         <VIcon :icon="props.icon" />
       </VAvatar>
 

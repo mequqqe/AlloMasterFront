@@ -1,10 +1,7 @@
 <script lang="ts" setup>
-const value = ref(10)
+const value = ref(10);
 </script>
 
 <template>
-  <VSlider
-    v-model="value"
-    direction="vertical"
-  />
+  <VSlider v-model="value" direction="vertical" />
 </template>

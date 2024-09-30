@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const checkbox = ref(false)
+const checkbox = ref(false);
 </script>
 
 <template>

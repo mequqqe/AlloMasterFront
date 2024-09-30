@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-const textareaValue = ref('Hello!')
-const rules = [(v: string) => v.length <= 25 || 'Max 25 characters']
+const textareaValue = ref("Hello!");
+const rules = [(v: string) => v.length <= 25 || "Max 25 characters"];
 </script>
 
 <template>

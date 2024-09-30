@@ -55,7 +55,7 @@ const selectedCheckbox = ref(['basic'])
   />
 </template>
 `,
-}
+};
 
 export const customCheckboxesWithIcon = {
   ts: `<script setup lang="ts">
@@ -135,7 +135,7 @@ const selectedCheckbox = ref(['basic'])
   />
 </template>
 `,
-}
+};
 
 export const customCheckboxesWithImage = {
   ts: `<script setup lang="ts">
@@ -200,7 +200,7 @@ const selectedCheckbox = ref(['basic'])
   />
 </template>
 `,
-}
+};
 
 export const customRadios = {
   ts: `<script setup lang="ts">
@@ -259,7 +259,7 @@ const selectedRadio = ref('basic')
   />
 </template>
 `,
-}
+};
 
 export const customRadiosWithIcon = {
   ts: `<script setup lang="ts">
@@ -339,7 +339,7 @@ const selectedRadio = ref('basic')
   />
 </template>
 `,
-}
+};
 
 export const customRadiosWithImage = {
   ts: `<script setup lang="ts">
@@ -404,4 +404,4 @@ const selectedRadio = ref('basic')
   />
 </template>
 `,
-}
+};

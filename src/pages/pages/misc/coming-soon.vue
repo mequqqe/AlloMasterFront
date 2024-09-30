@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useGenerateImageVariant } from '@core/composable/useGenerateImageVariant'
-import miscComingSoon from '@images/pages/misc-coming-soon.png'
-import miscMaskDark from '@images/pages/misc-mask-dark.png'
-import miscMaskLight from '@images/pages/misc-mask-light.png'
+import { useGenerateImageVariant } from "@core/composable/useGenerateImageVariant";
+import miscComingSoon from "@images/pages/misc-coming-soon.png";
+import miscMaskDark from "@images/pages/misc-mask-dark.png";
+import miscMaskLight from "@images/pages/misc-mask-light.png";
 
-const email = ref('')
+const email = ref("");
 
-const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
+const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark);
 </script>
 
 <template>
@@ -17,7 +17,10 @@ const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
         <h4 class="text-h4 font-weight-medium mb-1">
           We are launching soon 🚀
         </h4>
-        <p>Our website is opening soon. Please register to get notified when it's ready!</p>
+        <p>
+          Our website is opening soon. Please register to get notified when it's
+          ready!
+        </p>
       </div>
 
       <!-- 👉 Email input -->
@@ -29,12 +32,7 @@ const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
           class="misc-email-input"
         >
           <template #append>
-            <VBtn
-              type="submit"
-              class="mt-n2"
-            >
-              Notify
-            </VBtn>
+            <VBtn type="submit" class="mt-n2"> Notify </VBtn>
           </template>
         </AppTextField>
       </VForm>
@@ -50,10 +48,7 @@ const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
       />
     </div>
 
-    <VImg
-      :src="authThemeMask"
-      class="misc-footer-img d-none d-md-block"
-    />
+    <VImg :src="authThemeMask" class="misc-footer-img d-none d-md-block" />
   </div>
 </template>
 

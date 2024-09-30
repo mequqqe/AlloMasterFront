@@ -1,23 +1,23 @@
 <script lang="ts" setup>
-import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
-import { useChat } from './useChat'
-import { useChatStore } from '@/views/apps/chat/useChatStore'
-import { avatarText } from '@core/utils/formatters'
+import { PerfectScrollbar } from "vue3-perfect-scrollbar";
+import { useChat } from "./useChat";
+import { useChatStore } from "@/views/apps/chat/useChatStore";
+import { avatarText } from "@core/utils/formatters";
 
 defineEmits<{
-  (e: 'close'): void
-}>()
+  (e: "close"): void;
+}>();
 
 // composables
-const store = useChatStore()
-const { resolveAvatarBadgeVariant } = useChat()
+const store = useChatStore();
+const { resolveAvatarBadgeVariant } = useChat();
 
 const userStatusRadioOptions = [
-  { title: 'Online', value: 'online', color: 'success' },
-  { title: 'Away', value: 'away', color: 'warning' },
-  { title: 'Do not disturb', value: 'busy', color: 'error' },
-  { title: 'Offline', value: 'offline', color: 'secondary' },
-]
+  { title: "Online", value: "online", color: "success" },
+  { title: "Away", value: "away", color: "warning" },
+  { title: "Do not disturb", value: "busy", color: "error" },
+  { title: "Offline", value: "offline", color: "secondary" },
+];
 </script>
 
 <template>
@@ -25,11 +25,7 @@ const userStatusRadioOptions = [
     <!-- Close Button -->
     <div class="pt-2 me-2 text-end">
       <IconBtn @click="$emit('close')">
-        <VIcon
-          class="text-medium-emphasis"
-          color="disabled"
-          icon="tabler-x"
-        />
+        <VIcon class="text-medium-emphasis" color="disabled" icon="tabler-x" />
       </IconBtn>
     </div>
 
@@ -46,16 +42,19 @@ const userStatusRadioOptions = [
         <VAvatar
           size="84"
           :variant="!store.profileUser.avatar ? 'tonal' : undefined"
-          :color="!store.profileUser.avatar ? resolveAvatarBadgeVariant(store.profileUser.status) : undefined"
+          :color="
+            !store.profileUser.avatar
+              ? resolveAvatarBadgeVariant(store.profileUser.status)
+              : undefined
+          "
         >
           <VImg
             v-if="store.profileUser.avatar"
             :src="store.profileUser.avatar"
           />
-          <span
-            v-else
-            class="text-3xl"
-          >{{ avatarText(store.profileUser.fullName) }}</span>
+          <span v-else class="text-3xl">{{
+            avatarText(store.profileUser.fullName)
+          }}</span>
         </VAvatar>
       </VBadge>
       <h5 class="text-h5">
@@ -73,10 +72,9 @@ const userStatusRadioOptions = [
     >
       <!-- About -->
       <div class="my-5 text-medium-emphasis">
-        <span
-          for="textarea-user-about"
-          class="text-sm text-disabled"
-        >ABOUT</span>
+        <span for="textarea-user-about" class="text-sm text-disabled"
+          >ABOUT</span
+        >
         <AppTextarea
           id="textarea-user-about"
           v-model="store.profileUser.about"
@@ -89,10 +87,7 @@ const userStatusRadioOptions = [
       <!-- Status -->
       <div class="mb-5">
         <span class="text-sm text-disabled">STATUS</span>
-        <VRadioGroup
-          v-model="store.profileUser.status"
-          class="mt-1"
-        >
+        <VRadioGroup v-model="store.profileUser.status" class="mt-1">
           <VRadio
             v-for="radioOption in userStatusRadioOptions"
             :key="radioOption.title"
@@ -108,46 +103,25 @@ const userStatusRadioOptions = [
         <span class="text-sm text-disabled">SETTINGS</span>
 
         <div class="d-flex align-center my-3">
-          <VIcon
-            class="me-2"
-            icon="tabler-message-dots"
-            size="22"
-          />
+          <VIcon class="me-2" icon="tabler-message-dots" size="22" />
           <span class="text-high-emphasis">Two-step Verification</span>
         </div>
         <div class="d-flex align-center mb-3">
-          <VIcon
-            class="me-2"
-            icon="tabler-bell"
-            size="22"
-          />
+          <VIcon class="me-2" icon="tabler-bell" size="22" />
           <span class="text-high-emphasis">Notification</span>
         </div>
         <div class="d-flex align-center mb-3">
-          <VIcon
-            class="me-2"
-            icon="tabler-user-plus"
-            size="22"
-          />
+          <VIcon class="me-2" icon="tabler-user-plus" size="22" />
           <span class="text-high-emphasis">Invite Friends</span>
         </div>
         <div class="d-flex align-center">
-          <VIcon
-            class="me-2"
-            icon="tabler-trash"
-            size="22"
-          />
+          <VIcon class="me-2" icon="tabler-trash" size="22" />
           <span class="text-high-emphasis">Delete Account</span>
         </div>
       </div>
 
       <!-- Logout Button -->
-      <VBtn
-        color="primary"
-        class="mt-11"
-      >
-        Logout
-      </VBtn>
+      <VBtn color="primary" class="mt-11"> Logout </VBtn>
     </PerfectScrollbar>
   </template>
 </template>

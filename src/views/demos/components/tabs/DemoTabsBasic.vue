@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-const currentTab = ref(0)
-const tabItemContent = 'Candy canes donut chupa chups candy canes lemon drops oat cake wafer. Cotton candy candy canes marzipan carrot cake. Sesame snaps lemon drops candy marzipan donut brownie tootsie roll. Icing croissant bonbon biscuit gummi bears. Pudding candy canes sugar plum cookie chocolate cake powder croissant.'
+const currentTab = ref(0);
+const tabItemContent =
+  "Candy canes donut chupa chups candy canes lemon drops oat cake wafer. Cotton candy candy canes marzipan carrot cake. Sesame snaps lemon drops candy marzipan donut brownie tootsie roll. Icing croissant bonbon biscuit gummi bears. Pudding candy canes sugar plum cookie chocolate cake powder croissant.";
 </script>
 
 <template>
@@ -13,10 +14,7 @@ const tabItemContent = 'Candy canes donut chupa chups candy canes lemon drops oa
 
     <VCardText>
       <VWindow v-model="currentTab">
-        <VWindowItem
-          v-for="item in 3"
-          :key="item"
-        >
+        <VWindowItem v-for="item in 3" :key="item">
           {{ tabItemContent }}
         </VWindowItem>
       </VWindow>

@@ -1,16 +1,17 @@
 <script lang="ts" setup>
-import VueApexCharts from 'vue3-apexcharts'
-import { useTheme } from 'vuetify'
-import { getScatterChartConfig } from '@core/libs/apex-chart/apexCharConfig'
+import VueApexCharts from "vue3-apexcharts";
+import { useTheme } from "vuetify";
+import { getScatterChartConfig } from "@core/libs/apex-chart/apexCharConfig";
 
-const vuetifyTheme = useTheme()
+const vuetifyTheme = useTheme();
 
-const scatterChartConfig = computed(() => getScatterChartConfig(vuetifyTheme.current.value),
-)
+const scatterChartConfig = computed(() =>
+  getScatterChartConfig(vuetifyTheme.current.value),
+);
 
 const series = [
   {
-    name: 'Angular',
+    name: "Angular",
     data: [
       { x: 5.4, y: 170 },
       { x: 5.4, y: 100 },
@@ -27,7 +28,7 @@ const series = [
     ],
   },
   {
-    name: 'Vue',
+    name: "Vue",
     data: [
       { x: 14.0, y: 220 },
       { x: 15.0, y: 280 },
@@ -45,7 +46,7 @@ const series = [
     ],
   },
   {
-    name: 'React',
+    name: "React",
     data: [
       { x: 14.0, y: 290 },
       { x: 13.0, y: 190 },
@@ -60,7 +61,7 @@ const series = [
       { x: 20.0, y: 120 },
     ],
   },
-]
+];
 </script>
 
 <template>

@@ -1,31 +1,28 @@
 <script lang="ts" setup>
-import type { GridColumn } from '@core/types'
+import type { GridColumn } from "@core/types";
 
 interface Props {
-  selectedRadio: string
-  radioContent: { bgImage: string; value: string }[]
-  gridColumn?: GridColumn
+  selectedRadio: string;
+  radioContent: { bgImage: string; value: string }[];
+  gridColumn?: GridColumn;
 }
 
 interface Emit {
-  (e: 'update:selectedRadio', value: string): void
+  (e: "update:selectedRadio", value: string): void;
 }
 
-const props = defineProps<Props>()
-const emit = defineEmits<Emit>()
+const props = defineProps<Props>();
+const emit = defineEmits<Emit>();
 
-const selectedOption = ref(structuredClone(toRaw(props.selectedRadio)))
+const selectedOption = ref(structuredClone(toRaw(props.selectedRadio)));
 
 watch(selectedOption, () => {
-  emit('update:selectedRadio', selectedOption.value)
-})
+  emit("update:selectedRadio", selectedOption.value);
+});
 </script>
 
 <template>
-  <VRadioGroup
-    v-if="props.radioContent"
-    v-model="selectedOption"
-  >
+  <VRadioGroup v-if="props.radioContent" v-model="selectedOption">
     <VRow>
       <VCol
         v-for="item in props.radioContent"
@@ -36,11 +33,7 @@ watch(selectedOption, () => {
           class="custom-input custom-radio rounded cursor-pointer w-100"
           :class="selectedOption === item.value ? 'active' : ''"
         >
-          <img
-            :src="item.bgImage"
-            alt="bg-img"
-            class="custom-radio-image"
-          >
+          <img :src="item.bgImage" alt="bg-img" class="custom-radio-image" />
           <VRadio :value="item.value" />
         </VLabel>
       </VCol>

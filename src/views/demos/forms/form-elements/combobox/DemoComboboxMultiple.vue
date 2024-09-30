@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-const selectedItem = ref(['Vuetify', 'Programming'])
-const items = ['Programming', 'Design', 'Vue', 'Vuetify']
+const selectedItem = ref(["Vuetify", "Programming"]);
+const items = ["Programming", "Design", "Vue", "Vuetify"];
 </script>
 
 <template>
@@ -43,14 +43,10 @@ const items = ['Programming', 'Design', 'Vue', 'Vuetify']
       >
         <template #selection="{ item }">
           <VChip>
-            <VAvatar
-              start
-              color="primary"
-            >
-              <span
-                style="margin-top: 1px;"
-                class="text-xs"
-              >{{ String(item.title).charAt(0).toUpperCase() }}</span>
+            <VAvatar start color="primary">
+              <span style="margin-top: 1px" class="text-xs">{{
+                String(item.title).charAt(0).toUpperCase()
+              }}</span>
             </VAvatar>
             {{ item.title }}
           </VChip>

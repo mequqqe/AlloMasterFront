@@ -21,7 +21,7 @@ const date = ref('')
   />
 </template>
 `,
-}
+};
 
 export const dateAndTime = {
   ts: `<script setup lang="ts">
@@ -48,7 +48,7 @@ const date = ref('')
   />
 </template>
 `,
-}
+};
 
 export const disabledRange = {
   ts: `<script setup lang="ts">
@@ -81,7 +81,7 @@ const date = ref('')
   />
 </template>
 `,
-}
+};
 
 export const humanFriendly = {
   ts: `<script setup lang="ts">
@@ -108,7 +108,7 @@ const date = ref('')
   />
 </template>
 `,
-}
+};
 
 export const inline = {
   ts: `<script setup lang="ts">
@@ -135,7 +135,7 @@ const date = ref('')
   />
 </template>
 `,
-}
+};
 
 export const multipleDates = {
   ts: `<script setup lang="ts">
@@ -162,7 +162,7 @@ const multipleDate = ref('')
   />
 </template>
 `,
-}
+};
 
 export const range = {
   ts: `<script setup lang="ts">
@@ -189,7 +189,7 @@ const dateRange = ref('')
   />
 </template>
 `,
-}
+};
 
 export const timePicker = {
   ts: `<script setup lang="ts">
@@ -216,4 +216,4 @@ const time = ref('')
   />
 </template>
 `,
-}
+};

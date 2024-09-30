@@ -1,70 +1,80 @@
 <script lang="ts" setup>
-import BillingHistoryTable from './BillingHistoryTable.vue'
+import BillingHistoryTable from "./BillingHistoryTable.vue";
 
 // Images
-import mastercard from '@images/icons/payments/mastercard.png'
-import visa from '@images/icons/payments/visa.png'
+import mastercard from "@images/icons/payments/mastercard.png";
+import visa from "@images/icons/payments/visa.png";
 
 interface CardDetails {
-  name: string
-  number: string
-  expiry: string
-  isPrimary: boolean
-  type: string
-  cvv: string
-  image: string
+  name: string;
+  number: string;
+  expiry: string;
+  isPrimary: boolean;
+  type: string;
+  cvv: string;
+  image: string;
 }
-const selectedPaymentMethod = ref('credit-debit-atm-card')
+const selectedPaymentMethod = ref("credit-debit-atm-card");
 
-const isPricingPlanDialogVisible = ref(false)
-const isConfirmDialogVisible = ref(false)
-const isCardEditDialogVisible = ref(false)
-const isCardDetailSaveBilling = ref(false)
+const isPricingPlanDialogVisible = ref(false);
+const isConfirmDialogVisible = ref(false);
+const isCardEditDialogVisible = ref(false);
+const isCardDetailSaveBilling = ref(false);
 
 const creditCards: CardDetails[] = [
   {
-    name: 'Tom McBride',
-    number: '5531234567899856',
-    expiry: '12/23',
+    name: "Tom McBride",
+    number: "5531234567899856",
+    expiry: "12/23",
     isPrimary: true,
-    type: 'visa',
-    cvv: '456',
+    type: "visa",
+    cvv: "456",
     image: visa,
   },
   {
-    name: 'Mildred Wagner',
-    number: '4851234567895896',
-    expiry: '10/27',
+    name: "Mildred Wagner",
+    number: "4851234567895896",
+    expiry: "10/27",
     isPrimary: false,
-    type: 'mastercard',
-    cvv: '123',
+    type: "mastercard",
+    cvv: "123",
     image: mastercard,
   },
-]
+];
 
-const countryList = ['United States', 'Canada', 'United Kingdom', 'Australia', 'New Zealand', 'India', 'Russia', 'China', 'Japan']
+const countryList = [
+  "United States",
+  "Canada",
+  "United Kingdom",
+  "Australia",
+  "New Zealand",
+  "India",
+  "Russia",
+  "China",
+  "Japan",
+];
 
-const currentCardDetails = ref()
+const currentCardDetails = ref();
 
 const openEditCardDialog = (cardDetails: CardDetails) => {
-  currentCardDetails.value = cardDetails
+  currentCardDetails.value = cardDetails;
 
-  isCardEditDialogVisible.value = true
-}
+  isCardEditDialogVisible.value = true;
+};
 
-const cardNumber = ref(135632156548789)
-const cardName = ref('john Doe')
-const cardExpiryDate = ref('05/24')
-const cardCvv = ref(420)
+const cardNumber = ref(135632156548789);
+const cardName = ref("john Doe");
+const cardExpiryDate = ref("05/24");
+const cardCvv = ref(420);
 
 const resetPaymentForm = () => {
-  cardNumber.value = 135632156548789
-  cardName.value = 'john Doe'
-  cardExpiryDate.value = '05/24'
-  cardCvv.value = 420
+  cardNumber.value = 135632156548789;
+  cardName.value = "john Doe";
+  cardExpiryDate.value = "05/24";
+  cardCvv.value = 420;
 
-  selectedPaymentMethod.value = 'credit-debit-atm-card'
-}
+  selectedPaymentMethod.value = "credit-debit-atm-card";
+};
 </script>
 
 <template>
@@ -74,18 +84,13 @@ const resetPaymentForm = () => {
       <VCard title="Current Plan">
         <VCardText>
           <VRow>
-            <VCol
-              cols="12"
-              md="6"
-            >
+            <VCol cols="12" md="6">
               <div>
                 <div class="mb-6">
                   <h3 class="text-base font-weight-medium mb-1">
                     Your Current Plan is Basic
                   </h3>
-                  <p class="text-base">
-                    A simple start for everyone
-                  </p>
+                  <p class="text-base">A simple start for everyone</p>
                 </div>
 
                 <div class="mb-6">
@@ -100,13 +105,7 @@ const resetPaymentForm = () => {
                 <div>
                   <h3 class="text-base font-weight-medium mb-1">
                     <span class="me-3">$199 Per Month</span>
-                    <VChip
-                      color="primary"
-                      size="small"
-                      label
-                    >
-                      Popular
-                    </VChip>
+                    <VChip color="primary" size="small" label> Popular </VChip>
                   </h3>
                   <p class="text-base mb-0">
                     Standard plan for small to medium businesses
@@ -115,14 +114,8 @@ const resetPaymentForm = () => {
               </div>
             </VCol>
 
-            <VCol
-              cols="12"
-              md="6"
-            >
-              <VAlert
-                color="warning"
-                variant="tonal"
-              >
+            <VCol cols="12" md="6">
+              <VAlert color="warning" variant="tonal">
                 <VAlertTitle class="mb-1">
                   We need your attention!
                 </VAlertTitle>
@@ -151,10 +144,7 @@ const resetPaymentForm = () => {
 
             <VCol cols="12">
               <div class="d-flex flex-wrap gap-y-4">
-                <VBtn
-                  class="me-3"
-                  @click="isPricingPlanDialogVisible = true"
-                >
+                <VBtn class="me-3" @click="isPricingPlanDialogVisible = true">
                   upgrade plan
                 </VBtn>
 
@@ -180,7 +170,9 @@ const resetPaymentForm = () => {
           />
 
           <!-- 👉 plan and pricing dialog -->
-          <PricingPlanDialog v-model:is-dialog-visible="isPricingPlanDialogVisible" />
+          <PricingPlanDialog
+            v-model:is-dialog-visible="isPricingPlanDialogVisible"
+          />
         </VCardText>
       </VCard>
     </VCol>
@@ -191,17 +183,11 @@ const resetPaymentForm = () => {
         <VCardText>
           <VForm @submit.prevent="() => {}">
             <VRow>
-              <VCol
-                cols="12"
-                md="6"
-              >
+              <VCol cols="12" md="6">
                 <VRow>
                   <!-- 👉 card type switch -->
                   <VCol cols="12">
-                    <VRadioGroup
-                      v-model="selectedPaymentMethod"
-                      inline
-                    >
+                    <VRadioGroup v-model="selectedPaymentMethod" inline>
                       <VRadio
                         value="credit-debit-atm-card"
                         label="Credit/Debit/ATM Card"
@@ -216,7 +202,9 @@ const resetPaymentForm = () => {
                   </VCol>
 
                   <VCol cols="12">
-                    <VRow v-show="selectedPaymentMethod === 'credit-debit-atm-card'">
+                    <VRow
+                      v-show="selectedPaymentMethod === 'credit-debit-atm-card'"
+                    >
                       <!-- 👉 Card Number -->
                       <VCol cols="12">
                         <AppTextField
@@ -227,21 +215,12 @@ const resetPaymentForm = () => {
                       </VCol>
 
                       <!-- 👉 Name -->
-                      <VCol
-                        cols="12"
-                        md="6"
-                      >
-                        <AppTextField
-                          v-model="cardName"
-                          label="Name"
-                        />
+                      <VCol cols="12" md="6">
+                        <AppTextField v-model="cardName" label="Name" />
                       </VCol>
 
                       <!-- 👉 Expiry date -->
-                      <VCol
-                        cols="6"
-                        md="3"
-                      >
+                      <VCol cols="6" md="3">
                         <AppTextField
                           v-model="cardExpiryDate"
                           label="Expiry Date"
@@ -249,10 +228,7 @@ const resetPaymentForm = () => {
                       </VCol>
 
                       <!-- 👉 Cvv code -->
-                      <VCol
-                        cols="6"
-                        md="3"
-                      >
+                      <VCol cols="6" md="3">
                         <AppTextField
                           v-model="cardCvv"
                           type="number"
@@ -274,26 +250,23 @@ const resetPaymentForm = () => {
                       v-show="selectedPaymentMethod === 'cod-cheque'"
                       class="text-base"
                     >
-                      Cash on delivery is a mode of payment where you make the payment after the goods/services are received.
+                      Cash on delivery is a mode of payment where you make the
+                      payment after the goods/services are received.
                     </p>
                     <p
                       v-show="selectedPaymentMethod === 'cod-cheque'"
                       class="text-base"
                     >
-                      You can pay cash or make the payment via debit/credit card directly to the delivery person.
+                      You can pay cash or make the payment via debit/credit card
+                      directly to the delivery person.
                     </p>
                   </VCol>
                 </VRow>
               </VCol>
 
               <!-- 👉 Saved Cards -->
-              <VCol
-                cols="12"
-                md="6"
-              >
-                <h6 class="text-base font-weight-medium mb-3">
-                  My Cards
-                </h6>
+              <VCol cols="12" md="6">
+                <h6 class="text-base font-weight-medium mb-3">My Cards</h6>
 
                 <div class="d-flex flex-column gap-y-4">
                   <VCard
@@ -304,10 +277,7 @@ const resetPaymentForm = () => {
                   >
                     <VCardText class="d-flex flex-sm-row flex-column pa-4">
                       <div class="text-no-wrap">
-                        <VImg
-                          :src="card.image"
-                          width="46"
-                        />
+                        <VImg :src="card.image" width="46" />
                         <h4 class="my-3 text-body-1">
                           <span class="me-2">
                             {{ card.name }}
@@ -321,7 +291,12 @@ const resetPaymentForm = () => {
                             Primary
                           </VChip>
                         </h4>
-                        <span class="text-base">**** **** **** {{ card.number.substring(card.number.length - 4) }}</span>
+                        <span class="text-base"
+                          >**** **** ****
+                          {{
+                            card.number.substring(card.number.length - 4)
+                          }}</span
+                        >
                       </div>
 
                       <VSpacer />
@@ -334,14 +309,14 @@ const resetPaymentForm = () => {
                           >
                             Edit
                           </VBtn>
-                          <VBtn
-                            color="secondary"
-                            variant="tonal"
-                          >
+                          <VBtn color="secondary" variant="tonal">
                             Delete
                           </VBtn>
                         </div>
-                        <span class="text-sm mt-sm-auto mb-sm-0 my-5 order-sm-1 order-0">Card expires at {{ card.expiry }}</span>
+                        <span
+                          class="text-sm mt-sm-auto mb-sm-0 my-5 order-sm-1 order-0"
+                          >Card expires at {{ card.expiry }}</span
+                        >
                       </div>
                     </VCardText>
                   </VCard>
@@ -355,13 +330,8 @@ const resetPaymentForm = () => {
               </VCol>
 
               <!-- 👉 Payment method action button -->
-              <VCol
-                cols="12"
-                class="d-flex flex-wrap gap-4"
-              >
-                <VBtn type="submit">
-                  Save changes
-                </VBtn>
+              <VCol cols="12" class="d-flex flex-wrap gap-4">
+                <VBtn type="submit"> Save changes </VBtn>
                 <VBtn
                   color="secondary"
                   variant="tonal"
@@ -383,42 +353,27 @@ const resetPaymentForm = () => {
           <VForm @submit.prevent="() => {}">
             <VRow>
               <!-- 👉 Company name -->
-              <VCol
-                cols="12"
-                md="6"
-              >
+              <VCol cols="12" md="6">
                 <AppTextField label="Company Name" />
               </VCol>
 
               <!-- 👉 Billing Email -->
-              <VCol
-                cols="12"
-                md="6"
-              >
+              <VCol cols="12" md="6">
                 <AppTextField label="Billing Email" />
               </VCol>
 
               <!-- 👉 Tax ID -->
-              <VCol
-                cols="12"
-                md="6"
-              >
+              <VCol cols="12" md="6">
                 <AppTextField label="Tax ID" />
               </VCol>
 
               <!-- 👉 Vat Number -->
-              <VCol
-                cols="12"
-                md="6"
-              >
+              <VCol cols="12" md="6">
                 <AppTextField label="VAT Number" />
               </VCol>
 
               <!-- 👉 Mobile -->
-              <VCol
-                cols="12"
-                md="6"
-              >
+              <VCol cols="12" md="6">
                 <AppTextField
                   dirty
                   label="Phone Number"
@@ -428,14 +383,8 @@ const resetPaymentForm = () => {
               </VCol>
 
               <!-- 👉 Country -->
-              <VCol
-                cols="12"
-                md="6"
-              >
-                <AppSelect
-                  label="Country"
-                  :items="countryList"
-                />
+              <VCol cols="12" md="6">
+                <AppSelect label="Country" :items="countryList" />
               </VCol>
 
               <!-- 👉 Billing Address -->
@@ -444,37 +393,19 @@ const resetPaymentForm = () => {
               </VCol>
 
               <!-- 👉 State -->
-              <VCol
-                cols="12"
-                md="6"
-              >
+              <VCol cols="12" md="6">
                 <AppTextField label="State" />
               </VCol>
 
               <!-- 👉 Zip Code -->
-              <VCol
-                cols="12"
-                md="6"
-              >
-                <AppTextField
-                  label="Zip Code"
-                  type="number"
-                />
+              <VCol cols="12" md="6">
+                <AppTextField label="Zip Code" type="number" />
               </VCol>
 
               <!-- 👉 Actions Button -->
-              <VCol
-                cols="12"
-                class="d-flex flex-wrap gap-4"
-              >
-                <VBtn type="submit">
-                  Save changes
-                </VBtn>
-                <VBtn
-                  type="reset"
-                  color="secondary"
-                  variant="tonal"
-                >
+              <VCol cols="12" class="d-flex flex-wrap gap-4">
+                <VBtn type="submit"> Save changes </VBtn>
+                <VBtn type="reset" color="secondary" variant="tonal">
                   Reset
                 </VBtn>
               </VCol>

@@ -1,28 +1,34 @@
 <script setup lang="ts">
-import FullCalendar from '@fullcalendar/vue3'
-import { blankEvent, useCalendar } from '@/views/apps/calendar/useCalendar'
-import { useCalendarStore } from '@/views/apps/calendar/useCalendarStore'
-import { useResponsiveLeftSidebar } from '@core/composable/useResponsiveSidebar'
+import FullCalendar from "@fullcalendar/vue3";
+import { blankEvent, useCalendar } from "@/views/apps/calendar/useCalendar";
+import { useCalendarStore } from "@/views/apps/calendar/useCalendarStore";
+import { useResponsiveLeftSidebar } from "@core/composable/useResponsiveSidebar";
 
 // Components
-import CalendarEventHandler from '@/views/apps/calendar/CalendarEventHandler.vue'
+import CalendarEventHandler from "@/views/apps/calendar/CalendarEventHandler.vue";
 
 // 👉 Store
-const store = useCalendarStore()
+const store = useCalendarStore();
 
 // 👉 Event
-const event = ref(structuredClone(blankEvent))
-const isEventHandlerSidebarActive = ref(false)
+const event = ref(structuredClone(blankEvent));
+const isEventHandlerSidebarActive = ref(false);
 
-watch(isEventHandlerSidebarActive, val => {
-  if (!val)
-    event.value = structuredClone(blankEvent)
-})
+watch(isEventHandlerSidebarActive, (val) => {
+  if (!val) event.value = structuredClone(blankEvent);
+});
 
-const { isLeftSidebarOpen } = useResponsiveLeftSidebar()
+const { isLeftSidebarOpen } = useResponsiveLeftSidebar();
 
 // 👉 useCalendar
-const { refCalendar, calendarOptions, addEvent, updateEvent, removeEvent, jumpToDate } = useCalendar(event, isEventHandlerSidebarActive, isLeftSidebarOpen)
+const {
+  refCalendar,
+  calendarOptions,
+  addEvent,
+  updateEvent,
+  removeEvent,
+  jumpToDate,
+} = useCalendar(event, isEventHandlerSidebarActive, isLeftSidebarOpen);
 
 // SECTION Sidebar
 // 👉 Check all
@@ -33,14 +39,13 @@ const checkAll = computed({
           Else if => all filters are selected (by checking length of both array) => Empty Selected array  => Deselect All
   */
   get: () => store.selectedCalendars.length === store.availableCalendars.length,
-  set: val => {
+  set: (val) => {
     if (val)
-      store.selectedCalendars = store.availableCalendars.map(i => i.label)
-
+      store.selectedCalendars = store.availableCalendars.map((i) => i.label);
     else if (store.selectedCalendars.length === store.availableCalendars.length)
-      store.selectedCalendars = []
+      store.selectedCalendars = [];
   },
-})
+});
 
 // !SECTION
 </script>
@@ -49,7 +54,7 @@ const checkAll = computed({
   <div>
     <VCard>
       <!-- `z-index: 0` Allows overlapping vertical nav on calendar -->
-      <VLayout style="z-index: 0;">
+      <VLayout style="z-index: 0">
         <!-- 👉 Navigation drawer -->
         <VNavigationDrawer
           v-model="isLeftSidebarOpen"
@@ -60,7 +65,7 @@ const checkAll = computed({
           class="calendar-add-event-drawer"
           :temporary="$vuetify.display.mdAndDown"
         >
-          <div style="margin: 1.4rem;">
+          <div style="margin: 1.4rem">
             <VBtn
               block
               prepend-icon="tabler-plus"
@@ -83,15 +88,10 @@ const checkAll = computed({
 
           <VDivider />
           <div class="pa-7">
-            <p class="text-sm text-uppercase text-disabled mb-3">
-              FILTER
-            </p>
+            <p class="text-sm text-uppercase text-disabled mb-3">FILTER</p>
 
             <div class="d-flex flex-column calendars-checkbox">
-              <VCheckbox
-                v-model="checkAll"
-                label="View all"
-              />
+              <VCheckbox v-model="checkAll" label="View all" />
               <VCheckbox
                 v-for="calendar in store.availableCalendars"
                 :key="calendar.label"
@@ -106,10 +106,7 @@ const checkAll = computed({
 
         <VMain>
           <VCard flat>
-            <FullCalendar
-              ref="refCalendar"
-              :options="calendarOptions"
-            />
+            <FullCalendar ref="refCalendar" :options="calendarOptions" />
           </VCard>
         </VMain>
       </VLayout>
@@ -144,8 +141,8 @@ const checkAll = computed({
 .calendar-date-picker {
   display: none;
 
-  +.flatpickr-input {
-    +.flatpickr-calendar.inline {
+  + .flatpickr-input {
+    + .flatpickr-calendar.inline {
       border: none;
       box-shadow: none;
 

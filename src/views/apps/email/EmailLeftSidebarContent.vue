@@ -1,114 +1,108 @@
 <script setup lang="ts">
-import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
+import { PerfectScrollbar } from "vue3-perfect-scrollbar";
 
 defineEmits<{
-  (e: 'toggleComposeDialogVisibility'): void
-}>()
+  (e: "toggleComposeDialogVisibility"): void;
+}>();
 
 const folders = [
   {
-    title: 'Inbox',
-    prependIcon: 'tabler-mail',
-    to: { name: 'apps-email' },
-    badge: { content: '4', color: 'primary' },
+    title: "Inbox",
+    prependIcon: "tabler-mail",
+    to: { name: "apps-email" },
+    badge: { content: "4", color: "primary" },
   },
   {
-    title: 'Sent',
-    prependIcon: 'tabler-send',
+    title: "Sent",
+    prependIcon: "tabler-send",
     to: {
-      name: 'apps-email-filter',
-      params: { filter: 'sent' },
+      name: "apps-email-filter",
+      params: { filter: "sent" },
     },
   },
   {
-    title: 'Draft',
-    prependIcon: 'tabler-pencil',
+    title: "Draft",
+    prependIcon: "tabler-pencil",
     to: {
-      name: 'apps-email-filter',
-      params: { filter: 'draft' },
+      name: "apps-email-filter",
+      params: { filter: "draft" },
     },
-    badge: { content: '2', color: 'warning' },
+    badge: { content: "2", color: "warning" },
   },
   {
-    title: 'Starred',
-    prependIcon: 'tabler-star',
+    title: "Starred",
+    prependIcon: "tabler-star",
     to: {
-      name: 'apps-email-filter',
-      params: { filter: 'starred' },
+      name: "apps-email-filter",
+      params: { filter: "starred" },
     },
-    badge: { content: '9', color: 'success' },
+    badge: { content: "9", color: "success" },
   },
   {
-    title: 'Spam',
-    prependIcon: 'tabler-info-circle',
+    title: "Spam",
+    prependIcon: "tabler-info-circle",
     to: {
-      name: 'apps-email-filter',
-      params: { filter: 'spam' },
+      name: "apps-email-filter",
+      params: { filter: "spam" },
     },
   },
   {
-    title: 'Trash',
-    prependIcon: 'tabler-trash',
+    title: "Trash",
+    prependIcon: "tabler-trash",
     to: {
-      name: 'apps-email-filter',
-      params: { filter: 'trashed' },
+      name: "apps-email-filter",
+      params: { filter: "trashed" },
     },
   },
-]
+];
 
 const labels = [
   {
-    title: 'Personal',
-    color: 'success',
+    title: "Personal",
+    color: "success",
     to: {
-      name: 'apps-email-label',
-      params: { label: 'personal' },
+      name: "apps-email-label",
+      params: { label: "personal" },
     },
   },
   {
-    title: 'Company',
-    color: 'primary',
+    title: "Company",
+    color: "primary",
     to: {
-      name: 'apps-email-label',
-      params: { label: 'company' },
+      name: "apps-email-label",
+      params: { label: "company" },
     },
   },
   {
-    title: 'Important',
-    color: 'warning',
+    title: "Important",
+    color: "warning",
     to: {
-      name: 'apps-email-label',
-      params: { label: 'important' },
+      name: "apps-email-label",
+      params: { label: "important" },
     },
   },
   {
-    title: 'Private',
-    color: 'error',
+    title: "Private",
+    color: "error",
     to: {
-      name: 'apps-email-label',
-      params: { label: 'private' },
+      name: "apps-email-label",
+      params: { label: "private" },
     },
   },
-]
+];
 </script>
 
 <template>
   <div class="d-flex flex-column h-100">
     <!-- 👉 Compose -->
     <div class="px-6 pb-5 pt-6">
-      <VBtn
-        block
-        @click="$emit('toggleComposeDialogVisibility')"
-      >
+      <VBtn block @click="$emit('toggleComposeDialogVisibility')">
         Compose
       </VBtn>
     </div>
 
     <!-- 👉 Folders -->
-    <PerfectScrollbar
-      :options="{ wheelPropagation: false }"
-      class="h-100"
-    >
+    <PerfectScrollbar :options="{ wheelPropagation: false }" class="h-100">
       <!-- Filters -->
       <ul class="email-filters">
         <RouterLink
@@ -126,11 +120,7 @@ const labels = [
             class="d-flex align-center cursor-pointer"
             @click="navigate"
           >
-            <VIcon
-              :icon="folder.prependIcon"
-              class="me-2"
-              size="20"
-            />
+            <VIcon :icon="folder.prependIcon" class="me-2" size="20" />
             <span class="font-weight-medium">{{ folder.title }}</span>
 
             <VSpacer />
@@ -166,12 +156,7 @@ const labels = [
             class="cursor-pointer"
             @click="navigate"
           >
-            <VBadge
-              inline
-              dot
-              :color="label.color"
-              class="me-4"
-            />
+            <VBadge inline dot :color="label.color" class="me-4" />
             <span class="font-weight-medium">{{ label.title }}</span>
           </li>
         </RouterLink>

@@ -49,7 +49,7 @@ export const block = {
   </VRow>
 </template>
 `,
-}
+};
 
 export const colors = {
   ts: `<template>
@@ -98,7 +98,7 @@ export const colors = {
   </div>
 </template>
 `,
-}
+};
 
 export const flat = {
   ts: `<template>
@@ -187,7 +187,7 @@ export const flat = {
   </div>
 </template>
 `,
-}
+};
 
 export const group = {
   ts: `<script lang="ts" setup>
@@ -226,7 +226,7 @@ const toggleExclusive = ref(1)
   </VBtnToggle>
 </template>
 `,
-}
+};
 
 export const icon = {
   ts: `<template>
@@ -315,7 +315,7 @@ export const icon = {
   </div>
 </template>
 `,
-}
+};
 
 export const iconOnly = {
   ts: `<template>
@@ -440,7 +440,7 @@ export const iconOnly = {
   </div>
 </template>
 `,
-}
+};
 
 export const link = {
   ts: `<template>
@@ -475,7 +475,7 @@ export const link = {
   </div>
 </template>
 `,
-}
+};
 
 export const loaders = {
   ts: `<script lang="ts" setup>
@@ -654,7 +654,7 @@ const load = i => {
   }
   </style>
 `,
-}
+};
 
 export const outlined = {
   ts: `<template>
@@ -733,7 +733,7 @@ export const outlined = {
   </div>
 </template>
 `,
-}
+};
 
 export const plain = {
   ts: `<template>
@@ -822,7 +822,7 @@ export const plain = {
   </div>
 </template>
 `,
-}
+};
 
 export const rounded = {
   ts: `<template>
@@ -877,7 +877,7 @@ export const rounded = {
   </div>
 </template>
 `,
-}
+};
 
 export const router = {
   ts: `<template>
@@ -938,7 +938,7 @@ export const router = {
   </div>
 </template>
 `,
-}
+};
 
 export const sizing = {
   ts: `<template>
@@ -1007,7 +1007,7 @@ export const sizing = {
   </div>
 </template>
 `,
-}
+};
 
 export const text = {
   ts: `<template>
@@ -1096,7 +1096,7 @@ export const text = {
   </div>
 </template>
 `,
-}
+};
 
 export const tonal = {
   ts: `<template>
@@ -1185,4 +1185,4 @@ export const tonal = {
   </div>
 </template>
 `,
-}
+};

@@ -1,31 +1,28 @@
 <script lang="ts" setup>
-import type { GridColumn } from '@core/types'
+import type { GridColumn } from "@core/types";
 
 interface Props {
-  selectedCheckbox: string[]
-  checkboxContent: { bgImage: string; value: string }[]
-  gridColumn?: GridColumn
+  selectedCheckbox: string[];
+  checkboxContent: { bgImage: string; value: string }[];
+  gridColumn?: GridColumn;
 }
 
 interface Emit {
-  (e: 'update:selectedCheckbox', value: string[]): void
+  (e: "update:selectedCheckbox", value: string[]): void;
 }
 
-const props = defineProps<Props>()
-const emit = defineEmits<Emit>()
+const props = defineProps<Props>();
+const emit = defineEmits<Emit>();
 
-const selectedOption = ref(structuredClone(toRaw(props.selectedCheckbox)))
+const selectedOption = ref(structuredClone(toRaw(props.selectedCheckbox)));
 
 watch(selectedOption, () => {
-  emit('update:selectedCheckbox', selectedOption.value)
-})
+  emit("update:selectedCheckbox", selectedOption.value);
+});
 </script>
 
 <template>
-  <VRow
-    v-if="props.checkboxContent && selectedOption"
-    v-model="selectedOption"
-  >
+  <VRow v-if="props.checkboxContent && selectedOption" v-model="selectedOption">
     <VCol
       v-for="item in props.checkboxContent"
       :key="item.value"
@@ -36,16 +33,9 @@ watch(selectedOption, () => {
         :class="selectedOption.includes(item.value) ? 'active' : ''"
       >
         <div>
-          <VCheckbox
-            v-model="selectedOption"
-            :value="item.value"
-          />
+          <VCheckbox v-model="selectedOption" :value="item.value" />
         </div>
-        <img
-          :src="item.bgImage"
-          alt="bg-img"
-          class="custom-checkbox-image"
-        >
+        <img :src="item.bgImage" alt="bg-img" class="custom-checkbox-image" />
       </VLabel>
     </VCol>
   </VRow>

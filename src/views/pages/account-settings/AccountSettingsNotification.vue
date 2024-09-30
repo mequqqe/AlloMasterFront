@@ -1,34 +1,32 @@
 <script lang="ts" setup>
-const recentDevices = ref(
-  [
-    {
-      type: 'New for you',
-      email: true,
-      browser: true,
-      app: true,
-    },
-    {
-      type: 'Account activity',
-      email: true,
-      browser: true,
-      app: true,
-    },
-    {
-      type: 'A new browser used to sign in',
-      email: true,
-      browser: true,
-      app: false,
-    },
-    {
-      type: 'A new device is linked',
-      email: true,
-      browser: false,
-      app: false,
-    },
-  ],
-)
+const recentDevices = ref([
+  {
+    type: "New for you",
+    email: true,
+    browser: true,
+    app: true,
+  },
+  {
+    type: "Account activity",
+    email: true,
+    browser: true,
+    app: true,
+  },
+  {
+    type: "A new browser used to sign in",
+    email: true,
+    browser: true,
+    app: false,
+  },
+  {
+    type: "A new device is linked",
+    email: true,
+    browser: false,
+    app: false,
+  },
+]);
 
-const selectedNotification = ref('Only when I\'m online')
+const selectedNotification = ref("Only when I'm online");
 </script>
 
 <template>
@@ -36,7 +34,8 @@ const selectedNotification = ref('Only when I\'m online')
     <VCardItem>
       <VCardTitle>Recent Devices</VCardTitle>
       <p class="text-sm mt-2 mb-0">
-        We need permission from your browser to show notifications. <span class="font-weight-bold">Request Permission</span>
+        We need permission from your browser to show notifications.
+        <span class="font-weight-bold">Request Permission</span>
       </p>
     </VCardItem>
 
@@ -44,25 +43,14 @@ const selectedNotification = ref('Only when I\'m online')
       <VTable class="text-no-wrap rounded border">
         <thead>
           <tr>
-            <th scope="col">
-              Type
-            </th>
-            <th scope="col">
-              EMAIL
-            </th>
-            <th scope="col">
-              BROWSER
-            </th>
-            <th scope="col">
-              App
-            </th>
+            <th scope="col">Type</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">BROWSER</th>
+            <th scope="col">App</th>
           </tr>
         </thead>
         <tbody>
-          <tr
-            v-for="device in recentDevices"
-            :key="device.type"
-          >
+          <tr v-for="device in recentDevices" :key="device.type">
             <td>
               {{ device.type }}
             </td>
@@ -88,10 +76,7 @@ const selectedNotification = ref('Only when I\'m online')
         </h6>
 
         <VRow>
-          <VCol
-            cols="12"
-            sm="6"
-          >
+          <VCol cols="12" sm="6">
             <AppSelect
               v-model="selectedNotification"
               mandatory
@@ -101,16 +86,8 @@ const selectedNotification = ref('Only when I\'m online')
         </VRow>
 
         <div class="d-flex flex-wrap gap-4 mt-4">
-          <VBtn type="submit">
-            Save Changes
-          </VBtn>
-          <VBtn
-            color="secondary"
-            variant="tonal"
-            type="reset"
-          >
-            Reset
-          </VBtn>
+          <VBtn type="submit"> Save Changes </VBtn>
+          <VBtn color="secondary" variant="tonal" type="reset"> Reset </VBtn>
         </div>
       </VForm>
     </VCardText>

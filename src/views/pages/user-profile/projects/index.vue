@@ -1,43 +1,39 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-import type { ProjectsTab } from '@/@fake-db/types'
-import axios from '@axios'
+import { useRoute } from "vue-router";
+import type { ProjectsTab } from "@/@fake-db/types";
+import axios from "@axios";
 
-const router = useRoute()
-const projectData = ref<ProjectsTab[]>([])
+const router = useRoute();
+const projectData = ref<ProjectsTab[]>([]);
 
 const fetchProjectData = () => {
-  if (router.params.tab === 'projects') {
-    axios.get('/pages/profile', {
-      params: {
-        tab: router.params.tab,
-      },
-    }).then(response => {
-      projectData.value = response.data
-    })
+  if (router.params.tab === "projects") {
+    axios
+      .get("/pages/profile", {
+        params: {
+          tab: router.params.tab,
+        },
+      })
+      .then((response) => {
+        projectData.value = response.data;
+      });
   }
-}
+};
 
-watch(router, fetchProjectData, { immediate: true })
+watch(router, fetchProjectData, { immediate: true });
 
 const moreList = [
-  { title: 'Rename Project', value: 'Rename Project' },
-  { title: 'View Details', value: 'View Details' },
-  { title: 'Add to favorites', value: 'Add to favorites' },
-  { type: 'divider', class: 'my-2' },
-  { title: 'Leave Project', value: 'Leave Project', class: 'text-error' },
-]
+  { title: "Rename Project", value: "Rename Project" },
+  { title: "View Details", value: "View Details" },
+  { title: "Add to favorites", value: "Add to favorites" },
+  { type: "divider", class: "my-2" },
+  { title: "Leave Project", value: "Leave Project", class: "text-error" },
+];
 </script>
 
 <template>
   <VRow v-if="projectData">
-    <VCol
-      v-for="data in projectData"
-      :key="data.title"
-      cols="12"
-      sm="6"
-      lg="4"
-    >
+    <VCol v-for="data in projectData" :key="data.title" cols="12" sm="6" lg="4">
       <VCard>
         <VCardItem>
           <template #prepend>
@@ -52,26 +48,27 @@ const moreList = [
 
           <template #append>
             <div class="mt-n8 me-n3">
-              <MoreBtn
-                item-props
-                :menu-list="moreList"
-              />
+              <MoreBtn item-props :menu-list="moreList" />
             </div>
           </template>
         </VCardItem>
 
         <VCardText>
-          <div class="d-flex align-center justify-space-between flex-wrap gap-x-2 gap-y-4">
+          <div
+            class="d-flex align-center justify-space-between flex-wrap gap-x-2 gap-y-4"
+          >
             <div class="pa-2 bg-var-theme-background rounded">
               <h6 class="text-base font-weight-medium">
-                {{ data.budgetSpent }} <span class="text-body-1">/ {{ data.budget }}</span>
+                {{ data.budgetSpent }}
+                <span class="text-body-1">/ {{ data.budget }}</span>
               </h6>
               <span>Total Budget</span>
             </div>
 
             <div>
               <h6 class="text-base font-weight-medium">
-                Start Date: <span class="text-body-1">{{ data.startDate }}</span>
+                Start Date:
+                <span class="text-body-1">{{ data.startDate }}</span>
               </h6>
               <h6 class="text-base font-weight-medium mb-1">
                 Deadline: <span class="text-body-1">{{ data.deadline }}</span>
@@ -87,23 +84,26 @@ const moreList = [
         <VDivider />
 
         <VCardText>
-          <div class="d-flex align-center justify-space-between flex-wrap gap-2">
+          <div
+            class="d-flex align-center justify-space-between flex-wrap gap-2"
+          >
             <h6 class="text-base font-weight-medium">
               All Hours: <span class="text-body-1">{{ data.hours }}</span>
             </h6>
 
-            <VChip
-              label
-              :color="data.chipColor"
-              size="small"
-            >
+            <VChip label :color="data.chipColor" size="small">
               {{ data.daysLeft }} Days left
             </VChip>
           </div>
 
-          <div class="d-flex align-center justify-space-between flex-wrap text-sm mt-4 mb-2">
+          <div
+            class="d-flex align-center justify-space-between flex-wrap text-sm mt-4 mb-2"
+          >
             <span>Task: {{ data.tasks }}</span>
-            <span>{{ Math.round((data.completedTask / data.totalTask) * 100) }}% Completed</span>
+            <span
+              >{{ Math.round((data.completedTask / data.totalTask) * 100) }}%
+              Completed</span
+            >
           </div>
           <VProgressLinear
             rounded
@@ -114,7 +114,9 @@ const moreList = [
             color="primary"
           />
 
-          <div class="d-flex align-center justify-space-between flex-wrap gap-2 mt-3">
+          <div
+            class="d-flex align-center justify-space-between flex-wrap gap-2 mt-3"
+          >
             <div class="d-flex align-center">
               <div class="v-avatar-group me-2">
                 <VAvatar
@@ -130,10 +132,7 @@ const moreList = [
             </div>
 
             <span>
-              <VIcon
-                icon="tabler-message-dots"
-                class="me-1"
-              />
+              <VIcon icon="tabler-message-dots" class="me-1" />
               <span>{{ data.comments }}</span>
             </span>
           </div>

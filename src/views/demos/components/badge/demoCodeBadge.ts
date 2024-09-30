@@ -93,7 +93,7 @@ import avatar1 from '@images/avatars/avatar-1.png'
   </div>
 </template>
 `,
-}
+};
 
 export const color = {
   ts: `<template>
@@ -224,7 +224,7 @@ export const color = {
   </div>
 </template>
 `,
-}
+};
 
 export const dynamicNotifications = {
   ts: `<script lang="ts" setup>
@@ -293,7 +293,7 @@ const notifications = ref()
   </div>
 </template>
 `,
-}
+};
 
 export const icon = {
   ts: `<script setup lang="ts">
@@ -348,7 +348,7 @@ import avatar1 from '@images/avatars/avatar-1.png'
   </div>
 </template>
 `,
-}
+};
 
 export const maximumValue = {
   ts: `<script setup lang="ts">
@@ -433,7 +433,7 @@ import avatar1 from '@images/avatars/avatar-1.png'
   </div>
 </template>
 `,
-}
+};
 
 export const position = {
   ts: `<script setup lang="ts">
@@ -532,7 +532,7 @@ import avatar1 from '@images/avatars/avatar-1.png'
   </div>
 </template>
 `,
-}
+};
 
 export const showOnHover = {
   ts: `<script lang="ts" setup>
@@ -634,7 +634,7 @@ const showWhatsappBadgeOnHover = useElementHover(tRefWhatsappBadge)
   </div>
 </template>
 `,
-}
+};
 
 export const style = {
   ts: `<script setup lang="ts">
@@ -751,7 +751,7 @@ import avatar1 from '@images/avatars/avatar-1.png'
   </div>
 </template>
 `,
-}
+};
 
 export const tabs = {
   ts: `<script setup lang="ts">
@@ -824,4 +824,4 @@ const tabs = [
   </VTabs>
 </template>
 `,
-}
+};

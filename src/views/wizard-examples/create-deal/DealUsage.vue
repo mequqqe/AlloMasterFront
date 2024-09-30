@@ -1,28 +1,25 @@
 <script setup lang="ts">
-import type { DealUsage } from './types'
+import type { DealUsage } from "./types";
 
 const props = defineProps<{
-  formData: DealUsage
-}>()
+  formData: DealUsage;
+}>();
 
 const emit = defineEmits<{
-  (e: 'update:formData', value: DealUsage): void
-}>()
+  (e: "update:formData", value: DealUsage): void;
+}>();
 
-const formData = ref<DealUsage>(props.formData)
+const formData = ref<DealUsage>(props.formData);
 
 watch(formData, () => {
-  emit('update:formData', formData.value)
-})
+  emit("update:formData", formData.value);
+});
 </script>
 
 <template>
   <VForm>
     <VRow>
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <AppSelect
           v-model="formData.userType"
           label="User Type"
@@ -30,10 +27,7 @@ watch(formData, () => {
         />
       </VCol>
 
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <AppTextField
           v-model="formData.maxUsers"
           label="Max Users"
@@ -41,10 +35,7 @@ watch(formData, () => {
         />
       </VCol>
 
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <AppTextField
           v-model="formData.cartAmount"
           label="Minimum Cart Amount"
@@ -52,10 +43,7 @@ watch(formData, () => {
         />
       </VCol>
 
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <AppTextField
           v-model="formData.promotionFree"
           label="Promotion Fee"
@@ -63,10 +51,7 @@ watch(formData, () => {
         />
       </VCol>
 
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <AppSelect
           v-model="formData.paymentMethod"
           label="Payment Method"
@@ -74,10 +59,7 @@ watch(formData, () => {
         />
       </VCol>
 
-      <VCol
-        cols="12"
-        sm="6"
-      >
+      <VCol cols="12" sm="6">
         <AppSelect
           v-model="formData.dealStatus"
           label="Deal Status"

@@ -1,15 +1,13 @@
 <script lang="ts" setup>
-const isSnackbarFadeVisible = ref(false)
-const isSnackbarScaleVisible = ref(false)
-const isSnackbarScrollReverseVisible = ref(false)
+const isSnackbarFadeVisible = ref(false);
+const isSnackbarScaleVisible = ref(false);
+const isSnackbarScrollReverseVisible = ref(false);
 </script>
 
 <template>
   <div class="demo-space-x">
     <!-- fade -->
-    <VBtn @click="isSnackbarFadeVisible = true">
-      fade snackbar
-    </VBtn>
+    <VBtn @click="isSnackbarFadeVisible = true"> fade snackbar </VBtn>
 
     <VSnackbar
       v-model="isSnackbarFadeVisible"
@@ -20,9 +18,7 @@ const isSnackbarScrollReverseVisible = ref(false)
     </VSnackbar>
 
     <!-- scale -->
-    <VBtn @click="isSnackbarScaleVisible = true">
-      Scale snackbar
-    </VBtn>
+    <VBtn @click="isSnackbarScaleVisible = true"> Scale snackbar </VBtn>
 
     <VSnackbar
       v-model="isSnackbarScaleVisible"

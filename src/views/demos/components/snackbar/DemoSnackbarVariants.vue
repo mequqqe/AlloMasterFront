@@ -1,30 +1,23 @@
 <script lang="ts" setup>
-const isDefaultSnackbarVisible = ref(false)
-const isTonalSnackbarVisible = ref(false)
-const isTextSnackbarVisible = ref(false)
-const isOutlinedSnackbarVisible = ref(false)
-const isFlatSnackbarVisible = ref(false)
+const isDefaultSnackbarVisible = ref(false);
+const isTonalSnackbarVisible = ref(false);
+const isTextSnackbarVisible = ref(false);
+const isOutlinedSnackbarVisible = ref(false);
+const isFlatSnackbarVisible = ref(false);
 </script>
 
 <template>
   <div class="demo-space-x">
     <!-- Default toggle btn -->
-    <VBtn @click="isDefaultSnackbarVisible = true">
-      Default
-    </VBtn>
+    <VBtn @click="isDefaultSnackbarVisible = true"> Default </VBtn>
 
     <!-- Default snackbar -->
-    <VSnackbar
-      v-model="isDefaultSnackbarVisible"
-      location="top start"
-    >
+    <VSnackbar v-model="isDefaultSnackbarVisible" location="top start">
       Jelly chocolate bar candy canes apple pie.
     </VSnackbar>
 
     <!-- tonal toggle btn -->
-    <VBtn @click="isTonalSnackbarVisible = true">
-      tonal
-    </VBtn>
+    <VBtn @click="isTonalSnackbarVisible = true"> tonal </VBtn>
 
     <!-- tonal snackbar -->
     <VSnackbar
@@ -36,9 +29,7 @@ const isFlatSnackbarVisible = ref(false)
     </VSnackbar>
 
     <!-- Text toggle btn -->
-    <VBtn @click="isTextSnackbarVisible = true">
-      Text
-    </VBtn>
+    <VBtn @click="isTextSnackbarVisible = true"> Text </VBtn>
 
     <!-- Text snackbar -->
     <VSnackbar
@@ -50,9 +41,7 @@ const isFlatSnackbarVisible = ref(false)
     </VSnackbar>
 
     <!-- Outline toggle btn -->
-    <VBtn @click="isOutlinedSnackbarVisible = true">
-      Outlined
-    </VBtn>
+    <VBtn @click="isOutlinedSnackbarVisible = true"> Outlined </VBtn>
 
     <!-- Outline snackbar -->
     <VSnackbar
@@ -65,9 +54,7 @@ const isFlatSnackbarVisible = ref(false)
     </VSnackbar>
 
     <!-- flat toggle btn -->
-    <VBtn @click="isFlatSnackbarVisible = true">
-      Flat
-    </VBtn>
+    <VBtn @click="isFlatSnackbarVisible = true"> Flat </VBtn>
 
     <!-- flat snackbar -->
     <VSnackbar
