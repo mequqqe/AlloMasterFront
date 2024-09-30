@@ -148,7 +148,7 @@ const handleNavScroll = (evt: Event) => {
     <div class="nav">
         <v-list nav>
           <v-list-item to="/" tag="router-link" prepend-icon="mdi-home" title="Main"></v-list-item>
-          <v-list-item to="/pages/user-profile" tag="router-link" prepend-icon="mdi-account" title="Contacts"></v-list-item>
+          <v-list-item to="/contacts" tag="router-link" prepend-icon="mdi-account" title="Contacts"></v-list-item>
           <v-list-item to="/settings" tag="router-link" prepend-icon="mdi-settings" title="Setting"></v-list-item>
         </v-list>
     </div>
