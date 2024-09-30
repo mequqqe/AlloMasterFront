@@ -152,7 +152,7 @@ const handleNavScroll = (evt: Event) => {
           <v-list-item to="/settings" tag="router-link" prepend-icon="mdi-settings" title="Setting"></v-list-item>
         </v-list>
     </div>
-
+    
 
     <slot
       name="nav-items"
